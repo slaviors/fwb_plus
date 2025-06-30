@@ -92,6 +92,16 @@ export default function FWBConfigPage() {
                                     <p className="mt-1 text-sm text-gray-500">Create, edit, and manage events</p>
                                 </div>
                             </button>
+
+                            <button
+                                onClick={() => router.push('/fwb-config/microsite')}
+                                className="bg-white overflow-hidden shadow rounded-lg hover:shadow-lg transition-shadow cursor-pointer"
+                            >
+                                <div className="p-5">
+                                    <h3 className="text-lg font-medium text-gray-900">Microsite Builder</h3>
+                                    <p className="mt-1 text-sm text-gray-500">Create and customize your link page</p>
+                                </div>
+                            </button>
                         </div>
                     </div>
                 </div>
