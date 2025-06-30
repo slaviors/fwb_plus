@@ -308,6 +308,26 @@ export default function MicrositePage() {
         }
     };
 
+    const openRealMicrosite = () => {
+        const micrositeUrl = 'https://links-fwb-plus.vercel.app'; // Replace with actual microsite URL
+        window.open(micrositeUrl, '_blank');
+    };
+
+    const copyPublicAPI = () => {
+        const apiUrl = `${window.location.origin}/api/public/microsite`;
+        navigator.clipboard.writeText(apiUrl).then(() => {
+            alert('Public API URL copied to clipboard!');
+        }).catch(() => {
+            const textArea = document.createElement('textarea');
+            textArea.value = apiUrl;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            alert('Public API URL copied to clipboard!');
+        });
+    };
+
     if (loading) {
         return (
             <div className="min-h-screen flex items-center justify-center">
@@ -462,20 +482,46 @@ export default function MicrositePage() {
                             </div>
 
                             <div className="bg-white shadow rounded-lg p-6">
-                                <div className="flex space-x-3">
-                                    <button
-                                        onClick={saveMicrosite}
-                                        disabled={saving}
-                                        className="flex-1 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md text-sm font-medium disabled:opacity-50"
-                                    >
-                                        {saving ? 'Saving...' : 'Save'}
-                                    </button>
-                                    <button
-                                        onClick={publishMicrosite}
-                                        className="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-md text-sm font-medium"
-                                    >
-                                        Publish
-                                    </button>
+                                <div className="space-y-3">
+                                    <div className="flex space-x-3">
+                                        <button
+                                            onClick={saveMicrosite}
+                                            disabled={saving}
+                                            className="flex-1 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md text-sm font-medium disabled:opacity-50"
+                                        >
+                                            {saving ? 'Saving...' : 'Save'}
+                                        </button>
+                                        <button
+                                            onClick={publishMicrosite}
+                                            className="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-md text-sm font-medium"
+                                        >
+                                            Publish
+                                        </button>
+                                    </div>
+
+                                    <div className="pt-3 border-t border-gray-200">
+                                        <p className="text-sm text-gray-600 mb-2">Public Access:</p>
+                                        <div className="flex space-x-2">
+                                            <button
+                                                onClick={openRealMicrosite}
+                                                disabled={!microsite.isPublished}
+                                                className="flex-1 bg-purple-600 hover:bg-purple-700 disabled:bg-gray-400 text-white px-3 py-2 rounded-md text-sm font-medium flex items-center justify-center space-x-1"
+                                            >
+                                                <span>🌐</span>
+                                                <span>Open Live Site</span>
+                                            </button>
+                                            <button
+                                                onClick={copyPublicAPI}
+                                                className="flex-1 bg-gray-600 hover:bg-gray-700 text-white px-3 py-2 rounded-md text-sm font-medium flex items-center justify-center space-x-1"
+                                            >
+                                                <span>📋</span>
+                                                <span>Copy API URL</span>
+                                            </button>
+                                        </div>
+                                        {!microsite.isPublished && (
+                                            <p className="text-xs text-orange-600 mt-1">⚠️ Publish first to enable public access</p>
+                                        )}
+                                    </div>
                                 </div>
                             </div>
                         </div>
