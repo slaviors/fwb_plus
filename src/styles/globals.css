@@ -1,1 +1,56 @@
 @import "tailwindcss";
+
+@layer base {
+  :root {
+    --color-primary: 26, 123, 230; /* #1a7be6 */
+    --color-secondary: 243, 94, 14; /* #f35e0e */
+    --color-accent: 206, 16, 16; /* #ce1010 */
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply text-gray-800;
+  }
+}
+
+@layer utilities {
+  .bg-gradient-brand {
+    @apply bg-gradient-to-r from-[#ce1010] via-[#f35e0e] to-[#1a7be6];
+  }
+  
+  .text-gradient-brand {
+    @apply bg-gradient-to-r from-[#ce1010] via-[#f35e0e] to-[#1a7be6] bg-clip-text text-transparent;
+  }
+}
+
+/* Custom utility classes */
+.w-4\.5 {
+  width: 1.125rem;
+}
+
+.h-4\.5 {
+  height: 1.125rem;
+}
+
+/* For the square pattern in hero */
+.grid-cols-20 {
+  grid-template-columns: repeat(20, minmax(0, 1fr));
+}
+
+/* For client marquee */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+  min-width: 100%;
+}
