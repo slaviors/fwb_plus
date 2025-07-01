@@ -114,10 +114,33 @@ export default function Services() {
   ];
 
   return (
-    <section 
-      ref={sectionRef} 
-      className="relative min-h-screen py-16 md:py-24 bg-gradient-to-b from-orange-50/40 via-white to-orange-50/20 overflow-hidden"
-    >
+    <>
+      {/* Custom styles for mobile optimization */}
+      <style jsx>{`
+        .scrollbar-hide {
+          -webkit-overflow-scrolling: touch;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+        .line-clamp-2 {
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+        .line-clamp-3 {
+          display: -webkit-box;
+          -webkit-line-clamp: 3;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+      `}</style>
+
+      <section 
+        ref={sectionRef} 
+        className="relative min-h-screen py-12 md:py-24 bg-gradient-to-b from-orange-50/40 via-white to-orange-50/20 overflow-hidden"
+      >
       {/* Enhanced decorative elements with orange theme */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         {/* Large background shapes */}
@@ -186,7 +209,7 @@ export default function Services() {
           variants={staggerContainer}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="text-center mb-12 md:mb-16"
+          className="text-center mb-8 md:mb-16"
         >
           <motion.div 
             variants={fadeInUp}
@@ -232,96 +255,209 @@ export default function Services() {
           </motion.div>
         </motion.div>
         
-        {/* Enhanced Service Navigation Tabs with Glassmorphism */}
+        {/* Enhanced Service Navigation - Mobile First Design */}
         <motion.div 
-          className="flex flex-wrap justify-center mb-12 md:mb-16 gap-3 md:gap-4 relative z-20"
+          className="mb-8 md:mb-16 relative z-20"
           variants={staggerContainer}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
         >
-          {services.map((service, index) => (
-            <motion.button
-              key={service.id}
-              onClick={() => setActiveTab(service.id)}
-              variants={scaleIn}
-              custom={index + 3}
-              whileHover={{ scale: 1.05, y: -3 }}
-              whileTap={{ scale: 0.95 }}
-              className={`relative group overflow-hidden rounded-2xl p-1 transition-all duration-500 ${
-                activeTab === service.id ? 'scale-105' : 'hover:scale-105'
-              }`}
-              style={{
-                background: activeTab === service.id 
-                  ? `linear-gradient(135deg, ${service.color}20, ${service.color}10)` 
-                  : 'transparent'
-              }}
-            >
-              {/* Glassmorphism container */}
-              <div className={`relative flex items-center px-4 py-3 md:px-6 md:py-3 rounded-xl backdrop-blur-sm border transition-all duration-300 ${
-                activeTab === service.id
-                  ? 'bg-white/90 border-white/50 shadow-xl text-gray-900'
-                  : 'bg-white/60 border-white/30 hover:bg-white/80 hover:border-white/50 text-gray-600 hover:text-gray-800'
-              }`}>
-                {/* Active service glow */}
-                {activeTab === service.id && (
-                  <motion.div 
-                    className="absolute inset-0 rounded-xl blur-xl opacity-30"
-                    style={{ backgroundColor: service.color }}
-                    layoutId="activeServiceGlow"
-                    transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                  />
-                )}
-                
-                {/* Icon with enhanced styling */}
-                <motion.div
-                  className={`mr-2 md:mr-3 p-1.5 rounded-lg transition-all duration-300 ${
-                    activeTab === service.id 
-                      ? 'bg-gradient-to-br from-white to-gray-50 shadow-sm' 
-                      : 'group-hover:bg-white/50'
-                  }`}
-                  whileHover={{ rotate: 5 }}
-                >
-                  {renderServiceIcon(
-                    service.icon, 
-                    activeTab === service.id ? service.color : '#64748b',
-                    '1.125rem'
+          {/* Desktop Navigation - Hidden on Mobile */}
+          <div className="hidden md:flex flex-wrap justify-center gap-3 md:gap-4">
+            {services.map((service, index) => (
+              <motion.button
+                key={service.id}
+                onClick={() => setActiveTab(service.id)}
+                variants={scaleIn}
+                custom={index + 3}
+                whileHover={{ scale: 1.05, y: -3 }}
+                whileTap={{ scale: 0.95 }}
+                className={`relative group overflow-hidden rounded-2xl p-1 transition-all duration-500 ${
+                  activeTab === service.id ? 'scale-105' : 'hover:scale-105'
+                }`}
+                style={{
+                  background: activeTab === service.id 
+                    ? `linear-gradient(135deg, ${service.color}20, ${service.color}10)` 
+                    : 'transparent'
+                }}
+              >
+                {/* Glassmorphism container */}
+                <div className={`relative flex items-center px-6 py-3 rounded-xl backdrop-blur-sm border transition-all duration-300 ${
+                  activeTab === service.id
+                    ? 'bg-white/90 border-white/50 shadow-xl text-gray-900'
+                    : 'bg-white/60 border-white/30 hover:bg-white/80 hover:border-white/50 text-gray-600 hover:text-gray-800'
+                }`}>
+                  {/* Active service glow */}
+                  {activeTab === service.id && (
+                    <motion.div 
+                      className="absolute inset-0 rounded-xl blur-xl opacity-30"
+                      style={{ backgroundColor: service.color }}
+                      layoutId="activeServiceGlow"
+                      transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                    />
                   )}
-                </motion.div>
-                
-                <span className="font-inter font-semibold text-sm md:text-base relative z-10">
-                  {service.title}
-                </span>
-                
-                {/* Floating micro elements for active state */}
-                {activeTab === service.id && (
-                  <>
-                    <motion.div 
-                      className="absolute top-1 right-3 w-1.5 h-1.5 rounded-full"
-                      style={{ backgroundColor: service.color }}
-                      animate={{ 
-                        y: [0, -4, 0],
-                        opacity: [0.6, 1, 0.6]
-                      }}
-                      transition={{ duration: 2, repeat: Infinity }}
-                    />
-                    <motion.div 
-                      className="absolute bottom-1 left-3 w-1 h-1 rounded-full"
-                      style={{ backgroundColor: service.color }}
-                      animate={{ 
-                        x: [0, 3, 0],
-                        opacity: [0.4, 0.8, 0.4]
-                      }}
-                      transition={{ duration: 3, repeat: Infinity }}
-                    />
-                  </>
-                )}
+                  
+                  {/* Icon with enhanced styling */}
+                  <motion.div
+                    className={`mr-3 p-1.5 rounded-lg transition-all duration-300 ${
+                      activeTab === service.id 
+                        ? 'bg-gradient-to-br from-white to-gray-50 shadow-sm' 
+                        : 'group-hover:bg-white/50'
+                    }`}
+                    whileHover={{ rotate: 5 }}
+                  >
+                    {renderServiceIcon(
+                      service.icon, 
+                      activeTab === service.id ? service.color : '#64748b',
+                      '1.125rem'
+                    )}
+                  </motion.div>
+                  
+                  <span className="font-inter font-semibold text-base relative z-10">
+                    {service.title}
+                  </span>
+                  
+                  {/* Floating micro elements for active state */}
+                  {activeTab === service.id && (
+                    <>
+                      <motion.div 
+                        className="absolute top-1 right-3 w-1.5 h-1.5 rounded-full"
+                        style={{ backgroundColor: service.color }}
+                        animate={{ 
+                          y: [0, -4, 0],
+                          opacity: [0.6, 1, 0.6]
+                        }}
+                        transition={{ duration: 2, repeat: Infinity }}
+                      />
+                      <motion.div 
+                        className="absolute bottom-1 left-3 w-1 h-1 rounded-full"
+                        style={{ backgroundColor: service.color }}
+                        animate={{ 
+                          x: [0, 3, 0],
+                          opacity: [0.4, 0.8, 0.4]
+                        }}
+                        transition={{ duration: 3, repeat: Infinity }}
+                      />
+                    </>
+                  )}
+                </div>
+              </motion.button>
+            ))}
+          </div>
+
+          {/* Mobile Navigation - Compact Card-Style */}
+          <div className="md:hidden px-1">
+            <div className="relative overflow-hidden rounded-3xl p-1 bg-white/20 backdrop-blur-xl border border-white/30 shadow-lg">
+              <div className="grid grid-cols-2 gap-1.5 p-2">
+                {services.map((service, index) => (
+                  <motion.button
+                    key={service.id}
+                    onClick={() => setActiveTab(service.id)}
+                    variants={scaleIn}
+                    custom={index + 3}
+                    whileTap={{ scale: 0.95 }}
+                    className={`relative group transition-all duration-300 ${
+                      activeTab === service.id ? 'scale-[1.02]' : ''
+                    }`}
+                  >
+                    {/* Mobile tab container */}
+                    <div className={`relative flex flex-col items-center p-3 sm:p-4 rounded-2xl backdrop-blur-sm border transition-all duration-300 ${
+                      activeTab === service.id
+                        ? 'bg-white/95 border-white/70 shadow-lg scale-105'
+                        : 'bg-white/60 border-white/30 hover:bg-white/80'
+                    }`}>
+                      {/* Active indicator glow */}
+                      {activeTab === service.id && (
+                        <motion.div 
+                          className="absolute inset-0 rounded-2xl opacity-15"
+                          style={{ backgroundColor: service.color }}
+                          layoutId="activeMobileGlow"
+                          transition={{ type: "spring", bounce: 0.2, duration: 0.4 }}
+                        />
+                      )}
+                      
+                      {/* Icon container with enhanced styling */}
+                      <motion.div
+                        className={`relative mb-2 p-2.5 rounded-xl transition-all duration-300 ${
+                          activeTab === service.id 
+                            ? 'shadow-md scale-110' 
+                            : 'group-hover:scale-105'
+                        }`}
+                        style={{ 
+                          backgroundColor: activeTab === service.id ? `${service.color}20` : `${service.color}10`,
+                          borderWidth: '1px',
+                          borderColor: activeTab === service.id ? `${service.color}40` : 'transparent'
+                        }}
+                        whileHover={{ scale: 1.1, rotate: 5 }}
+                      >
+                        {/* Icon glow effect for active state */}
+                        {activeTab === service.id && (
+                          <div 
+                            className="absolute inset-0 rounded-xl blur-md opacity-40"
+                            style={{ backgroundColor: service.color }}
+                          />
+                        )}
+                        
+                        <span className="relative z-10" style={{ color: service.color }}>
+                          {renderServiceIcon(
+                            service.icon, 
+                            service.color,
+                            '1.5rem'
+                          )}
+                        </span>
+                      </motion.div>
+                      
+                      {/* Service title - compact */}
+                      <div className="text-center relative z-10">
+                        <h4 className={`font-unbounded font-bold text-xs sm:text-sm leading-tight transition-colors duration-300 ${
+                          activeTab === service.id ? 'text-gray-900' : 'text-gray-700'
+                        }`}>
+                          {service.id === 'corporate' ? 'Corporate' : 
+                           service.id === 'wedding' ? 'Wedding' :
+                           service.id === 'gathering' ? 'Gathering' : 'Concert'}
+                        </h4>
+                        <p className={`font-inter text-xs mt-1 line-clamp-2 transition-colors duration-300 ${
+                          activeTab === service.id ? 'text-gray-600' : 'text-gray-500'
+                        }`}>
+                          {service.id === 'corporate' ? 'Business Events' : 
+                           service.id === 'wedding' ? 'Dream Wedding' :
+                           service.id === 'gathering' ? 'Celebrations' : 'Entertainment'}
+                        </p>
+                      </div>
+                      
+                      {/* Active indicator dots */}
+                      {activeTab === service.id && (
+                        <>
+                          <motion.div 
+                            className="absolute top-2 right-2 w-1.5 h-1.5 rounded-full"
+                            style={{ backgroundColor: service.color }}
+                            animate={{ 
+                              scale: [1, 1.3, 1],
+                              opacity: [0.7, 1, 0.7]
+                            }}
+                            transition={{ duration: 2, repeat: Infinity }}
+                          />
+                          <motion.div 
+                            className="absolute bottom-2 left-2 w-1 h-1 rounded-full"
+                            style={{ backgroundColor: service.color }}
+                            animate={{ 
+                              scale: [1, 1.5, 1],
+                              opacity: [0.5, 0.9, 0.5]
+                            }}
+                            transition={{ duration: 2.5, repeat: Infinity }}
+                          />
+                        </>
+                      )}
+                    </div>
+                  </motion.button>
+                ))}
               </div>
-            </motion.button>
-          ))}
+            </div>
+          </div>
         </motion.div>
         
-        {/* Enhanced Service Detail Panels */}
-        <div className="mb-16 md:mb-20 relative z-20">
+        {/* Enhanced Service Detail Panels - Mobile Optimized */}
+        <div className="mb-8 md:mb-20 relative z-20 px-1 sm:px-0">
           <AnimatePresence mode="wait">
             {services.map((service) => (
               service.id === activeTab && (
@@ -331,10 +467,171 @@ export default function Services() {
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: -20, scale: 0.95 }}
                   transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                  className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center"
+                  className="grid lg:grid-cols-2 gap-6 lg:gap-12 items-center"
                 >
-                  {/* Enhanced Service Image */}
-                  <div className="relative order-2 lg:order-1">
+                  {/* Mobile Compact Service Card */}
+                  <div className="lg:hidden relative order-1">
+                    <div className="relative overflow-hidden rounded-3xl p-1 bg-gradient-to-br from-white/40 via-white/30 to-transparent backdrop-blur-xl border border-white/50 shadow-xl">
+                      <div className="relative rounded-[22px] bg-white/80 backdrop-blur-md border border-white/90 overflow-hidden">
+                        {/* Mobile Service Header - Compact */}
+                        <div className="relative p-4 border-b border-gray-100/50">
+                          <div className="flex items-center">
+                            <motion.div
+                              className="relative p-3 rounded-2xl mr-3 flex-shrink-0"
+                              style={{ 
+                                backgroundColor: `${service.color}15`,
+                                borderWidth: '1px',
+                                borderColor: `${service.color}30`
+                              }}
+                              whileHover={{ scale: 1.05, rotate: 5 }}
+                            >
+                              <div 
+                                className="absolute inset-0 rounded-2xl blur-lg opacity-30"
+                                style={{ backgroundColor: service.color }}
+                              />
+                              <span className="relative z-10" style={{ color: service.color }}>
+                                {renderServiceIcon(service.icon, service.color, '1.5rem')}
+                              </span>
+                            </motion.div>
+                            
+                            <div className="flex-1 min-w-0">
+                              <h3 
+                                className="font-unbounded text-xl font-bold leading-tight"
+                                style={{ color: service.color }}
+                              >
+                                {service.title}
+                              </h3>
+                              <p className="font-inter text-sm text-gray-600 mt-1 line-clamp-2">
+                                {service.shortDesc}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        {/* Mobile Service Image - Compact */}
+                        <div className="relative h-40 overflow-hidden">
+                          <Image
+                            src={service.image}
+                            alt={service.title}
+                            fill
+                            sizes="(max-width: 768px) 100vw"
+                            className="object-cover"
+                          />
+                          {/* Advanced progressive blur overlay */}
+                          <div className="absolute left-0 bottom-0 right-0 w-full h-3/4 pointer-events-none">
+                            <div 
+                              className="absolute top-0 left-0 bottom-0 right-0" 
+                              style={{
+                                backdropFilter: 'blur(1px)',
+                                mask: 'linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 60%)',
+                                WebkitMask: 'linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 60%)'
+                              }}
+                            />
+                            <div 
+                              className="absolute top-0 left-0 bottom-0 right-0" 
+                              style={{
+                                backdropFilter: 'blur(4px)',
+                                mask: 'linear-gradient(rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 1) 70%, rgba(0, 0, 0, 0) 80%)',
+                                WebkitMask: 'linear-gradient(rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 1) 70%, rgba(0, 0, 0, 0) 80%)'
+                              }}
+                            />
+                            <div 
+                              className="absolute top-0 left-0 bottom-0 right-0" 
+                              style={{
+                                backdropFilter: 'blur(16px)',
+                                mask: 'linear-gradient(rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 1) 80%)',
+                                WebkitMask: 'linear-gradient(rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 1) 80%)'
+                              }}
+                            />
+                            <div 
+                              className="absolute top-0 left-0 right-0 bottom-0"
+                              style={{
+                                background: `linear-gradient(transparent 30%, ${service.color}15 70%, ${service.color}40)`
+                              }}
+                            />
+                          </div>
+                          
+                          {/* Service badge overlay */}
+                          <div className="absolute bottom-3 left-3 right-3 z-10">
+                            <span className="inline-block py-1.5 px-3 text-xs bg-white/95 font-inter font-semibold rounded-full backdrop-blur-sm shadow-md"
+                              style={{ color: service.color }}
+                            >
+                              FWB+ {service.title}
+                            </span>
+                          </div>
+                        </div>
+                        
+                        {/* Mobile Content - Ultra Compact */}
+                        <div className="p-4 space-y-4">
+                          {/* Compact description */}
+                          <p className="font-inter text-gray-700 text-sm leading-relaxed line-clamp-3">
+                            {service.description}
+                          </p>
+                          
+                          {/* Mobile features - Horizontal pill tags */}
+                          <div>
+                            <h4 className="font-unbounded text-sm font-bold text-gray-900 mb-3 flex items-center">
+                              <svg className="w-4 h-4 mr-2" style={{ color: service.color }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                              </svg>
+                              Layanan Utama
+                            </h4>
+                            
+                            {/* Features as pills with 2 rows */}
+                            <div className="flex flex-wrap gap-2">
+                              {service.features.slice(0, 4).map((feature, i) => (
+                                <motion.div 
+                                  key={feature}
+                                  className="flex items-center bg-gray-50 px-3 py-1.5 rounded-full border border-gray-100"
+                                  initial={{ opacity: 0, scale: 0.8 }}
+                                  animate={{ opacity: 1, scale: 1 }}
+                                  transition={{ delay: i * 0.1, duration: 0.3 }}
+                                >
+                                  <div 
+                                    className="w-1.5 h-1.5 rounded-full mr-2 flex-shrink-0"
+                                    style={{ backgroundColor: service.color }}
+                                  />
+                                  <span className="font-inter text-xs text-gray-700 font-medium">
+                                    {feature}
+                                  </span>
+                                </motion.div>
+                              ))}
+                              {service.features.length > 4 && (
+                                <div className="flex items-center bg-gray-100 px-3 py-1.5 rounded-full border border-gray-200">
+                                  <span className="font-inter text-xs text-gray-500 font-medium">
+                                    +{service.features.length - 4} lainnya
+                                  </span>
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                          
+                          {/* Mobile CTA - Enhanced */}
+                          <Link href={`/services/${service.id}`}>
+                            <motion.div
+                              whileHover={{ scale: 1.02 }}
+                              whileTap={{ scale: 0.98 }}
+                              className="relative flex items-center justify-center px-6 py-3.5 rounded-2xl font-inter font-semibold text-white text-sm shadow-lg w-full group overflow-hidden"
+                              style={{ backgroundColor: service.color }}
+                            >
+                              {/* Button glow effect */}
+                              <div 
+                                className="absolute inset-0 rounded-2xl blur-xl opacity-0 group-hover:opacity-40 transition-opacity duration-300"
+                                style={{ backgroundColor: service.color }}
+                              />
+                              
+                              <span className="relative z-10 mr-2">Pelajari Lebih Lanjut</span>
+                              <svg className="relative z-10 w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                              </svg>
+                            </motion.div>
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  {/* Desktop Service Image - Hidden on Mobile */}
+                  <div className="hidden lg:block relative order-2 lg:order-1">
                     <div className="relative h-[350px] md:h-[450px] lg:h-[500px] w-full rounded-3xl overflow-hidden group">
                       {/* Glassmorphism image container */}
                       <div className="relative h-full w-full overflow-hidden rounded-3xl border border-white/30 shadow-2xl backdrop-blur-sm"
@@ -461,9 +758,9 @@ export default function Services() {
                     </div>
                   </div>
                   
-                  {/* Enhanced Service Information */}
+                  {/* Desktop Service Information - Hidden on Mobile */}
                   <motion.div 
-                    className="space-y-6 order-1 lg:order-2"
+                    className="hidden lg:block space-y-6 order-1 lg:order-2"
                     initial={{ opacity: 0, x: 50 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
@@ -577,9 +874,9 @@ export default function Services() {
           </AnimatePresence>
         </div>
         
-        {/* Enhanced Service Cards - Mini Overview with Glassmorphism */}
+        {/* Enhanced Service Cards - Mini Overview with Glassmorphism - Desktop Only */}
         <motion.div 
-          className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mb-16 md:mb-20 relative z-20"
+          className="hidden md:grid sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mb-16 md:mb-20 relative z-20"
           variants={staggerContainer}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
@@ -862,6 +1159,7 @@ export default function Services() {
         </motion.div>
       </div>
     </section>
+    </>
   );
 }
 

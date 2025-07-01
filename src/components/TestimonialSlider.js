@@ -10,19 +10,19 @@ export default function TestimonialSlider() {
     {
       name: "Budi Santoso",
       company: "PT. Tech Indonesia",
-      image: "/images/testimonials/client1.jpg",
+      image: "/images/testimonials/client1.png",
       quote: "FWB+ telah membantu kami menyelenggarakan company gathering yang luar biasa. Tim mereka sangat profesional dan detail-oriented. Semua berjalan sesuai rencana dan bahkan lebih baik dari yang kami harapkan!"
     },
     {
       name: "Sinta Dewi",
       company: "Hotel Grand Luxury",
-      image: "/images/testimonials/client2.jpg",
+      image: "/images/testimonials/client2.png",
       quote: "Kami sangat puas dengan layanan FWB+ dalam menangani conference tahunan kami. Mereka benar-benar memahami kebutuhan kami dan memberikan solusi yang tepat, bahkan dengan deadline yang ketat."
     },
     {
       name: "Ahmad Fauzi",
       company: "Startup Innovate",
-      image: "/images/testimonials/client3.jpg",
+      image: "/images/testimonials/client3.png",
       quote: "Launch event produk baru kami berjalan sukses berkat bantuan FWB+. Kreativitas dan eksekusi yang sempurna! Pasti akan bekerja sama lagi untuk event kami berikutnya."
     },
   ];

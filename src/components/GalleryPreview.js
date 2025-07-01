@@ -7,12 +7,12 @@ import Section from './ui/Section';
 export default function GalleryPreview() {
   // Sampel gallery images - ganti dengan gambar event FWB+ yang sebenarnya
   const galleryImages = [
-    { id: 1, src: "/images/gallery/event1.jpg", alt: "Corporate Meeting", category: "Corporate" },
-    { id: 2, src: "/images/gallery/event2.jpg", alt: "Wedding Party", category: "Wedding" },
-    { id: 3, src: "/images/gallery/event3.jpg", alt: "Product Launch", category: "Corporate" },
-    { id: 4, src: "/images/gallery/event4.jpg", alt: "Family Gathering", category: "Gathering" },
-    { id: 5, src: "/images/gallery/event5.jpg", alt: "Annual Conference", category: "Corporate" },
-    { id: 6, src: "/images/gallery/event6.jpg", alt: "Birthday Party", category: "Celebration" },
+    { id: 1, src: "/images/gallery/event1.png", alt: "Corporate Meeting", category: "Corporate" },
+    { id: 2, src: "/images/gallery/event2.png", alt: "Wedding Party", category: "Wedding" },
+    { id: 3, src: "/images/gallery/event3.png", alt: "Product Launch", category: "Corporate" },
+    { id: 4, src: "/images/gallery/event4.png", alt: "Family Gathering", category: "Gathering" },
+    { id: 5, src: "/images/gallery/event5.png", alt: "Annual Conference", category: "Corporate" },
+    { id: 6, src: "/images/gallery/event6.png", alt: "Birthday Party", category: "Celebration" },
   ];
 
   return (

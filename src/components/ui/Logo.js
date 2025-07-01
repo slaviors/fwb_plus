@@ -8,7 +8,7 @@ export default function Logo() {
   const logoPath = "/images/assets/logo/logo-FWB-shadow-PNG-Transparan.png";
   
   // Logo mark (logo icon only) untuk mobile
-  const logoMarkPath = "/images/assets/logo/Logo FWB logomark PNG.png";
+  const logoMarkPath = "/images/assets/logo/Logo FWB Shadow PNG.png";
   
   return (
     <Link href="/">

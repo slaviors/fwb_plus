@@ -16,12 +16,17 @@ export default function Home() {
     <main className="min-h-screen">
       <Hero />
       <About />
+      <ClientsSlider />
 
       {/* Services Section */}
       <Services />
 
       {/* Event Section */}
       <EventComponent />
+
+      <GalleryPreview />
+
+      <TestimonialSlider />
 
       <Footer />
     </main>
