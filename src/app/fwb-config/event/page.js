@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 
 export default function EventManagementPage() {
@@ -17,11 +17,19 @@ export default function EventManagementPage() {
     });
     const router = useRouter();
 
-    useEffect(() => {
-        checkAuth();
+    const fetchEvents = useCallback(async () => {
+        try {
+            const response = await fetch('/api/fwb-config/event');
+            if (response.ok) {
+                const data = await response.json();
+                setEvents(data.events);
+            }
+        } catch (error) {
+            console.error('Error fetching events:', error);
+        }
     }, []);
 
-    const checkAuth = async () => {
+    const checkAuth = useCallback(async () => {
         try {
             const response = await fetch('/api/auth/me');
             if (response.ok) {
@@ -37,19 +45,11 @@ export default function EventManagementPage() {
         } finally {
             setLoading(false);
         }
-    };
+    }, [router, fetchEvents]);
 
-    const fetchEvents = async () => {
-        try {
-            const response = await fetch('/api/fwb-config/event');
-            if (response.ok) {
-                const data = await response.json();
-                setEvents(data.events);
-            }
-        } catch (error) {
-            console.error('Error fetching events:', error);
-        }
-    };
+    useEffect(() => {
+        checkAuth();
+    }, [checkAuth]);
 
     const formatDateTime = (dateTime) => {
         const date = new Date(dateTime);

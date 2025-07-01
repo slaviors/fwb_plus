@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';
 
@@ -31,11 +31,21 @@ export default function MicrositePage() {
         twitter: '🐦'
     };
 
-    useEffect(() => {
-        checkAuth();
+    const fetchMicrosite = useCallback(async () => {
+        try {
+            const response = await fetch('/api/fwb-config/microsite');
+            if (response.ok) {
+                const data = await response.json();
+                if (data.microsite) {
+                    setMicrosite(data.microsite);
+                }
+            }
+        } catch (error) {
+            console.error('Error fetching microsite:', error);
+        }
     }, []);
 
-    const checkAuth = async () => {
+    const checkAuth = useCallback(async () => {
         try {
             const response = await fetch('/api/auth/me');
             if (response.ok) {
@@ -51,21 +61,11 @@ export default function MicrositePage() {
         } finally {
             setLoading(false);
         }
-    };
+    }, [router, fetchMicrosite]);
 
-    const fetchMicrosite = async () => {
-        try {
-            const response = await fetch('/api/fwb-config/microsite');
-            if (response.ok) {
-                const data = await response.json();
-                if (data.microsite) {
-                    setMicrosite(data.microsite);
-                }
-            }
-        } catch (error) {
-            console.error('Error fetching microsite:', error);
-        }
-    };
+    useEffect(() => {
+        checkAuth();
+    }, [checkAuth]);
 
     const generateLinkId = () => {
         return 'link_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
@@ -309,7 +309,7 @@ export default function MicrositePage() {
     };
 
     const openRealMicrosite = () => {
-        const micrositeUrl = 'https://links-fwb-plus.vercel.app'; // Replace with actual microsite URL
+        const micrositeUrl = 'https://links-fwb-plus.vercel.app';
         window.open(micrositeUrl, '_blank');
     };
 

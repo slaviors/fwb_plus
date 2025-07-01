@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 
 export default function FWBConfigPage() {
@@ -7,11 +7,7 @@ export default function FWBConfigPage() {
     const [loading, setLoading] = useState(true);
     const router = useRouter();
 
-    useEffect(() => {
-        checkAuth();
-    }, []);
-
-    const checkAuth = async () => {
+    const checkAuth = useCallback(async () => {
         try {
             const response = await fetch('/api/auth/me');
             if (response.ok) {
@@ -26,7 +22,11 @@ export default function FWBConfigPage() {
         } finally {
             setLoading(false);
         }
-    };
+    }, [router]);
+
+    useEffect(() => {
+        checkAuth();
+    }, [checkAuth]);
 
     const handleLogout = async () => {
         try {
