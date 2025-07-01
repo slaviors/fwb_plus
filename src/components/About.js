@@ -418,65 +418,182 @@ export default function About() {
           </motion.div>
         </div>
 
-        {/* Vision & Mission */}
-        <div className="grid md:grid-cols-2 gap-6 lg:gap-8 mb-16 md:mb-20 relative z-20">
+        {/* Vision & Mission with Enhanced Glassmorphism */}
+        <div className="grid md:grid-cols-2 gap-8 lg:gap-10 mb-16 md:mb-20 relative z-20">
+          {/* Vision Card */}
           <motion.div 
-            className="bg-white/80 backdrop-blur-sm rounded-3xl p-6 lg:p-8 shadow-xl hover:shadow-2xl transition-all duration-300 border border-blue-100/50 group relative z-30"
+            className="relative group"
             initial={scaleIn.hidden} 
             animate={isInView ? scaleIn.visible(3) : scaleIn.hidden}
-            whileHover={{ y: -8, scale: 1.02 }}
+            whileHover={{ y: -12, scale: 1.02 }}
           >
-            <div className="p-3 bg-gradient-to-br from-blue-50 to-blue-100 inline-block rounded-2xl mb-6 group-hover:scale-110 transition-transform duration-300">
-              <svg className="w-8 h-8 text-[#1a7be6]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-              </svg>
+            {/* Glassmorphism card with enhanced effects */}
+            <div className="relative overflow-hidden rounded-3xl p-1 bg-gradient-to-br from-blue-200/30 via-blue-100/20 to-transparent backdrop-blur-xl border border-white/30 shadow-xl group-hover:shadow-blue-200/40 transition-all duration-500">
+              {/* Inner glassmorphism layer */}
+              <div className="relative rounded-[22px] bg-white/40 backdrop-blur-sm border border-white/50 p-6 lg:p-8 overflow-hidden">
+                {/* Animated background gradient */}
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-50/60 via-white/30 to-blue-100/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                
+                {/* Floating decorative elements */}
+                <motion.div 
+                  className="absolute -top-4 -right-4 w-20 h-20 bg-gradient-to-br from-blue-300/20 to-blue-500/10 rounded-full blur-xl"
+                  animate={{ 
+                    scale: [1, 1.2, 1],
+                    opacity: [0.3, 0.6, 0.3],
+                    rotate: [0, 180, 360]
+                  }}
+                  transition={{ duration: 8, repeat: Infinity }}
+                />
+                <motion.div 
+                  className="absolute -bottom-6 -left-6 w-16 h-16 bg-gradient-to-tr from-blue-400/15 to-blue-600/10 rounded-2xl rotate-45 blur-lg"
+                  animate={{ 
+                    scale: [1, 1.3, 1],
+                    rotate: [45, 90, 45]
+                  }}
+                  transition={{ duration: 6, repeat: Infinity }}
+                />
+                
+                {/* Icon container with enhanced design */}
+                <div className="relative mb-6">
+                  <motion.div 
+                    className="relative inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500/20 to-blue-600/30 backdrop-blur-sm border border-blue-300/40 group-hover:scale-110 transition-all duration-300"
+                    whileHover={{ rotate: 5 }}
+                  >
+                    {/* Icon glow effect */}
+                    <div className="absolute inset-0 rounded-2xl bg-blue-400/20 blur-xl group-hover:bg-blue-400/40 transition-all duration-300"></div>
+                    <svg className="relative z-10 w-8 h-8 text-[#1a7be6]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                    </svg>
+                  </motion.div>
+                  
+                  {/* Floating micro elements */}
+                  <motion.div 
+                    className="absolute top-0 right-4 w-2 h-2 bg-blue-400/60 rounded-full"
+                    animate={{ 
+                      y: [0, -8, 0],
+                      opacity: [0.6, 1, 0.6]
+                    }}
+                    transition={{ duration: 3, repeat: Infinity }}
+                  />
+                  <motion.div 
+                    className="absolute bottom-2 -left-2 w-1.5 h-1.5 bg-blue-500/50 rounded-full"
+                    animate={{ 
+                      x: [0, 6, 0],
+                      opacity: [0.5, 1, 0.5]
+                    }}
+                    transition={{ duration: 4, repeat: Infinity }}
+                  />
+                </div>
+                
+                <div className="relative z-10">
+                  <h3 className="font-unbounded text-xl lg:text-2xl font-bold text-gray-900 mb-4 leading-tight">Visi Kami</h3>
+                  <p className="font-inter text-gray-700 leading-relaxed">
+                    Menjadi event organizer terdepan yang dikenal akan kreativitas, inovasi, dan layanan profesional, mewujudkan 
+                    event-event yang berkesan dan memberikan pengalaman terbaik bagi setiap klien kami.
+                  </p>
+                </div>
+              </div>
             </div>
-            <h3 className="font-unbounded text-xl lg:text-2xl font-bold text-gray-900 mb-4 leading-tight">Visi Kami</h3>
-            <p className="font-inter text-gray-600 leading-relaxed">
-              Menjadi event organizer terdepan yang dikenal akan kreativitas, inovasi, dan layanan profesional, mewujudkan 
-              event-event yang berkesan dan memberikan pengalaman terbaik bagi setiap klien kami.
-            </p>
           </motion.div>
           
+          {/* Mission Card */}
           <motion.div 
-            className="bg-white/80 backdrop-blur-sm rounded-3xl p-6 lg:p-8 shadow-xl hover:shadow-2xl transition-all duration-300 border border-orange-100/50 group relative z-30"
+            className="relative group"
             initial={scaleIn.hidden} 
             animate={isInView ? scaleIn.visible(4) : scaleIn.hidden}
-            whileHover={{ y: -8, scale: 1.02 }}
+            whileHover={{ y: -12, scale: 1.02 }}
           >
-            <div className="p-3 bg-gradient-to-br from-orange-50 to-orange-100 inline-block rounded-2xl mb-6 group-hover:scale-110 transition-transform duration-300">
-              <svg className="w-8 h-8 text-[#f35e0e]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-              </svg>
+            {/* Glassmorphism card with enhanced effects */}
+            <div className="relative overflow-hidden rounded-3xl p-1 bg-gradient-to-br from-orange-200/30 via-orange-100/20 to-transparent backdrop-blur-xl border border-white/30 shadow-xl group-hover:shadow-orange-200/40 transition-all duration-500">
+              {/* Inner glassmorphism layer */}
+              <div className="relative rounded-[22px] bg-white/40 backdrop-blur-sm border border-white/50 p-6 lg:p-8 overflow-hidden">
+                {/* Animated background gradient */}
+                <div className="absolute inset-0 bg-gradient-to-br from-orange-50/60 via-white/30 to-orange-100/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                
+                {/* Floating decorative elements */}
+                <motion.div 
+                  className="absolute -top-4 -right-4 w-20 h-20 bg-gradient-to-br from-orange-300/20 to-orange-500/10 rounded-full blur-xl"
+                  animate={{ 
+                    scale: [1, 1.2, 1],
+                    opacity: [0.3, 0.6, 0.3],
+                    rotate: [0, -180, -360]
+                  }}
+                  transition={{ duration: 10, repeat: Infinity }}
+                />
+                <motion.div 
+                  className="absolute -bottom-6 -left-6 w-16 h-16 bg-gradient-to-tr from-orange-400/15 to-orange-600/10 rounded-2xl rotate-45 blur-lg"
+                  animate={{ 
+                    scale: [1, 1.3, 1],
+                    rotate: [45, 135, 45]
+                  }}
+                  transition={{ duration: 7, repeat: Infinity }}
+                />
+                
+                {/* Icon container with enhanced design */}
+                <div className="relative mb-6">
+                  <motion.div 
+                    className="relative inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-orange-500/20 to-orange-600/30 backdrop-blur-sm border border-orange-300/40 group-hover:scale-110 transition-all duration-300"
+                    whileHover={{ rotate: -5 }}
+                  >
+                    {/* Icon glow effect */}
+                    <div className="absolute inset-0 rounded-2xl bg-orange-400/20 blur-xl group-hover:bg-orange-400/40 transition-all duration-300"></div>
+                    <svg className="relative z-10 w-8 h-8 text-[#f35e0e]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                    </svg>
+                  </motion.div>
+                  
+                  {/* Floating micro elements */}
+                  <motion.div 
+                    className="absolute top-0 right-4 w-2 h-2 bg-orange-400/60 rounded-full"
+                    animate={{ 
+                      y: [0, -8, 0],
+                      opacity: [0.6, 1, 0.6]
+                    }}
+                    transition={{ duration: 3.5, repeat: Infinity }}
+                  />
+                  <motion.div 
+                    className="absolute bottom-2 -left-2 w-1.5 h-1.5 bg-orange-500/50 rounded-full"
+                    animate={{ 
+                      x: [0, 6, 0],
+                      opacity: [0.5, 1, 0.5]
+                    }}
+                    transition={{ duration: 4.5, repeat: Infinity }}
+                  />
+                </div>
+                
+                <div className="relative z-10">
+                  <h3 className="font-unbounded text-xl lg:text-2xl font-bold text-gray-900 mb-4 leading-tight">Misi Kami</h3>
+                  <ul className="font-inter text-gray-700 space-y-3 leading-relaxed">
+                    {[
+                      "Memberikan pelayanan event organizer profesional dan berkualitas",
+                      "Mengutamakan kepuasan dan kenyamanan klien dalam setiap event", 
+                      "Terus berinovasi dalam menciptakan konsep event yang kreatif dan unik",
+                      "Membangun hubungan jangka panjang dengan klien dan mitra kerja"
+                    ].map((mission, idx) => (
+                      <motion.li 
+                        key={idx}
+                        className="flex items-start group/item"
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+                        transition={{ delay: 0.8 + idx * 0.1, duration: 0.6 }}
+                      >
+                        <motion.div
+                          className="mt-1 mr-3 flex-shrink-0"
+                          whileHover={{ scale: 1.2, rotate: 180 }}
+                          transition={{ type: "spring", stiffness: 300 }}
+                        >
+                          <svg className="w-5 h-5 text-[#f35e0e]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
+                        </motion.div>
+                        <span className="group-hover/item:text-gray-900 transition-colors duration-200">{mission}</span>
+                      </motion.li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
             </div>
-            <h3 className="font-unbounded text-xl lg:text-2xl font-bold text-gray-900 mb-4 leading-tight">Misi Kami</h3>
-            <ul className="font-inter text-gray-600 space-y-3 leading-relaxed">
-              <li className="flex items-start">
-                <svg className="w-5 h-5 text-[#f35e0e] mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <span>Memberikan pelayanan event organizer profesional dan berkualitas</span>
-              </li>
-              <li className="flex items-start">
-                <svg className="w-5 h-5 text-[#f35e0e] mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <span>Mengutamakan kepuasan dan kenyamanan klien dalam setiap event</span>
-              </li>
-              <li className="flex items-start">
-                <svg className="w-5 h-5 text-[#f35e0e] mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <span>Terus berinovasi dalam menciptakan konsep event yang kreatif dan unik</span>
-              </li>
-              <li className="flex items-start">
-                <svg className="w-5 h-5 text-[#f35e0e] mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <span>Membangun hubungan jangka panjang dengan klien dan mitra kerja</span>
-              </li>
-            </ul>
           </motion.div>
         </div>
 
@@ -511,34 +628,153 @@ export default function About() {
             {achievements.map((achievement, index) => (
               <motion.div
                 key={index}
-                className="text-center group"
+                className="relative group"
                 variants={scaleIn}
                 custom={6 + index}
-                whileHover={{ scale: 1.05, y: -5 }}
+                whileHover={{ scale: 1.08, y: -8 }}
               >
-                <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-4 lg:p-6 shadow-xl border border-gray-100/50 group-hover:shadow-2xl transition-all duration-300 relative z-30">
-                  <motion.div
-                    className="text-3xl lg:text-4xl xl:text-5xl font-unbounded font-bold mb-3"
-                    style={{ color: achievement.color }}
-                    initial={{ scale: 0 }}
-                    animate={isInView ? { scale: 1 } : { scale: 0 }}
-                    transition={{ 
-                      delay: 0.5 + index * 0.1, 
-                      duration: 0.6,
-                      type: "spring",
-                      stiffness: 150
+                {/* Glassmorphism achievement card with enhanced effects */}
+                <div className="relative overflow-hidden rounded-3xl p-1 bg-gradient-to-br from-white/30 via-white/20 to-transparent backdrop-blur-xl border border-white/40 shadow-xl group-hover:shadow-3xl transition-all duration-500">
+                  {/* Dynamic color border based on achievement */}
+                  <div 
+                    className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-30 transition-opacity duration-500"
+                    style={{
+                      background: `linear-gradient(135deg, ${achievement.color}20, transparent)`
                     }}
-                  >
-                    {achievement.number}
-                  </motion.div>
-                  <motion.p
-                    className="font-inter text-gray-700 font-medium text-sm lg:text-base"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                    transition={{ delay: 0.7 + index * 0.1, duration: 0.5 }}
-                  >
-                    {achievement.label}
-                  </motion.p>
+                  />
+                  
+                  {/* Inner glassmorphism layer */}
+                  <div className="relative rounded-[22px] bg-white/50 backdrop-blur-md border border-white/60 p-4 lg:p-6 text-center overflow-hidden">
+                    {/* Animated background with achievement color */}
+                    <div 
+                      className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500"
+                      style={{
+                        background: `radial-gradient(circle at center, ${achievement.color}30, transparent)`
+                      }}
+                    />
+                    
+                    {/* Floating decorative elements */}
+                    <motion.div 
+                      className="absolute -top-3 -right-3 w-12 h-12 rounded-full blur-lg opacity-60"
+                      style={{
+                        background: `linear-gradient(135deg, ${achievement.color}40, ${achievement.color}20)`
+                      }}
+                      animate={{ 
+                        scale: [1, 1.3, 1],
+                        opacity: [0.4, 0.8, 0.4],
+                        rotate: [0, 180, 360]
+                      }}
+                      transition={{ 
+                        duration: 6 + index, 
+                        repeat: Infinity,
+                        ease: "easeInOut"
+                      }}
+                    />
+                    <motion.div 
+                      className="absolute -bottom-2 -left-2 w-8 h-8 rounded-lg rotate-45 blur-md opacity-50"
+                      style={{
+                        background: `linear-gradient(45deg, ${achievement.color}30, transparent)`
+                      }}
+                      animate={{ 
+                        scale: [1, 1.2, 1],
+                        rotate: [45, 135, 45]
+                      }}
+                      transition={{ 
+                        duration: 5 + index * 0.5, 
+                        repeat: Infinity 
+                      }}
+                    />
+                    
+                    {/* Achievement number with enhanced styling */}
+                    <div className="relative z-10 mb-3">
+                      <motion.div
+                        className="relative inline-block"
+                        initial={{ scale: 0 }}
+                        animate={isInView ? { scale: 1 } : { scale: 0 }}
+                        transition={{ 
+                          delay: 0.5 + index * 0.1, 
+                          duration: 0.8,
+                          type: "spring",
+                          stiffness: 150
+                        }}
+                      >
+                        {/* Number glow effect */}
+                        <div 
+                          className="absolute inset-0 text-3xl lg:text-4xl xl:text-5xl font-unbounded font-bold blur-lg opacity-30"
+                          style={{ color: achievement.color }}
+                        >
+                          {achievement.number}
+                        </div>
+                        
+                        {/* Main number */}
+                        <div
+                          className="relative text-3xl lg:text-4xl xl:text-5xl font-unbounded font-bold"
+                          style={{ color: achievement.color }}
+                        >
+                          {achievement.number}
+                        </div>
+                        
+                        {/* Sparkle effects */}
+                        <motion.div 
+                          className="absolute -top-2 -right-2 w-3 h-3 rounded-full"
+                          style={{ backgroundColor: achievement.color }}
+                          animate={{ 
+                            scale: [0, 1, 0],
+                            opacity: [0, 1, 0]
+                          }}
+                          transition={{ 
+                            duration: 2,
+                            repeat: Infinity,
+                            delay: index * 0.3
+                          }}
+                        />
+                        <motion.div 
+                          className="absolute -bottom-1 -left-3 w-2 h-2 rounded-full"
+                          style={{ backgroundColor: achievement.color }}
+                          animate={{ 
+                            scale: [0, 1, 0],
+                            opacity: [0, 0.7, 0]
+                          }}
+                          transition={{ 
+                            duration: 2.5,
+                            repeat: Infinity,
+                            delay: index * 0.4 + 0.5
+                          }}
+                        />
+                      </motion.div>
+                    </div>
+                    
+                    {/* Achievement label with micro animations */}
+                    <motion.div
+                      className="relative z-10"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                      transition={{ delay: 0.7 + index * 0.1, duration: 0.6 }}
+                    >
+                      <p className="font-inter text-gray-800 font-semibold text-sm lg:text-base group-hover:text-gray-900 transition-colors duration-300">
+                        {achievement.label}
+                      </p>
+                      
+                      {/* Underline effect */}
+                      <motion.div 
+                        className="mt-2 h-0.5 rounded-full mx-auto"
+                        style={{ backgroundColor: achievement.color }}
+                        initial={{ width: 0 }}
+                        animate={isInView ? { width: "60%" } : { width: 0 }}
+                        transition={{ 
+                          delay: 1 + index * 0.1, 
+                          duration: 0.8,
+                          ease: "easeOut"
+                        }}
+                      />
+                    </motion.div>
+                    
+                    {/* Corner accent decorations */}
+                    <div className="absolute top-3 left-3 w-6 h-6 border-l-2 border-t-2 rounded-tl-lg opacity-20 group-hover:opacity-40 transition-opacity duration-300"
+                         style={{ borderColor: achievement.color }} />
+                    <div className="absolute bottom-3 right-3 w-6 h-6 border-r-2 border-b-2 rounded-br-lg opacity-20 group-hover:opacity-40 transition-opacity duration-300"
+                         style={{ borderColor: achievement.color }} />
+                  </div>
                 </div>
               </motion.div>
             ))}
