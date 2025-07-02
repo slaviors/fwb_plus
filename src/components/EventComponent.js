@@ -192,76 +192,29 @@ export default function EventComponent() {
             >
                 {/* Ultra-enhanced glassmorphism inner container with advanced decorations */}
                 <div className="relative rounded-[22px] bg-white/90 backdrop-blur-lg border border-white/95 p-6 overflow-hidden">
-                    {/* Advanced floating decorative elements with complex animations */}
+                    {/* Simplified calendar decorations */}
                     <motion.div 
-                        className="absolute -top-4 -right-4 w-16 h-16 rounded-full blur-2xl opacity-20"
+                        className="absolute -top-2 -right-2 w-8 h-8 rounded-full blur-xl opacity-10"
                         style={{ background: 'linear-gradient(135deg, #1a7be6, #f35e0e)' }}
                         animate={{ 
-                            scale: [1, 1.3, 1],
-                            rotate: [0, 180, 360],
-                            x: [0, -5, 0],
-                            y: [0, 5, 0]
+                            scale: [1, 1.2, 1],
                         }}
                         transition={{ 
-                            duration: 15, 
+                            duration: 8, 
                             repeat: Infinity,
                             ease: "easeInOut"
                         }}
                     />
                     
-                    <motion.div 
-                        className="absolute -bottom-2 -left-2 w-12 h-12 rounded-full blur-xl opacity-15"
-                        style={{ background: 'linear-gradient(45deg, #f35e0e, #1a7be6)' }}
-                        animate={{ 
-                            scale: [1.2, 1, 1.2],
-                            rotate: [360, 180, 0],
-                            x: [0, 3, 0],
-                            y: [0, -3, 0]
-                        }}
-                        transition={{ 
-                            duration: 18, 
-                            repeat: Infinity,
-                            ease: "easeInOut"
-                        }}
-                    />
-
-                    {/* Advanced micro decorative elements */}
-                    <motion.div 
-                        className="absolute top-12 right-8 w-4 h-4 rounded-full bg-gradient-to-r from-purple-400/40 to-pink-400/40"
-                        animate={{ 
-                            scale: [0, 1, 0],
-                            opacity: [0, 0.6, 0],
-                            rotate: [0, 360]
-                        }}
-                        transition={{ 
-                            duration: 4,
-                            repeat: Infinity,
-                            delay: 1
-                        }}
-                    />
-                    <motion.div 
-                        className="absolute bottom-16 left-12 w-3 h-3 rounded-full bg-gradient-to-r from-blue-400/40 to-teal-400/40"
-                        animate={{ 
-                            scale: [0, 1, 0],
-                            opacity: [0, 0.8, 0],
-                            rotate: [0, -360]
-                        }}
-                        transition={{ 
-                            duration: 5,
-                            repeat: Infinity,
-                            delay: 2
-                        }}
-                    />
-                    
-                    {/* Subtle grid pattern overlay */}
+                    {/* Simplified grid pattern overlay */}
                     <div 
-                        className="absolute inset-0 opacity-[0.02]"
+                        className="absolute inset-0 opacity-[0.015]"
                         style={{
                             backgroundImage: `
-                                linear-gradient(rgba(26,123,230,0.5) 1px, transparent 1px),
-                                linear-gradient(90deg, rgba(26,123,230,0.5) 1px, transparent 1px)
+                                linear-gradient(rgba(26,123,230,0.3) 1px, transparent 1px),
+                                linear-gradient(90deg, rgba(26,123,230,0.3) 1px, transparent 1px)
                             `,
-                            backgroundSize: '20px 20px'
+                            backgroundSize: '30px 30px'
                         }}
                     />
 
@@ -282,17 +235,10 @@ export default function EventComponent() {
                         
                         <motion.button
                             onClick={() => navigateMonth(-1)}
-                            className="relative p-3 rounded-xl bg-white/70 backdrop-blur-sm border border-white/60 text-gray-600 hover:text-[#1a7be6] hover:bg-white/90 transition-all duration-300 group"
-                            whileHover={{ 
-                                scale: 1.1,
-                                boxShadow: "0 8px 25px rgba(26,123,230,0.15)"
-                            }}
+                            className="relative p-3 rounded-xl bg-white/70 backdrop-blur-sm border border-white/60 text-gray-600 hover:text-[#1a7be6] hover:bg-white/90 transition-all duration-300"
+                            whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.9 }}
                         >
-                            {/* Button glow effect */}
-                            <motion.div 
-                                className="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-400/20 to-purple-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                            />
                             <motion.svg 
                                 className="relative w-4 h-4" 
                                 fill="none" 
@@ -627,26 +573,20 @@ export default function EventComponent() {
 
     return (
         <section className="relative min-h-screen py-12 md:py-20 overflow-hidden">
-            {/* Advanced gradient background with multiple layers */}
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-50/40 via-white to-orange-50/30"></div>
-            <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-blue-50/20 to-orange-100/30"></div>
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-100/30 via-transparent to-transparent"></div>
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-orange-100/30 via-transparent to-transparent"></div>
+            
 
             {/* Ultra Advanced Decorative Background Elements */}
             <div className="absolute inset-0 pointer-events-none overflow-hidden">
-                {/* Ultra-sophisticated animated gradient orbs with advanced motion patterns */}
+                {/* Simplified animated gradient orbs - reduced from 3 to 2 main orbs */}
                 <motion.div 
-                    className="absolute top-0 right-0 w-96 h-96 rounded-full blur-3xl opacity-60"
+                    className="absolute top-0 right-0 w-96 h-96 rounded-full blur-3xl opacity-50"
                     style={{
-                        background: 'radial-gradient(circle, rgba(26,123,230,0.18) 0%, rgba(59,130,246,0.12) 35%, rgba(99,102,241,0.08) 65%, transparent 100%)'
+                        background: 'radial-gradient(circle, rgba(26,123,230,0.15) 0%, rgba(59,130,246,0.1) 35%, transparent 70%)'
                     }}
                     animate={{ 
-                        scale: [1, 1.15, 0.95, 1.08, 1],
-                        opacity: [0.4, 0.7, 0.5, 0.6, 0.4],
-                        x: [0, -25, -10, 5, 0],
-                        y: [0, 20, -15, 8, 0],
-                        rotate: [0, 90, 180, 270, 360]
+                        scale: [1, 1.1, 1],
+                        opacity: [0.3, 0.5, 0.3],
+                        rotate: [0, 180, 360]
                     }}
                     transition={{ 
                         duration: 20, 
@@ -655,16 +595,14 @@ export default function EventComponent() {
                     }}
                 />
                 <motion.div 
-                    className="absolute bottom-0 left-0 w-80 h-80 rounded-full blur-3xl opacity-60"
+                    className="absolute bottom-0 left-0 w-80 h-80 rounded-full blur-3xl opacity-50"
                     style={{
-                        background: 'radial-gradient(circle, rgba(243,94,14,0.18) 0%, rgba(234,88,12,0.12) 35%, rgba(251,146,60,0.08) 65%, transparent 100%)'
+                        background: 'radial-gradient(circle, rgba(243,94,14,0.15) 0%, rgba(234,88,12,0.1) 35%, transparent 70%)'
                     }}
                     animate={{ 
-                        scale: [1, 1.25, 1.05, 1.18, 1],
-                        opacity: [0.3, 0.6, 0.4, 0.5, 0.3],
-                        x: [0, 30, 15, -10, 0],
-                        y: [0, -25, -5, 12, 0],
-                        rotate: [0, -120, -240, -360]
+                        scale: [1, 1.15, 1],
+                        opacity: [0.2, 0.4, 0.2],
+                        rotate: [0, -180, -360]
                     }}
                     transition={{ 
                         duration: 18, 
@@ -672,185 +610,41 @@ export default function EventComponent() {
                         ease: "easeInOut"
                     }}
                 />
-                <motion.div 
-                    className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 h-72 rounded-full blur-2xl opacity-50"
-                    style={{
-                        background: 'radial-gradient(circle, rgba(99,102,241,0.15) 0%, rgba(168,85,247,0.1) 40%, rgba(236,72,153,0.08) 70%, transparent 100%)'
-                    }}
-                    animate={{ 
-                        scale: [1, 1.4, 1.1, 1.3, 1],
-                        rotate: [0, 180, 90, 270, 360],
-                        x: [0, 40, -35, 20, 0],
-                        y: [0, -30, 35, -15, 0]
-                    }}
-                    transition={{ 
-                        duration: 25, 
-                        repeat: Infinity,
-                        ease: "easeInOut"
-                    }}
-                />
                 
-                {/* Advanced secondary gradient orbs for depth */}
-                <motion.div 
-                    className="absolute top-1/4 right-1/4 w-48 h-48 rounded-full blur-2xl opacity-40"
-                    style={{
-                        background: 'radial-gradient(circle, rgba(168,85,247,0.12) 0%, rgba(236,72,153,0.08) 50%, transparent 100%)'
-                    }}
-                    animate={{ 
-                        scale: [1, 1.2, 1.1, 1.05, 1],
-                        opacity: [0.3, 0.5, 0.4, 0.6, 0.3],
-                        x: [0, -15, 10, -5, 0],
-                        y: [0, 25, -20, 15, 0],
-                        rotate: [0, 135, 270, 405, 540]
-                    }}
-                    transition={{ 
-                        duration: 16, 
-                        repeat: Infinity,
-                        ease: "easeInOut"
-                    }}
-                />
-                <motion.div 
-                    className="absolute bottom-1/4 left-1/4 w-56 h-56 rounded-full blur-2xl opacity-35"
-                    style={{
-                        background: 'radial-gradient(circle, rgba(34,197,94,0.1) 0%, rgba(16,185,129,0.06) 50%, transparent 100%)'
-                    }}
-                    animate={{ 
-                        scale: [1, 1.3, 1.15, 1.1, 1],
-                        opacity: [0.25, 0.45, 0.35, 0.4, 0.25],
-                        x: [0, 20, -25, 15, 0],
-                        y: [0, -18, 22, -10, 0],
-                        rotate: [0, -150, -300, -450, -600]
-                    }}
-                    transition={{ 
-                        duration: 22, 
-                        repeat: Infinity,
-                        ease: "easeInOut"
-                    }}
-                />
-                
-                {/* Ultra-advanced floating geometric shapes with enhanced parallax and morphing */}
+                {/* Simplified floating geometric shapes - reduced complexity */}
                 <motion.div
                     animate={{ 
-                        y: [0, -40, -15, -35, 0], 
-                        rotate: [0, 25, -15, 30, 0],
-                        scale: [1, 1.15, 1.05, 1.2, 1],
-                        borderRadius: ["1.5rem", "2rem", "1rem", "2.5rem", "1.5rem"]
+                        y: [0, -25, 0], 
+                        rotate: [0, 15, 0],
+                        scale: [1, 1.1, 1]
+                    }}
+                    transition={{ 
+                        duration: 12, 
+                        repeat: Infinity, 
+                        ease: "easeInOut" 
+                    }}
+                    className="hidden lg:block absolute top-20 right-20 w-24 h-24 border border-blue-200/40 rounded-2xl backdrop-blur-sm bg-white/10"
+                />
+                <motion.div
+                    animate={{ 
+                        y: [0, 30, 0], 
+                        x: [0, -20, 0],
+                        rotate: [0, -20, 0]
                     }}
                     transition={{ 
                         duration: 14, 
                         repeat: Infinity, 
                         ease: "easeInOut" 
                     }}
-                    className="hidden lg:block absolute top-20 right-20 w-28 h-28 border-2 border-blue-200/50 rounded-3xl backdrop-blur-sm bg-white/15 shadow-xl"
-                    style={{
-                        background: 'linear-gradient(135deg, rgba(26,123,230,0.15), rgba(59,130,246,0.08), rgba(99,102,241,0.05))',
-                        boxShadow: '0 8px 32px rgba(26,123,230,0.1), inset 0 1px 0 rgba(255,255,255,0.2)'
-                    }}
-                />
-                <motion.div
-                    animate={{ 
-                        y: [0, 45, 20, 40, 0], 
-                        x: [0, -30, -15, -25, 0],
-                        rotate: [0, -35, 15, -25, 0],
-                        scale: [1, 1.25, 1.1, 1.18, 1],
-                        borderRadius: ["2rem", "1rem", "3rem", "1.5rem", "2rem"]
-                    }}
-                    transition={{ 
-                        duration: 16, 
-                        repeat: Infinity, 
-                        ease: "easeInOut" 
-                    }}
-                    className="hidden lg:block absolute bottom-32 left-16 w-32 h-32 border-2 border-orange-200/50 rounded-[2rem] rotate-12 backdrop-blur-sm bg-white/15 shadow-xl"
-                    style={{
-                        background: 'linear-gradient(135deg, rgba(243,94,14,0.15), rgba(234,88,12,0.08), rgba(251,146,60,0.05))',
-                        boxShadow: '0 8px 32px rgba(243,94,14,0.1), inset 0 1px 0 rgba(255,255,255,0.2)'
-                    }}
-                />
-                <motion.div
-                    animate={{ 
-                        y: [0, -25, -10, -20, 0], 
-                        x: [0, 25, 10, 20, 0],
-                        rotate: [0, 45, -30, 35, 0],
-                        scale: [1, 1.3, 1.15, 1.25, 1]
-                    }}
-                    transition={{ 
-                        duration: 18, 
-                        repeat: Infinity, 
-                        ease: "easeInOut" 
-                    }}
-                    className="hidden md:block absolute top-1/3 left-10 w-24 h-24 rounded-full backdrop-blur-sm border-2 border-purple-200/40 shadow-lg"
-                    style={{
-                        background: 'linear-gradient(135deg, rgba(99,102,241,0.15), rgba(168,85,247,0.1), rgba(236,72,153,0.08))',
-                        boxShadow: '0 6px 24px rgba(99,102,241,0.1), inset 0 1px 0 rgba(255,255,255,0.2)'
-                    }}
-                />
-                <motion.div
-                    animate={{ 
-                        y: [0, 30, 15, 25, 0], 
-                        x: [0, -20, -10, -15, 0],
-                        rotate: [0, -50, 25, -40, 0],
-                        scale: [1, 1.12, 1.08, 1.1, 1],
-                        borderRadius: ["1rem", "1.5rem", "0.5rem", "2rem", "1rem"]
-                    }}
-                    transition={{ 
-                        duration: 13, 
-                        repeat: Infinity, 
-                        ease: "easeInOut" 
-                    }}
-                    className="hidden md:block absolute bottom-1/4 right-16 w-26 h-26 rounded-2xl rotate-45 backdrop-blur-sm border-2 border-pink-200/40 shadow-lg"
-                    style={{
-                        background: 'linear-gradient(135deg, rgba(236,72,153,0.12), rgba(251,113,133,0.1), rgba(244,114,182,0.08))',
-                        boxShadow: '0 6px 24px rgba(236,72,153,0.1), inset 0 1px 0 rgba(255,255,255,0.2)'
-                    }}
+                    className="hidden lg:block absolute bottom-32 left-16 w-28 h-28 border border-orange-200/40 rounded-3xl backdrop-blur-sm bg-white/10"
                 />
                 
-                {/* Advanced floating hexagonal shapes */}
-                <motion.div
-                    animate={{ 
-                        y: [0, -35, -20, -30, 0], 
-                        x: [0, 15, -10, 12, 0],
-                        rotate: [0, 60, 120, 180, 240, 300, 360],
-                        scale: [1, 1.2, 1.1, 1.15, 1]
-                    }}
-                    transition={{ 
-                        duration: 20, 
-                        repeat: Infinity, 
-                        ease: "easeInOut" 
-                    }}
-                    className="hidden xl:block absolute top-1/4 left-1/3 w-20 h-20 backdrop-blur-sm border border-emerald-200/40"
-                    style={{
-                        background: 'linear-gradient(135deg, rgba(34,197,94,0.1), rgba(16,185,129,0.08))',
-                        clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
-                        boxShadow: '0 4px 16px rgba(34,197,94,0.1)'
-                    }}
-                />
-                <motion.div
-                    animate={{ 
-                        y: [0, 28, 12, 24, 0], 
-                        x: [0, -18, -8, -14, 0],
-                        rotate: [0, -72, -144, -216, -288, -360],
-                        scale: [1, 1.18, 1.08, 1.12, 1]
-                    }}
-                    transition={{ 
-                        duration: 17, 
-                        repeat: Infinity, 
-                        ease: "easeInOut" 
-                    }}
-                    className="hidden xl:block absolute bottom-1/3 right-1/3 w-18 h-18 backdrop-blur-sm border border-cyan-200/40"
-                    style={{
-                        background: 'linear-gradient(135deg, rgba(6,182,212,0.1), rgba(14,165,233,0.08))',
-                        clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
-                        boxShadow: '0 4px 16px rgba(6,182,212,0.1)'
-                    }}
-                />
-
-                {/* Enhanced animated constellation pattern with complex sequences */}
+                {/* Simplified constellation pattern - reduced from 5 to 2 dots */}
                 <motion.div 
-                    className="absolute top-10 left-1/4 w-2.5 h-2.5 rounded-full bg-blue-400/70"
+                    className="absolute top-10 left-1/4 w-2 h-2 rounded-full bg-blue-400/60"
                     animate={{ 
-                        scale: [0, 1.2, 0.8, 1, 0],
-                        opacity: [0, 1, 0.7, 1, 0],
-                        rotate: [0, 180, 360]
+                        scale: [0, 1, 0],
+                        opacity: [0, 1, 0]
                     }}
                     transition={{ 
                         duration: 4,
@@ -859,42 +653,15 @@ export default function EventComponent() {
                     }}
                 />
                 <motion.div 
-                    className="absolute top-32 left-1/3 w-2 h-2 rounded-full bg-orange-400/70"
+                    className="absolute bottom-40 right-1/4 w-2 h-2 rounded-full bg-orange-400/60"
                     animate={{ 
-                        scale: [0, 1.4, 1, 1.2, 0],
-                        opacity: [0, 1, 0.8, 1, 0],
-                        rotate: [0, -180, -360]
+                        scale: [0, 1, 0],
+                        opacity: [0, 1, 0]
                     }}
                     transition={{ 
                         duration: 4.5,
                         repeat: Infinity,
-                        delay: 1
-                    }}
-                />
-                <motion.div 
-                    className="absolute bottom-40 right-1/4 w-2.5 h-2.5 rounded-full bg-purple-400/70"
-                    animate={{ 
-                        scale: [0, 1.3, 0.9, 1.1, 0],
-                        opacity: [0, 1, 0.6, 1, 0],
-                        rotate: [0, 240, 480]
-                    }}
-                    transition={{ 
-                        duration: 5,
-                        repeat: Infinity,
                         delay: 2
-                    }}
-                />
-                <motion.div 
-                    className="absolute bottom-64 right-1/3 w-2 h-2 rounded-full bg-pink-400/70"
-                    animate={{ 
-                        scale: [0, 1.5, 1.2, 1, 0],
-                        opacity: [0, 1, 0.9, 1, 0],
-                        rotate: [0, -240, -480]
-                    }}
-                    transition={{ 
-                        duration: 4.2,
-                        repeat: Infinity,
-                        delay: 0.8
                     }}
                 />
                 <motion.div 
@@ -908,19 +675,6 @@ export default function EventComponent() {
                         duration: 3.8,
                         repeat: Infinity,
                         delay: 2.5
-                    }}
-                />
-                <motion.div 
-                    className="absolute bottom-80 left-1/5 w-2 h-2 rounded-full bg-cyan-400/65"
-                    animate={{ 
-                        scale: [0, 1.4, 1.1, 1.3, 0],
-                        opacity: [0, 1, 0.7, 1, 0],
-                        rotate: [0, -300, -600]
-                    }}
-                    transition={{ 
-                        duration: 4.8,
-                        repeat: Infinity,
-                        delay: 1.8
                     }}
                 />
                 
@@ -1409,47 +1163,7 @@ export default function EventComponent() {
                                     }}
                                 />
                                 
-                                {/* Enhanced particle effects constellation */}
-                                <motion.div 
-                                    className="absolute -top-3 -right-3 w-3 h-3 rounded-full bg-blue-400"
-                                    animate={{ 
-                                        scale: [0, 1.5, 1, 1.2, 0],
-                                        opacity: [0, 1, 0.7, 1, 0],
-                                        rotate: [0, 180, 360]
-                                    }}
-                                    transition={{ 
-                                        duration: 3,
-                                        repeat: Infinity,
-                                        delay: 2
-                                    }}
-                                />
-                                <motion.div 
-                                    className="absolute -bottom-2 -left-2 w-2 h-2 rounded-full bg-purple-400"
-                                    animate={{ 
-                                        scale: [0, 1.3, 0.8, 1.1, 0],
-                                        opacity: [0, 1, 0.8, 1, 0],
-                                        rotate: [0, -180, -360]
-                                    }}
-                                    transition={{ 
-                                        duration: 3.5,
-                                        repeat: Infinity,
-                                        delay: 3
-                                    }}
-                                />
-                                <motion.div 
-                                    className="absolute top-1 right-1 w-1.5 h-1.5 rounded-full bg-pink-400"
-                                    animate={{ 
-                                        scale: [0, 1.8, 1.2, 1.4, 0],
-                                        opacity: [0, 1, 0.6, 1, 0],
-                                        x: [0, 5, -3, 2, 0],
-                                        y: [0, -3, 2, -1, 0]
-                                    }}
-                                    transition={{ 
-                                        duration: 4,
-                                        repeat: Infinity,
-                                        delay: 4
-                                    }}
-                                />
+                                
                             </span>
                             <br className="hidden sm:block" />
                             <motion.div 
@@ -1503,15 +1217,6 @@ export default function EventComponent() {
                             </motion.span>
                             <span className="font-semibold text-gray-700 relative">
                                 acara menarik
-                                <motion.span 
-                                    className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-200/40 to-transparent rounded"
-                                    animate={{ x: [-100, 100] }}
-                                    transition={{ 
-                                        duration: 3,
-                                        repeat: Infinity,
-                                        ease: "easeInOut"
-                                    }}
-                                />
                             </span>
                             <motion.span
                                 animate={{
@@ -1530,16 +1235,6 @@ export default function EventComponent() {
                             </motion.span>
                             <span className="font-semibold text-[#1a7be6] relative">
                                 bergabunglah
-                                <motion.span 
-                                    className="absolute inset-0 bg-gradient-to-r from-transparent via-orange-200/40 to-transparent rounded"
-                                    animate={{ x: [100, -100] }}
-                                    transition={{ 
-                                        duration: 4,
-                                        repeat: Infinity,
-                                        ease: "easeInOut",
-                                        delay: 1
-                                    }}
-                                />
                             </span>
                             <span className="text-gray-600"> dengan komunitas kami.</span>
                         </p>
