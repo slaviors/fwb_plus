@@ -21,6 +21,7 @@ export default function MicrositePage() {
     const [newLink, setNewLink] = useState({ title: '', url: '' });
     const router = useRouter();
 
+
     const STATIC_TITLE = 'FWB Plus';
     const STATIC_ICON = '🔗';
 
@@ -466,7 +467,6 @@ export default function MicrositePage() {
                     </div>
                 </div>
             </nav>
-
             <main className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
                 {/* Header Section */}
                 <motion.div
