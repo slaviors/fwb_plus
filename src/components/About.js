@@ -191,7 +191,7 @@ export default function About() {
             className="max-w-3xl mx-auto"
           >
             <p className="font-inter text-lg md:text-xl text-gray-600 leading-relaxed">
-              <span className="font-semibold text-gray-700">FWB+</span> merupakan event organizer profesional yang berpengalaman dalam mengelola berbagai jenis acara,
+              <span className="font-semibold text-gray-700">FWB Plus</span> merupakan event organizer profesional yang berpengalaman dalam mengelola berbagai jenis acara,
               mulai dari corporate event, wedding, celebration, gathering, hingga product launching.
             </p>
           </motion.div>
@@ -208,7 +208,7 @@ export default function About() {
             <div className="relative h-[350px] md:h-[400px] lg:h-[450px] w-full rounded-3xl overflow-hidden shadow-2xl shadow-blue-200/40 group z-40">
               <Image
                 src="/images/about/company-story.png"
-                alt="FWB+ Company Story"
+                alt="FWB Plus Company Story"
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -350,7 +350,7 @@ export default function About() {
               >
                 <p>
                   Berawal dari tim kecil yang memiliki <span className="font-semibold text-[#1a7be6]">passion di bidang event organizer</span>, kami terus berkomitmen untuk memberikan 
-                  layanan terbaik dan pengalaman yang tak terlupakan bagi setiap klien. Dengan semangat kreativitas dan profesionalitas, <span className="font-semibold text-[#f35e0e]">FWB+</span> kini 
+                  layanan terbaik dan pengalaman yang tak terlupakan bagi setiap klien. Dengan semangat kreativitas dan profesionalitas, <span className="font-semibold text-[#f35e0e]">FWB Plus</span> kini 
                   telah menjelma menjadi salah satu event organizer terpercaya dengan ratusan event sukses yang telah diselenggarakan.
                 </p>
                 

@@ -556,7 +556,7 @@ export default function Services() {
                             <span className="inline-block py-1.5 px-3 text-xs bg-white/95 font-inter font-semibold rounded-full backdrop-blur-sm shadow-md"
                               style={{ color: service.color }}
                             >
-                              FWB+ {service.title}
+                              FWB Plus {service.title}
                             </span>
                           </div>
                         </div>
@@ -722,7 +722,7 @@ export default function Services() {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.3, duration: 0.6 }}
                           >
-                            FWB+ Services
+                            FWB Plus Services
                           </motion.span>
                           <motion.h3 
                             className="font-unbounded text-xl md:text-2xl lg:text-3xl font-bold text-white leading-tight"

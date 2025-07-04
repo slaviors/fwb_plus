@@ -154,7 +154,7 @@ export default function Hero() {
                 Bersama 
                 <Image
                   src="/images/assets/logo/Logo FWB PNG Transparan.png"
-                  alt="FWB+ Logo"
+                  alt="FWB Plus Logo"
                   width={120}
                   height={40}
                   className="inline-block ml-3 w-16 h-auto md:w-20 lg:w-24 xl:w-28 object-contain"

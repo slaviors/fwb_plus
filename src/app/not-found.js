@@ -24,7 +24,7 @@ export default function NotFound() {
   }, [router]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-orange-50 flex items-center justify-center px-6 lg:pt-20 relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-orange-50 flex items-center justify-center px-6 pt-36 pb-6 relative overflow-hidden">
       {/* Floating decorative elements */}
       <motion.div 
         className="absolute top-[15%] left-[8%] w-4 h-4 bg-blue-400/20 rounded-full"

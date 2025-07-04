@@ -1,5 +1,6 @@
 import "@/styles/globals.css";
 import Navbar from "@/components/Navbar";
+import { ConditionalNavbar } from "@/components/ConditionalNavbar";
 
 // SEO Metadata Global dengan penambahan keyword umum
 export const metadata = {
@@ -7,7 +8,7 @@ export const metadata = {
     default: "FWB Plus | Event Organizer & Penyelenggara Acara di Jogja, Semarang",
     template: "%s | FWB Plus Event Organizer",
   },
-  description: "FWB Plus adalah **penyelenggara acara** (**event organizer**) profesional di **Jogja** dan **Semarang**. Sebagai **EO terpercaya**, kami menyediakan jasa untuk corporate gathering, pameran (exhibition), konser, dan penyewaan alat event.",
+  description: "FWB Plus adalah penyelenggara acara (event organizer) profesional di Jogja dan Semarang. Sebagai EO terpercaya, kami menyediakan jasa untuk corporate gathering, pameran (exhibition), konser, dan penyewaan alat event.",
   keywords: [
     // Brand
     "fwb plus organizer",
@@ -39,7 +40,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="id">
       <body>
-        <Navbar />
+        <ConditionalNavbar />
         {children}
       </body>
     </html>

@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 
 export default function ClientsSlider() {
-  // Sampel clients - ganti dengan klien FWB+ yang sebenarnya
+  // Sampel clients - ganti dengan klien FWB Plus yang sebenarnya
   const clients = [
     { name: "Company A", logo: "/images/clients/client1.png" },
     { name: "Company B", logo: "/images/clients/client2.png" },

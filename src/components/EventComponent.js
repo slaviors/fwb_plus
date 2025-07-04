@@ -1180,7 +1180,7 @@ export default function EventComponent() {
                             >
                                 <Image
                                     src="/images/assets/logo/Logo FWB PNG Transparan.png"
-                                    alt="FWB+ Logo"
+                                    alt="FWB Plus Logo"
                                     width={200}
                                     height={80}
                                     className="w-auto h-8 ml-2 md:h-16 md:ml-0 lg:h-20"

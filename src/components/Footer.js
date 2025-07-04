@@ -93,7 +93,7 @@ export default function Footer() {
               </div>
             </Link>
             <p className="text-gray-600 max-w-xs">
-              FWB+ adalah event organizer profesional yang berpengalaman mengelola berbagai jenis acara untuk kebutuhan perusahaan maupun pribadi.
+              FWB Plus adalah event organizer profesional yang berpengalaman mengelola berbagai jenis acara untuk kebutuhan perusahaan maupun pribadi.
             </p>
             <div className="flex space-x-4">
               {socialMedia.map((social) => (
