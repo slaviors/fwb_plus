@@ -1,13 +1,12 @@
 'use client';
-import { useEffect, useState, useRef } from 'react';
-import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import { useEffect, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 
 export default function Hero() {
   const [currentImage, setCurrentImage] = useState(0);
   const [isHovering, setIsHovering] = useState(false);
-  const heroRef = useRef(null);
   
   // Gambar-gambar event dengan keterangan
   const heroEvents = [
@@ -28,16 +27,6 @@ export default function Hero() {
     },
   ];
 
-  // Scroll animation
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ["start start", "end start"]
-  });
-  
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.9]);
-  const y = useTransform(scrollYProgress, [0, 0.5], [0, 100]);
-
   // Auto-rotate background images
   useEffect(() => {
     if (isHovering) return;
@@ -57,10 +46,8 @@ export default function Hero() {
   ];
 
   return (
-    <motion.section 
-      ref={heroRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-blue-50 via-white to-blue-50"
-      style={{ opacity, scale, y }}
+    <section 
+      className="relative min-h-[90vh] md:min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-blue-50 via-white to-blue-50"
     >
       {/* Decorative elements */}
       <div className="absolute inset-0 overflow-hidden">
@@ -107,8 +94,8 @@ export default function Hero() {
         />
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-24 md:py-32">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-12 md:py-20">
+        <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center mt-11">
           {/* Left Content */}
           <motion.div 
             initial={{ opacity: 0, x: -50 }}
@@ -116,7 +103,7 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-center lg:text-left"
           >
-            <motion.div
+            {/* <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6 }}
@@ -144,13 +131,13 @@ export default function Hero() {
                 </motion.span>
                 Event Organizer Terpercaya
               </motion.div>
-            </motion.div>
+            </motion.div> */}
 
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-gray-900"
+              className="font-unbounded text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight text-gray-900"
             >
               Wujudkan Event 
               <span className="relative">
@@ -163,8 +150,16 @@ export default function Hero() {
                 />
               </span>
               <br />
-              <span className="relative inline-block">
-                Bersama <span className="text-[#f35e0e]">FWB+</span>
+              <span className="relative inline-flex items-center gap-2">
+                Bersama 
+                <Image
+                  src="/images/assets/logo/Logo FWB PNG Transparan.png"
+                  alt="FWB Plus Logo"
+                  width={120}
+                  height={40}
+                  className="inline-block ml-3 w-16 h-auto md:w-20 lg:w-24 xl:w-28 object-contain"
+                  priority
+                />
                 <motion.svg
                   className="absolute -right-14 -top-2 w-12 h-12 text-[#f35e0e]/80"
                   viewBox="0 0 24 24"
@@ -192,14 +187,14 @@ export default function Hero() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="mt-6 text-xl text-gray-600 max-w-lg mx-auto lg:mx-0"
+              className="mt-4 md:mt-6 text-lg md:text-xl text-gray-600 max-w-lg mx-auto lg:mx-0"
             >
               Kami membantu Anda merancang dan mengelola berbagai acara spesial dengan 
               kreativitas, profesionalitas, dan hasil memuaskan.
             </motion.p>
             
             {/* Stats with animation */}
-            <div className="mt-8 grid grid-cols-3 gap-4">
+            <div className="mt-6 md:mt-8 grid grid-cols-3 gap-3 md:gap-4">
               {statItems.map((stat, index) => (
                 <motion.div
                   key={stat.label}
@@ -207,12 +202,12 @@ export default function Hero() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: stat.delay }}
                   whileHover={{ y: -5 }}
-                  className="p-3 rounded-xl bg-white shadow-md hover:shadow-lg transition-all duration-300"
+                  className="p-2 md:p-3 rounded-xl bg-white shadow-md hover:shadow-lg transition-all duration-300"
                 >
-                  <h3 className="text-2xl md:text-3xl font-bold" style={{ color: stat.color }}>
+                  <h3 className="font-unbounded text-xl md:text-2xl lg:text-3xl font-bold" style={{ color: stat.color }}>
                     {stat.number}
                   </h3>
-                  <p className="text-sm text-gray-600">{stat.label}</p>
+                  <p className="text-xs md:text-sm text-gray-600">{stat.label}</p>
                 </motion.div>
               ))}
             </div>
@@ -222,7 +217,7 @@ export default function Hero() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.9 }}
-              className="mt-10 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
+              className="mt-6 md:mt-10 flex flex-col sm:flex-row gap-3 md:gap-4 justify-center lg:justify-start"
             >
               <Link href="/contact">
                 <motion.div
@@ -231,7 +226,7 @@ export default function Hero() {
                   className="relative overflow-hidden px-8 py-4 rounded-full bg-[#1a7be6] text-white font-medium text-lg shadow-lg shadow-blue-200 group"
                 >
                   <span className="relative z-10 flex items-center justify-center">
-                    <span>Konsultasi Gratis</span>
+                    <span>Hubungi Kami</span>
                     <motion.svg
                       className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1"
                       fill="none"
@@ -289,7 +284,7 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.5 }}
             className="relative"
           >
-            <div className="relative h-[500px] md:h-[600px] max-w-[500px] mx-auto">
+            <div className="relative h-[400px] md:h-[500px] max-w-[450px] mx-auto">
               {/* 3D stacked images with hover interaction */}
               <div 
                 className="relative h-full w-full"
@@ -328,8 +323,73 @@ export default function Hero() {
                             priority={index === 0}
                           />
                           
-                          {/* Gradient overlay */}
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+                          {/* Progressive blur overlay - Advanced technique */}
+                          <div className="absolute left-0 bottom-0 right-0 w-full h-1/2 pointer-events-none">
+                            {/* Multiple blur layers with precise masking */}
+                            <div 
+                              className="absolute top-0 left-0 bottom-0 right-0" 
+                              style={{
+                                backdropFilter: 'blur(1px)',
+                                mask: 'linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1) 10%, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 40%)',
+                                WebkitMask: 'linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1) 10%, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 40%)'
+                              }}
+                            ></div>
+                            <div 
+                              className="absolute top-0 left-0 bottom-0 right-0" 
+                              style={{
+                                backdropFilter: 'blur(2px)',
+                                mask: 'linear-gradient(rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 0) 50%)',
+                                WebkitMask: 'linear-gradient(rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 0) 50%)'
+                              }}
+                            ></div>
+                            <div 
+                              className="absolute top-0 left-0 bottom-0 right-0" 
+                              style={{
+                                backdropFilter: 'blur(4px)',
+                                mask: 'linear-gradient(rgba(0, 0, 0, 0) 15%, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 60%)',
+                                WebkitMask: 'linear-gradient(rgba(0, 0, 0, 0) 15%, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 60%)'
+                              }}
+                            ></div>
+                            <div 
+                              className="absolute top-0 left-0 bottom-0 right-0" 
+                              style={{
+                                backdropFilter: 'blur(8px)',
+                                mask: 'linear-gradient(rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0) 70%)',
+                                WebkitMask: 'linear-gradient(rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0) 70%)'
+                              }}
+                            ></div>
+                            <div 
+                              className="absolute top-0 left-0 bottom-0 right-0" 
+                              style={{
+                                backdropFilter: 'blur(16px)',
+                                mask: 'linear-gradient(rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 1) 80%, rgba(0, 0, 0, 0) 90%)',
+                                WebkitMask: 'linear-gradient(rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 1) 80%, rgba(0, 0, 0, 0) 90%)'
+                              }}
+                            ></div>
+                            <div 
+                              className="absolute top-0 left-0 bottom-0 right-0" 
+                              style={{
+                                backdropFilter: 'blur(32px)',
+                                mask: 'linear-gradient(rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 1) 80%)',
+                                WebkitMask: 'linear-gradient(rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 1) 80%)'
+                              }}
+                            ></div>
+                            <div 
+                              className="absolute top-0 left-0 bottom-0 right-0 z-10" 
+                              style={{
+                                backdropFilter: 'blur(64px)',
+                                mask: 'linear-gradient(rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%)',
+                                WebkitMask: 'linear-gradient(rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%)'
+                              }}
+                            ></div>
+                            {/* Gradient overlay for darkening */}
+                            <div 
+                              className="absolute top-0 left-0 right-0 bottom-0"
+                              style={{
+                                background: 'linear-gradient(transparent, rgba(0, 0, 0, 0.6))'
+                              }}
+                            ></div>
+                          </div>
                           
                           {/* Event info */}
                           <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
@@ -341,7 +401,7 @@ export default function Hero() {
                               }}
                               transition={{ duration: 0.5, delay: 0.2 }}
                             >
-                              <h3 className="text-2xl font-bold mb-2">{event.title}</h3>
+                              <h3 className="font-unbounded text-2xl font-bold mb-2">{event.title}</h3>
                               <p className="text-white/80">{event.description}</p>
                             </motion.div>
                           </div>
@@ -410,20 +470,27 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Wave divider */}
+      {/* Wave divider integrated with background */}
       <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
         <svg 
-          className="relative block w-full h-24" 
+          className="relative block w-full h-32" 
           xmlns="http://www.w3.org/2000/svg" 
           viewBox="0 0 1200 120" 
           preserveAspectRatio="none"
         >
+          <defs>
+            <linearGradient id="waveGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="#F5F9FF" />
+              <stop offset="50%" stopColor="#ffffff" />
+
+            </linearGradient>
+          </defs>
           <path 
             d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" 
-            className="fill-white"
+            fill="url(#waveGradient)"
           />
         </svg>
       </div>
-    </motion.section>
+    </section>
   );
 }

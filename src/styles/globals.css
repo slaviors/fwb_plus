@@ -1,5 +1,19 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: 'Unbounded';
+  src: url('/fonts/Unbounded-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Rubik';
+  src: url('/fonts/Rubik-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
 @layer base {
   :root {
     --color-primary: 26, 123, 230; /* #1a7be6 */
@@ -12,7 +26,8 @@
   }
   
   body {
-    @apply text-gray-800;
+    font-family: 'Rubik', system-ui, sans-serif;
+    color: #374151;
   }
 }
 
@@ -23,6 +38,14 @@
   
   .text-gradient-brand {
     @apply bg-gradient-to-r from-[#ce1010] via-[#f35e0e] to-[#1a7be6] bg-clip-text text-transparent;
+  }
+  
+  /* Font Family Utilities */
+  .font-unbounded {
+    font-family: 'Unbounded', system-ui, sans-serif;
+  }
+  .font-rubik {
+    font-family: 'Rubik', system-ui, sans-serif;
   }
 }
 

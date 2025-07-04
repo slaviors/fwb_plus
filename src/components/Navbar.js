@@ -82,8 +82,8 @@ export default function Navbar() {
               <Logo />
             </motion.div>
 
-            {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center space-x-1">
+            {/* Desktop Navigation - Updated breakpoint from lg to xl */}
+            <nav className="hidden xl:flex items-center space-x-1">
               {navLinks.map((link) => (
                 <NavLink 
                   key={link.name} 
@@ -132,8 +132,8 @@ export default function Navbar() {
               </motion.div>
             </nav>
 
-            {/* Mobile menu button with enhanced animation */}
-            <div className="md:hidden flex items-center">
+            {/* Mobile menu button - Updated breakpoint from lg to xl */}
+            <div className="xl:hidden flex items-center">
               <motion.button
                 onClick={() => setIsOpen(!isOpen)}
                 className="inline-flex items-center justify-center p-2.5 rounded-full bg-white/20 backdrop-blur-sm hover:bg-white/30 focus:outline-none transition-colors"
@@ -174,7 +174,7 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Enhanced Mobile Navigation */}
+        {/* Enhanced Mobile Navigation - Updated breakpoint from lg to xl */}
         <AnimatePresence>
           {isOpen && (
             <motion.div
@@ -182,7 +182,7 @@ export default function Navbar() {
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-              className="md:hidden overflow-hidden bg-white/95 backdrop-blur-lg border-t border-gray-100"
+              className="xl:hidden overflow-hidden bg-white/95 backdrop-blur-lg border-t border-gray-100"
             >
               <div className="px-4 py-2">
                 {navLinks.map((link, index) => (
