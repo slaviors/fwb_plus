@@ -73,7 +73,7 @@ export default function FWBConfigPage() {
             <nav className="bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-200">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between h-16">
-                        <motion.div 
+                        <motion.div
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.5 }}
@@ -93,8 +93,8 @@ export default function FWBConfigPage() {
                                 </div>
                             </div>
                         </motion.div>
-                        
-                        <motion.div 
+
+                        <motion.div
                             initial={{ opacity: 0, x: 20 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.5, delay: 0.2 }}
@@ -111,7 +111,7 @@ export default function FWBConfigPage() {
                                 </svg>
                                 Lihat Website
                             </motion.a>
-                            
+
                             <div className="flex items-center space-x-3 bg-gray-50 rounded-lg px-3 py-2">
                                 <div className="w-8 h-8 bg-gradient-to-br from-green-400 to-green-500 rounded-full flex items-center justify-center">
                                     <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -125,7 +125,7 @@ export default function FWBConfigPage() {
                                     <div className="text-xs text-gray-500">Administrator</div>
                                 </div>
                             </div>
-                            
+
                             <motion.button
                                 onClick={handleLogout}
                                 whileHover={{ scale: 1.05 }}
@@ -153,7 +153,7 @@ export default function FWBConfigPage() {
                     <div className="bg-white rounded-2xl shadow-lg p-8 mb-8 border border-gray-100">
                         <div className="flex items-center justify-between">
                             <div>
-                                <motion.h2 
+                                <motion.h2
                                     initial={{ opacity: 0, x: -20 }}
                                     animate={{ opacity: 1, x: 0 }}
                                     transition={{ duration: 0.5, delay: 0.4 }}
@@ -178,10 +178,10 @@ export default function FWBConfigPage() {
                                     <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                                     </svg>
-                                    Terakhir login: {new Date().toLocaleDateString('id-ID', { 
-                                        weekday: 'long', 
-                                        year: 'numeric', 
-                                        month: 'long', 
+                                    Terakhir login: {new Date().toLocaleDateString('id-ID', {
+                                        weekday: 'long',
+                                        year: 'numeric',
+                                        month: 'long',
                                         day: 'numeric',
                                         hour: '2-digit',
                                         minute: '2-digit'
@@ -199,17 +199,7 @@ export default function FWBConfigPage() {
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
                                     </svg>
                                 </div>
-                            </button>
-
-                            <button
-                                onClick={() => router.push('/fwb-config/microsite')}
-                                className="bg-white overflow-hidden shadow rounded-lg hover:shadow-lg transition-shadow cursor-pointer"
-                            >
-                                <div className="p-5">
-                                    <h3 className="text-lg font-medium text-gray-900">Microsite Builder</h3>
-                                    <p className="mt-1 text-sm text-gray-500">Create and customize your link page</p>
-                                </div>
-                            </button>
+                            </motion.div>
                         </div>
                     </div>
 
