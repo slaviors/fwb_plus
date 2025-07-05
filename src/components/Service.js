@@ -138,6 +138,7 @@ export default function Services() {
       `}</style>
 
       <section 
+        id="services"
         ref={sectionRef} 
         className="relative min-h-screen py-12 md:py-24 bg-gradient-to-b from-orange-50/40 via-white to-orange-50/20 overflow-hidden"
       >

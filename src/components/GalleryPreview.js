@@ -142,7 +142,7 @@ export default function GalleryPreview() {
   };
 
   return (
-    <section className="relative py-16 md:py-24 overflow-hidden">
+    <section id="gallery" className="relative py-26 md:py-24 overflow-hidden">
       {/* Enhanced gradient background */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#1a7be6] via-[#1a7be6] to-[#0f4a94]"></div>
       <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-blue-600/20 to-[#f35e0e]/30"></div>
@@ -1056,6 +1056,78 @@ export default function GalleryPreview() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* White Wave Divider */}
+      <div className="absolute bottom-0 left-0 right-0 z-10">
+        <svg 
+          className="w-full h-20 md:h-32 lg:h-40" 
+          viewBox="0 0 1440 320" 
+          fill="none" 
+          xmlns="http://www.w3.org/2000/svg"
+          preserveAspectRatio="none"
+        >
+          {/* Main wave */}
+          <path
+            d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,176C1248,192,1344,192,1392,192L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+            fill="white"
+          />
+          
+          {/* Secondary wave for depth */}
+          <path
+            d="M0,160L48,170.7C96,181,192,203,288,213.3C384,224,480,224,576,202.7C672,181,768,139,864,128C960,117,1056,139,1152,154.7C1248,171,1344,181,1392,186.7L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+            fill="rgba(255,255,255,0.7)"
+          />
+          
+          {/* Third wave for more depth */}
+          <path
+            d="M0,224L48,213.3C96,203,192,181,288,186.7C384,192,480,224,576,234.7C672,245,768,235,864,213.3C960,192,1056,160,1152,154.7C1248,149,1344,171,1392,181.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+            fill="rgba(255,255,255,0.4)"
+          />
+        </svg>
+        
+        {/* Animated floating elements on the wave */}
+        <motion.div
+          className="absolute top-4 left-1/4 w-3 h-3 bg-white/60 rounded-full"
+          animate={{
+            y: [0, -10, 0],
+            opacity: [0.4, 0.8, 0.4],
+            scale: [1, 1.2, 1]
+          }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+        <motion.div
+          className="absolute top-8 right-1/3 w-2 h-2 bg-white/50 rounded-full"
+          animate={{
+            y: [0, -8, 0],
+            opacity: [0.3, 0.7, 0.3],
+            scale: [1, 1.1, 1]
+          }}
+          transition={{
+            duration: 3.5,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 1
+          }}
+        />
+        <motion.div
+          className="absolute top-2 right-1/4 w-2.5 h-2.5 bg-white/40 rounded-full"
+          animate={{
+            y: [0, -12, 0],
+            opacity: [0.2, 0.6, 0.2],
+            scale: [1, 1.3, 1]
+          }}
+          transition={{
+            duration: 5,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 2
+          }}
+        />
+      </div>
     </section>
   );
 }

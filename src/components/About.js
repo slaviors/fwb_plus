@@ -80,6 +80,7 @@ export default function About() {
 
   return (
     <section 
+      id="about"
       className="relative min-h-screen bg-gradient-to-b from-white via-blue-50/30 to-white overflow-hidden" 
       ref={sectionRef}
     >

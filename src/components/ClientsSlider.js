@@ -16,13 +16,14 @@ export default function ClientsSlider() {
   ];
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.8 }}
-      className="w-full overflow-hidden py-8"
-    >
+    <section id="clients">
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+        className="w-full overflow-hidden py-8"
+      >
       <div className="flex animate-marquee">
         {[...clients, ...clients].map((client, index) => (
           <div 
@@ -43,6 +44,7 @@ export default function ClientsSlider() {
           </div>
         ))}
       </div>
-    </motion.div>
+      </motion.div>
+    </section>
   );
 }

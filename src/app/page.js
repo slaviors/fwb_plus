@@ -1,11 +1,9 @@
 import Hero from "@/components/Hero";
 import EventComponent from "@/components/EventComponent";
-import Section from "@/components/ui/Section";
-import FeatureCard from "@/components/ui/FeatureCard";
 import TestimonialSlider from "@/components/TestimonialSlider";
 import ClientsSlider from "@/components/ClientsSlider";
 import GalleryPreview from "@/components/GalleryPreview";
-import CTASection from "@/components/CTASection";
+import ContactLocation from "@/components/ContactLocation";
 import Image from "next/image";
 import About from "@/components/About";
 import Footer from "@/components/Footer";
@@ -14,8 +12,13 @@ import Services from "@/components/Service";
 export default function Home() {
   return (
     <main className="min-h-screen">
+      {/* Hero Section */}
       <Hero />
+
+      {/* About Section */}
       <About />
+
+      {/* Clients Section */}
       <ClientsSlider />
 
       {/* Services Section */}
@@ -24,10 +27,16 @@ export default function Home() {
       {/* Event Section */}
       <EventComponent />
 
+      {/* Gallery Section */}
       <GalleryPreview />
 
+      {/* Testimonials Section */}
       <TestimonialSlider />
 
+      {/* Contact Section */}
+      <ContactLocation />
+
+      {/* Footer */}
       <Footer />
     </main>
   );

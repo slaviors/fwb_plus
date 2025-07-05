@@ -9,21 +9,22 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [visible, setVisible] = useState(true);
+  const [activeSection, setActiveSection] = useState('hero');
   const lastScrollY = useRef(0);
   const pathname = usePathname();
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
 
   const navLinks = [
-    { name: 'Home', href: '/', icon: 'home' },
-    { name: 'Services', href: '/services', icon: 'services' },
-    { name: 'Portfolio', href: '/portfolio', icon: 'portfolio' },
-    { name: 'Events', href: '/events', icon: 'events' },
-    { name: 'About', href: '/about', icon: 'about' },
-    { name: 'Contact', href: '/contact', icon: 'contact' },
+    { name: 'Home', href: '#hero', icon: 'home' },
+    { name: 'Services', href: '#services', icon: 'services' },
+    { name: 'Portfolio', href: '#gallery', icon: 'portfolio' },
+    { name: 'Events', href: '#events', icon: 'events' },
+    { name: 'About', href: '#about', icon: 'about' },
+    { name: 'Contact', href: '#contact', icon: 'contact' },
   ];
 
-  // Handle scroll effects
+  // Handle scroll effects and active section detection
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
@@ -42,6 +43,20 @@ export default function Navbar() {
         setVisible(true);
       }
       
+      // Determine active section
+      const sections = ['hero', 'about', 'clients', 'services', 'events', 'gallery', 'testimonials', 'contact'];
+      const sectionElements = sections.map(id => document.getElementById(id)).filter(Boolean);
+      
+      let currentSection = 'hero';
+      for (const element of sectionElements) {
+        const rect = element.getBoundingClientRect();
+        if (rect.top <= 100 && rect.bottom >= 100) {
+          currentSection = element.id;
+          break;
+        }
+      }
+      setActiveSection(currentSection);
+      
       lastScrollY.current = currentScrollY;
     };
 
@@ -53,6 +68,18 @@ export default function Navbar() {
   useEffect(() => {
     setIsOpen(false);
   }, [pathname]);
+
+  // Smooth scroll to section
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const offsetTop = element.offsetTop - 80; // Account for fixed navbar
+      window.scrollTo({
+        top: offsetTop,
+        behavior: 'smooth'
+      });
+    }
+  };
 
   return (
     <>
@@ -89,8 +116,9 @@ export default function Navbar() {
                   key={link.name} 
                   href={link.href} 
                   title={link.name} 
-                  isActive={pathname === link.href}
+                  isActive={activeSection === link.href.substring(1)}
                   icon={link.icon}
+                  onClick={() => scrollToSection(link.href.substring(1))}
                 />
               ))}
               
@@ -100,8 +128,8 @@ export default function Navbar() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Link 
-                  href="/contact"
+                <button 
+                  onClick={() => scrollToSection('contact')}
                   className="px-5 py-2.5 rounded-full bg-[#1a7be6] text-white font-medium text-sm shadow-md flex items-center space-x-2 overflow-hidden relative group"
                 >
                   <span className="z-10 relative">Hubungi Kami</span>
@@ -128,7 +156,7 @@ export default function Navbar() {
                     whileHover={{ x: 0, opacity: 1 }}
                     transition={{ duration: 0.4, ease: "easeOut" }}
                   />
-                </Link>
+                </button>
               </motion.div>
             </nav>
 
@@ -193,26 +221,28 @@ export default function Navbar() {
                     transition={{ delay: index * 0.1, duration: 0.4 }}
                     className="my-1.5"
                   >
-                    <Link
-                      href={link.href}
-                      className={`flex items-center py-3 px-4 rounded-xl transition-all duration-300 ${
-                        pathname === link.href
+                    <button
+                      onClick={() => {
+                        scrollToSection(link.href.substring(1));
+                        setIsOpen(false);
+                      }}
+                      className={`flex items-center py-3 px-4 rounded-xl transition-all duration-300 w-full text-left ${
+                        activeSection === link.href.substring(1)
                           ? 'bg-[#1a7be6]/10 text-[#1a7be6]'
                           : 'text-gray-800 hover:bg-[#1a7be6]/5 hover:text-[#1a7be6]'
                       }`}
-                      onClick={() => setIsOpen(false)}
                     >
                       <motion.div 
-                        whileHover={{ rotate: pathname === link.href ? 0 : 10 }}
+                        whileHover={{ rotate: activeSection === link.href.substring(1) ? 0 : 10 }}
                         whileTap={{ scale: 0.9 }}
                         className={`w-8 h-8 rounded-full flex items-center justify-center mr-3 ${
-                          pathname === link.href ? 'bg-[#1a7be6]/20' : 'bg-gray-100'
+                          activeSection === link.href.substring(1) ? 'bg-[#1a7be6]/20' : 'bg-gray-100'
                         }`}
                       >
-                        {renderIcon(link.icon, pathname === link.href)}
+                        {renderIcon(link.icon, activeSection === link.href.substring(1))}
                       </motion.div>
                       <span className="font-medium">{link.name}</span>
-                      {pathname === link.href && (
+                      {activeSection === link.href.substring(1) && (
                         <motion.div
                           initial={{ scale: 0 }}
                           animate={{ scale: 1 }}
@@ -223,7 +253,7 @@ export default function Navbar() {
                           </svg>
                         </motion.div>
                       )}
-                    </Link>
+                    </button>
                   </motion.div>
                 ))}
                 
@@ -233,10 +263,12 @@ export default function Navbar() {
                   transition={{ delay: navLinks.length * 0.1, duration: 0.4 }}
                   className="mt-6 mb-4"
                 >
-                  <Link
-                    href="/contact"
+                  <button
+                    onClick={() => {
+                      scrollToSection('contact');
+                      setIsOpen(false);
+                    }}
                     className="flex items-center justify-center w-full py-3.5 px-4 rounded-xl bg-[#1a7be6] text-white font-medium"
-                    onClick={() => setIsOpen(false)}
                   >
                     <span className="relative flex items-center">
                       <span className="relative z-10 flex items-center">
@@ -264,7 +296,7 @@ export default function Navbar() {
                         </svg>
                       </motion.span>
                     </span>
-                  </Link>
+                  </button>
                 </motion.div>
 
                 {/* Social icons at bottom of mobile menu */}
@@ -296,9 +328,9 @@ export default function Navbar() {
 }
 
 // Enhanced NavLink component with icons and effects
-function NavLink({ href, title, isActive, icon }) {
+function NavLink({ href, title, isActive, icon, onClick }) {
   return (
-    <Link href={href} className="px-3 py-2 relative group">
+    <button onClick={onClick} className="px-3 py-2 relative group">
       <div className={`flex items-center space-x-1 relative z-10 ${
         isActive ? 'text-[#1a7be6]' : 'text-gray-800 group-hover:text-[#1a7be6]'
       } transition-colors duration-300`}>
@@ -329,7 +361,7 @@ function NavLink({ href, title, isActive, icon }) {
         transition={{ duration: 0.3 }}
         className="absolute bottom-0 left-0 right-0 h-1 bg-[#1a7be6]/30 rounded-full origin-left"
       />
-    </Link>
+    </button>
   );
 }
 
