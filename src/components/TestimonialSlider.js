@@ -67,7 +67,7 @@ export default function TestimonialSlider() {
   };
 
   return (
-    <section className="relative py-16 px-4 sm:px-6 lg:px-8">
+    <section id="testimonials" className="relative py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
 
 

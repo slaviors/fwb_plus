@@ -12,8 +12,13 @@ import Services from "@/components/Service";
 export default function Home() {
   return (
     <main className="min-h-screen">
+      {/* Hero Section */}
       <Hero />
+
+      {/* About Section */}
       <About />
+
+      {/* Clients Section */}
       <ClientsSlider />
 
       {/* Services Section */}
@@ -22,12 +27,16 @@ export default function Home() {
       {/* Event Section */}
       <EventComponent />
 
+      {/* Gallery Section */}
       <GalleryPreview />
 
+      {/* Testimonials Section */}
       <TestimonialSlider />
 
+      {/* Contact Section */}
       <ContactLocation />
 
+      {/* Footer */}
       <Footer />
     </main>
   );

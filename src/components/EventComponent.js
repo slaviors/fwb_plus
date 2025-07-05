@@ -572,7 +572,7 @@ export default function EventComponent() {
     }
 
     return (
-        <section className="relative min-h-screen py-12 md:py-20 overflow-hidden">
+        <section id="events" className="relative min-h-screen py-12 md:py-20 overflow-hidden">
             
 
             {/* Ultra Advanced Decorative Background Elements */}
