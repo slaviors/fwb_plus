@@ -300,7 +300,7 @@ export default function About() {
                   }
                   transition={{ delay: 1, duration: 0.6 }}
                 >
-                  Sejak 2015
+                  Sejak 2024
                 </motion.span>
                 <motion.h3
                   className="font-unbounded text-2xl lg:text-3xl font-bold text-white leading-tight z-50"
