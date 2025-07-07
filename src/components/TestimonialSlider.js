@@ -103,7 +103,7 @@ export default function TestimonialSlider() {
               {/* Client Image Section */}
               <div className="flex-shrink-0 relative">
                 <div className="relative">
-                  <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-36 lg:h-36 rounded-full overflow-hidden border-4 border-gradient-to-r from-[#1a7be6] to-[#f35e0e] shadow-xl mx-auto">
+                  <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-36 lg:h-36 rounded-full overflow-hidden border-4 border-gradient-to-r from-[#1a7be6] to-blue-500 shadow-xl mx-auto">
                     <div className="relative w-full h-full">
                       <Image
                         src={testimonials[current].image}
@@ -148,7 +148,7 @@ export default function TestimonialSlider() {
                   transition={{ delay: 0.3 }}
                   className="space-y-1"
                 >
-                  <h4 className="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-to-r from-[#1a7be6] to-[#f35e0e] bg-clip-text text-transparent">
+                  <h4 className="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-to-r from-[#1a7be6] to-blue-500 bg-clip-text text-transparent">
                     {testimonials[current].name}
                   </h4>
                   <p className="text-sm md:text-base text-gray-600 font-medium">
@@ -193,7 +193,7 @@ export default function TestimonialSlider() {
             onClick={() => setCurrent(i)}
             className={`relative transition-all duration-300 ${
               i === current 
-                ? "w-8 sm:w-12 h-3 sm:h-4 bg-gradient-to-r from-[#1a7be6] to-[#f35e0e] rounded-full" 
+                ? "w-8 sm:w-12 h-3 sm:h-4 bg-gradient-to-r from-[#1a7be6] to-blue-500 rounded-full" 
                 : "w-3 h-3 sm:w-4 sm:h-4 bg-gray-300 rounded-full hover:bg-gray-400"
             }`}
             aria-label={`Go to testimonial ${i + 1}`}
@@ -203,7 +203,7 @@ export default function TestimonialSlider() {
         {/* Progress Bar */}
         <div className="ml-4 w-12 sm:w-16 h-1 bg-gray-200 rounded-full overflow-hidden">
           <motion.div
-            className="h-full bg-gradient-to-r from-[#1a7be6] to-[#f35e0e] rounded-full"
+            className="h-full bg-gradient-to-r from-[#1a7be6] to-blue-500 rounded-full"
             initial={{ width: "0%" }}
             animate={{ width: isAutoPlaying ? "100%" : "0%" }}
             transition={{ duration: 6, ease: "linear" }}
