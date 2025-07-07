@@ -265,7 +265,7 @@ export default function LoginPage() {
         >
           <p className="text-sm text-gray-600">
             Butuh bantuan? 
-            <a href="mailto:support@fwbplus.com" className="text-[#1a7be6] hover:text-[#134e92] ml-1 font-medium">
+            <a href="mailto:fwbplus.eo@gmail.com" className="text-[#1a7be6] hover:text-[#134e92] ml-1 font-medium">
               Hubungi Support
             </a>
           </p>

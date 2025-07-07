@@ -18,7 +18,7 @@ export const metadata = {
     "FWB Plus Event Organizer",
     "FWB Plus Jogja",
     "FWB Plus Semarang",
-    "fwbplus.com",
+    "fwb-plus.vercel.app",
 
     // Umum: Event Organizer
     "event organizer",
