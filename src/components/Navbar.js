@@ -84,7 +84,7 @@ export default function Navbar() {
       >
         {/* Advanced gradient progress bar */}
         <motion.div 
-          className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#1a7be6] via-blue-500 to-[#f35e0e] origin-left z-50 shadow-lg" 
+          className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#1a7be6] to-blue-500 origin-left z-50 shadow-lg" 
           style={{ scaleX }}
         />
 
