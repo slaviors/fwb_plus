@@ -51,11 +51,11 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="relative bg-gradient-to-br from-slate-900 via-gray-900 to-slate-800 text-white overflow-hidden">
-      {/* Advanced animated background elements */}
+    <footer className="relative bg-gradient-to-br from-white via-blue-50/50 to-orange-50/30 text-gray-800 overflow-hidden border-t border-gray-100">
+      {/* Advanced animated background elements with separated blue and orange */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div 
-          className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-r from-blue-500/20 to-cyan-400/20 rounded-full blur-3xl"
+          className="absolute top-0 left-1/4 w-80 h-80 bg-blue-200/25 rounded-full blur-3xl"
           animate={{
             y: [0, -30, 0],
             scale: [1, 1.2, 1],
@@ -68,7 +68,7 @@ export default function Footer() {
           }}
         />
         <motion.div 
-          className="absolute bottom-0 right-1/4 w-96 h-96 bg-gradient-to-l from-orange-500/20 to-pink-500/20 rounded-full blur-3xl"
+          className="absolute bottom-0 right-1/4 w-80 h-80 bg-orange-200/25 rounded-full blur-3xl"
           animate={{
             y: [0, 30, 0],
             scale: [1, 1.1, 1],
@@ -81,7 +81,7 @@ export default function Footer() {
           }}
         />
         <motion.div 
-          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-gradient-to-tr from-purple-500/15 to-indigo-500/15 rounded-full blur-2xl"
+          className="absolute top-1/2 left-1/3 w-60 h-60 bg-blue-100/15 rounded-full blur-2xl"
           animate={{
             rotate: [0, 360],
             scale: [1, 1.3, 1],
@@ -92,14 +92,26 @@ export default function Footer() {
             ease: "linear"
           }}
         />
+        <motion.div 
+          className="absolute top-1/3 right-1/3 w-60 h-60 bg-orange-100/15 rounded-full blur-2xl"
+          animate={{
+            rotate: [360, 0],
+            scale: [1, 1.2, 1],
+          }}
+          transition={{
+            duration: 12,
+            repeat: Infinity,
+            ease: "linear"
+          }}
+        />
       </div>
       
       {/* Enhanced animated grid pattern */}
-      <div className="absolute inset-0 opacity-[0.02]">
+      <div className="absolute inset-0 opacity-[0.05]">
         <motion.div 
           className="absolute inset-0" 
           style={{
-            backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255,255,255,0.8) 1px, transparent 0)`,
+            backgroundImage: `radial-gradient(circle at 1px 1px, rgba(26, 123, 230, 0.3) 1px, transparent 0)`,
             backgroundSize: '24px 24px'
           }}
           animate={{
@@ -116,13 +128,13 @@ export default function Footer() {
       {/* Enhanced scroll to top button */}
       <motion.button
         onClick={() => scrollToSection('hero')}
-        className={`fixed bottom-8 right-8 z-50 bg-[#f35e0e] p-4 rounded-full shadow-2xl hover:shadow-[#f35e0e] transition-all duration-300 border border-white/20 backdrop-blur-sm ${
+        className={`fixed bottom-8 right-8 z-50 bg-gradient-to-r from-[#1a7be6] to-blue-600 p-4 rounded-full shadow-2xl hover:shadow-blue-500/30 transition-all duration-300 border border-blue-200 backdrop-blur-sm ${
           isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}
         whileHover={{ 
           scale: 1.15, 
           rotate: 360,
-          boxShadow: "0 0 30px rgba(59, 130, 246, 0.6)"
+          boxShadow: "0 0 30px rgba(26, 123, 230, 0.6)"
         }}
         whileTap={{ scale: 0.9 }}
         transition={{ duration: 0.3 }}
@@ -164,12 +176,12 @@ export default function Footer() {
                     fill
                     sizes="(max-width: 768px) 144px, 144px"
                     style={{ objectFit: 'contain' }}
-                    className="object-center lg:object-left filter brightness-0 invert"
+                    className="object-center lg:object-left"
                   />
                 </div>
               </motion.div>
               
-              <p className="text-gray-300 text-sm mb-8 max-w-md mx-auto lg:mx-0 leading-relaxed">
+              <p className="text-gray-600 text-sm mb-8 max-w-md mx-auto lg:mx-0 leading-relaxed">
                 Professional event organizer yang menciptakan pengalaman tak terlupakan untuk setiap momen spesial Anda. Wujudkan acara impian bersama kami.
               </p>
               
@@ -180,7 +192,7 @@ export default function Footer() {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white hover:bg-gradient-to-r hover:from-[#1a7be6] hover:to-[#f35e0e] hover:shadow-lg transition-all duration-300 border border-white/20 group"
+                    className="w-12 h-12 rounded-full bg-white shadow-md flex items-center justify-center text-gray-600 hover:bg-[#1a7be6] hover:text-white hover:shadow-lg transition-all duration-300 border border-gray-200 group"
                     whileHover={{ scale: 1.1, y: -3 }}
                     whileTap={{ scale: 0.9 }}
                     initial={{ opacity: 0, y: 20 }}
@@ -207,8 +219,8 @@ export default function Footer() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <h3 className="text-xl font-bold text-white mb-6 flex items-center justify-center lg:justify-start">
-                <span className="w-8 h-8 rounded-full bg-[#f35e0e] flex items-center justify-center mr-3">
+              <h3 className="text-xl font-bold text-gray-800 mb-6 flex items-center justify-center lg:justify-start">
+                <span className="w-8 h-8 rounded-full bg-[#1a7be6] flex items-center justify-center mr-3">
                   <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                   </svg>
@@ -226,13 +238,13 @@ export default function Footer() {
                   >
                     <motion.button 
                       onClick={() => scrollToSection(link.href.substring(1))}
-                      className="text-gray-300 hover:text-white transition-all duration-300 relative group text-base font-medium inline-flex items-center"
+                      className="text-gray-600 hover:text-[#1a7be6] transition-all duration-300 relative group text-base font-medium inline-flex items-center"
                       whileHover={{ x: 5 }}
                       transition={{ duration: 0.3 }}
                     >
-                      <span className="w-2 h-2 bg-[#f35e0e] rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                      <span className="w-2 h-2 bg-[#1a7be6] rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
                       {link.name}
-                      <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#f35e0e] transition-all duration-300 group-hover:w-full"></span>
+                      <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#1a7be6] transition-all duration-300 group-hover:w-full"></span>
                     </motion.button>
                   </motion.li>
                 ))}
@@ -247,7 +259,7 @@ export default function Footer() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              <h3 className="text-xl font-bold text-white mb-6 flex items-center justify-center lg:justify-start">
+              <h3 className="text-xl font-bold text-gray-800 mb-6 flex items-center justify-center lg:justify-start">
                 <span className="w-8 h-8 rounded-full bg-[#f35e0e] flex items-center justify-center mr-3">
                   <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -268,7 +280,7 @@ export default function Footer() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                     </svg>
                   </div>
-                  <div className="text-gray-300 text-sm">
+                  <div className="text-gray-600 text-sm">
                     Jakarta Pusat
                   </div>
                 </motion.div>
@@ -283,7 +295,7 @@ export default function Footer() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                     </svg>
                   </div>
-                  <a href="mailto:info@fwbplus.com" className="text-gray-300 hover:text-white transition-colors text-sm">
+                  <a href="mailto:info@fwbplus.com" className="text-gray-600 hover:text-[#f35e0e] transition-colors text-sm">
                     info@fwbplus.com
                   </a>
                 </motion.div>
@@ -298,7 +310,7 @@ export default function Footer() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                     </svg>
                   </div>
-                  <a href="tel:+6281234567890" className="text-gray-300 hover:text-white transition-colors text-sm">
+                  <a href="tel:+6281234567890" className="text-gray-600 hover:text-[#f35e0e] transition-colors text-sm">
                     +62 812-3456-7890
                   </a>
                 </motion.div>
@@ -309,7 +321,7 @@ export default function Footer() {
         
         {/* Enhanced bottom section */}
         <motion.div 
-          className="border-t border-white/20 py-6 backdrop-blur-sm"
+          className="border-t border-gray-200 py-6 backdrop-blur-sm"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
@@ -317,7 +329,7 @@ export default function Footer() {
         >
           <div className="flex flex-col md:flex-row justify-between items-center">
             <motion.p 
-              className="text-gray-400 text-sm flex items-center"
+              className="text-gray-600 text-sm flex items-center"
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.3 }}
             >
@@ -329,20 +341,20 @@ export default function Footer() {
               &copy; {currentYear} FWB Plus. All rights reserved.
             </motion.p>
             
-            <div className="flex items-center space-x-6 mt-4 md:mt-0 text-sm text-gray-400">
+            <div className="flex items-center space-x-6 mt-4 md:mt-0 text-sm text-gray-600">
               <motion.button
                 onClick={() => scrollToSection('about')}
-                className="hover:text-white transition-colors relative group"
+                className="hover:text-[#1a7be6] transition-colors relative group"
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.3 }}
               >
                 Privacy Policy
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#f35e0e] transition-all duration-300 group-hover:w-full"></span>
               </motion.button>
-              <span className="text-gray-600">•</span>
+              <span className="text-gray-400">•</span>
               <motion.button
                 onClick={() => scrollToSection('contact')}
-                className="hover:text-white transition-colors relative group"
+                className="hover:text-[#1a7be6] transition-colors relative group"
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.3 }}
               >
