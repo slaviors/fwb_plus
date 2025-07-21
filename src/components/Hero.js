@@ -268,30 +268,7 @@ export default function Hero() {
                   />
                 </motion.div>
               </Link>
-
-              <Link href="/portfolio">
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="px-8 py-4 rounded-full bg-white text-[#1a7be6] font-medium text-lg shadow-lg border border-blue-200 flex items-center justify-center group hover:bg-blue-50 transition-colors"
-                >
-                  <span>Portfolio Kami</span>
-                  <motion.svg
-                    className="w-5 h-5 ml-2 transition-transform group-hover:rotate-45"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                    />
-                  </motion.svg>
-                </motion.div>
-              </Link>
+              
             </motion.div>
           </motion.div>
 

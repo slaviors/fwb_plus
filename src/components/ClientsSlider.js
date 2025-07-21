@@ -11,8 +11,6 @@ export default function ClientsSlider() {
     { name: "Company D", logo: "/images/clients/client4.png" },
     { name: "Company E", logo: "/images/clients/client5.png" },
     { name: "Company F", logo: "/images/clients/client6.png" },
-    { name: "Company G", logo: "/images/clients/client7.png" },
-    { name: "Company H", logo: "/images/clients/client8.png" },
   ];
 
   return (
