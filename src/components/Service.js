@@ -387,24 +387,6 @@ export default function Services() {
                     {/* Floating micro elements for active state */}
                     {activeTab === service.id && (
                       <>
-                        <motion.div
-                          className="absolute top-1 right-3 w-1.5 h-1.5 rounded-full"
-                          style={{ backgroundColor: service.color }}
-                          animate={{
-                            y: [0, -4, 0],
-                            opacity: [0.6, 1, 0.6],
-                          }}
-                          transition={{ duration: 2, repeat: Infinity }}
-                        />
-                        <motion.div
-                          className="absolute bottom-1 left-3 w-1 h-1 rounded-full"
-                          style={{ backgroundColor: service.color }}
-                          animate={{
-                            x: [0, 3, 0],
-                            opacity: [0.4, 0.8, 0.4],
-                          }}
-                          transition={{ duration: 3, repeat: Infinity }}
-                        />
                       </>
                     )}
                   </div>
@@ -526,24 +508,6 @@ export default function Services() {
                         {/* Active indicator dots */}
                         {activeTab === service.id && (
                           <>
-                            <motion.div
-                              className="absolute top-2 right-2 w-1.5 h-1.5 rounded-full"
-                              style={{ backgroundColor: service.color }}
-                              animate={{
-                                scale: [1, 1.3, 1],
-                                opacity: [0.7, 1, 0.7],
-                              }}
-                              transition={{ duration: 2, repeat: Infinity }}
-                            />
-                            <motion.div
-                              className="absolute bottom-2 left-2 w-1 h-1 rounded-full"
-                              style={{ backgroundColor: service.color }}
-                              animate={{
-                                scale: [1, 1.5, 1],
-                                opacity: [0.5, 0.9, 0.5],
-                              }}
-                              transition={{ duration: 2.5, repeat: Infinity }}
-                            />
                           </>
                         )}
                       </div>
@@ -625,15 +589,6 @@ export default function Services() {
                               />
                               {/* Advanced progressive blur overlay */}
                               <div className="absolute left-0 bottom-0 right-0 w-full h-3/4 pointer-events-none">
-                                <div
-                                  className="absolute top-0 left-0 bottom-0 right-0"
-                                  style={{
-                                    backdropFilter: "blur(1px)",
-                                    mask: "linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 60%)",
-                                    WebkitMask:
-                                      "linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 60%)",
-                                  }}
-                                />
                                 <div
                                   className="absolute top-0 left-0 bottom-0 right-0"
                                   style={{
@@ -794,52 +749,7 @@ export default function Services() {
                               <div
                                 className="absolute top-0 left-0 bottom-0 right-0"
                                 style={{
-                                  backdropFilter: "blur(1px)",
-                                  mask: "linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1) 10%, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 40%)",
-                                  WebkitMask:
-                                    "linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1) 10%, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 40%)",
-                                }}
-                              />
-                              <div
-                                className="absolute top-0 left-0 bottom-0 right-0"
-                                style={{
-                                  backdropFilter: "blur(2px)",
-                                  mask: "linear-gradient(rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 0) 50%)",
-                                  WebkitMask:
-                                    "linear-gradient(rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 0) 50%)",
-                                }}
-                              />
-                              <div
-                                className="absolute top-0 left-0 bottom-0 right-0"
-                                style={{
                                   backdropFilter: "blur(4px)",
-                                  mask: "linear-gradient(rgba(0, 0, 0, 0) 15%, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 60%)",
-                                  WebkitMask:
-                                    "linear-gradient(rgba(0, 0, 0, 0) 15%, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 60%)",
-                                }}
-                              />
-                              <div
-                                className="absolute top-0 left-0 bottom-0 right-0"
-                                style={{
-                                  backdropFilter: "blur(8px)",
-                                  mask: "linear-gradient(rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0) 70%)",
-                                  WebkitMask:
-                                    "linear-gradient(rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0) 70%)",
-                                }}
-                              />
-                              <div
-                                className="absolute top-0 left-0 bottom-0 right-0"
-                                style={{
-                                  backdropFilter: "blur(16px)",
-                                  mask: "linear-gradient(rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 1) 80%, rgba(0, 0, 0, 0) 90%)",
-                                  WebkitMask:
-                                    "linear-gradient(rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 1) 80%, rgba(0, 0, 0, 0) 90%)",
-                                }}
-                              />
-                              <div
-                                className="absolute top-0 left-0 bottom-0 right-0"
-                                style={{
-                                  backdropFilter: "blur(32px)",
                                   mask: "linear-gradient(rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 1) 80%)",
                                   WebkitMask:
                                     "linear-gradient(rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 1) 80%)",
@@ -848,7 +758,7 @@ export default function Services() {
                               <div
                                 className="absolute top-0 left-0 bottom-0 right-0 z-10"
                                 style={{
-                                  backdropFilter: "blur(64px)",
+                                  backdropFilter: "blur(8px)",
                                   mask: "linear-gradient(rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%)",
                                   WebkitMask:
                                     "linear-gradient(rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%)",
@@ -884,35 +794,6 @@ export default function Services() {
                               </motion.h3>
                             </div>
                           </div>
-
-                          {/* Enhanced floating decorative elements */}
-                          <motion.div
-                            className="absolute -bottom-8 -right-8 w-16 h-16 rounded-2xl border-2 border-white/30 backdrop-blur-sm z-10"
-                            style={{ backgroundColor: `${service.color}10` }}
-                            animate={{
-                              y: [0, -15, 0],
-                              rotate: [0, 10, 0],
-                              scale: [1, 1.1, 1],
-                            }}
-                            transition={{
-                              duration: 6,
-                              repeat: Infinity,
-                              ease: "easeInOut",
-                            }}
-                          />
-                          <motion.div
-                            className="absolute -top-8 -left-8 w-20 h-20 rounded-full border-2 border-white/20 backdrop-blur-sm z-0"
-                            style={{ backgroundColor: `${service.color}05` }}
-                            animate={{
-                              scale: [1, 1.2, 1],
-                              opacity: [0.3, 0.6, 0.3],
-                            }}
-                            transition={{
-                              duration: 8,
-                              repeat: Infinity,
-                              ease: "easeInOut",
-                            }}
-                          />
                         </div>
                       </div>
 
@@ -1156,21 +1037,6 @@ export default function Services() {
                           )}
                         </span>
                       </motion.div>
-
-                      {/* Sparkle effects */}
-                      <motion.div
-                        className="absolute -top-1 -right-1 w-2 h-2 rounded-full"
-                        style={{ backgroundColor: service.color }}
-                        animate={{
-                          scale: [0, 1, 0],
-                          opacity: [0, 1, 0],
-                        }}
-                        transition={{
-                          duration: 2,
-                          repeat: Infinity,
-                          delay: i * 0.3,
-                        }}
-                      />
                     </div>
 
                     <div className="relative z-10">
@@ -1211,17 +1077,6 @@ export default function Services() {
                           </svg>
                         </motion.span>
                       </motion.button>
-
-                      {/* Active state indicator */}
-                      {activeTab === service.id && (
-                        <motion.div
-                          className="mt-3 h-1 rounded-full"
-                          style={{ backgroundColor: service.color }}
-                          initial={{ width: 0 }}
-                          animate={{ width: "100%" }}
-                          transition={{ duration: 0.8, ease: "easeOut" }}
-                        />
-                      )}
                     </div>
 
                     {/* Corner accent decorations */}
@@ -1248,53 +1103,6 @@ export default function Services() {
           >
             {/* Inner glassmorphism layer */}
             <div className="relative rounded-[22px] bg-gradient-to-r from-[#1a7be6] to-[#1e40af] p-8 md:p-12 overflow-hidden">
-              {/* Enhanced decorative elements */}
-              <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                <motion.div
-                  className="absolute top-0 left-0 w-72 h-72 bg-white/10 rounded-full blur-3xl"
-                  animate={{
-                    x: [-100, 50, -100],
-                    y: [-50, 20, -50],
-                    scale: [1, 1.2, 1],
-                  }}
-                  transition={{
-                    duration: 20,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                />
-                <motion.div
-                  className="absolute bottom-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-2xl"
-                  animate={{
-                    x: [100, -50, 100],
-                    y: [50, -20, 50],
-                    scale: [1, 1.1, 1],
-                  }}
-                  transition={{
-                    duration: 15,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                />
-
-                {/* Floating geometric shapes */}
-                <motion.div
-                  className="absolute top-20 right-20 w-16 h-16 border-2 border-white/20 rounded-2xl rotate-12"
-                  animate={{
-                    rotate: [12, 45, 12],
-                    scale: [1, 1.1, 1],
-                  }}
-                  transition={{ duration: 8, repeat: Infinity }}
-                />
-                <motion.div
-                  className="absolute bottom-20 left-20 w-12 h-12 bg-white/10 rounded-full"
-                  animate={{
-                    y: [0, -20, 0],
-                    scale: [1, 1.2, 1],
-                  }}
-                  transition={{ duration: 6, repeat: Infinity }}
-                />
-              </div>
 
               <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8">
                 <div className="lg:max-w-xl text-center lg:text-left">
@@ -1340,7 +1148,7 @@ export default function Services() {
                   }
                   transition={{ delay: 1.4, duration: 0.6 }}
                 >
-                  <Link href="/contact">
+                  <Link href="wa.me/6281944074542">
                     <motion.div
                       whileHover={{ scale: 1.05, y: -2 }}
                       whileTap={{ scale: 0.95 }}
