@@ -53,14 +53,6 @@
     <priority>0.8</priority>
   </url>
   
-  <!-- Portfolio Page -->
-  <url>
-    <loc>https://fwbplus.vercel.app/portfolio</loc>
-    <lastmod>2025-07-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
   <!-- Gallery Page -->
   <url>
     <loc>https://fwbplus.vercel.app/gallery</loc>

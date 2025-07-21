@@ -12,11 +12,6 @@ Crawl-delay: 1
 Allow: /
 Allow: /about
 Allow: /services
-Allow: /services/corporate
-Allow: /services/wedding
-Allow: /services/gathering
-Allow: /services/concert
-Allow: /portfolio
 Allow: /gallery
 Allow: /events
 Allow: /contact
