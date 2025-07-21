@@ -90,60 +90,6 @@ export default function About() {
         <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-blue-100/40 to-blue-200/20 rounded-full blur-3xl"></div>
         <div className="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-orange-100/40 to-orange-200/20 rounded-full blur-3xl"></div>
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-r from-blue-50/60 to-orange-50/60 rounded-full blur-2xl"></div>
-
-        {/* Floating animated shapes */}
-        <motion.div
-          animate={{
-            y: [0, -20, 0],
-            rotate: [0, 10, 0],
-            scale: [1, 1.1, 1],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="hidden lg:block absolute top-20 right-20 w-16 h-16 border-2 border-blue-200/60 rounded-full"
-        />
-        <motion.div
-          animate={{
-            y: [0, 25, 0],
-            x: [0, -20, 0],
-            rotate: [0, -15, 0],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="hidden lg:block absolute bottom-32 left-16 w-20 h-20 border-2 border-orange-200/60 rounded-xl rotate-12"
-        />
-        <motion.div
-          animate={{
-            y: [0, -15, 0],
-            x: [0, 15, 0],
-            rotate: [0, 20, 0],
-          }}
-          transition={{
-            duration: 12,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="hidden md:block absolute top-1/3 left-10 w-12 h-12 bg-blue-100/40 rounded-full"
-        />
-        <motion.div
-          animate={{
-            y: [0, 20, 0],
-            x: [0, -10, 0],
-            rotate: [0, -25, 0],
-          }}
-          transition={{
-            duration: 9,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="hidden md:block absolute bottom-1/4 right-16 w-14 h-14 bg-orange-100/40 rounded-lg rotate-45"
-        />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16 lg:py-20">
@@ -199,8 +145,7 @@ export default function About() {
           >
             <p className="font-inter text-lg md:text-xl text-gray-600 leading-relaxed">
               <span className="font-semibold text-gray-700">FWB Plus</span>{" "}
-              adalah event organizer dan agency profesional yang berdiri sejak
-              2024, melayani berbagai acara seperti corporate gathering,
+              adalah event organizer dan agency yang melayani berbagai acara seperti corporate gathering,
               pameran, konser, hingga penyediaan peralatan dan manpower event.
             </p>
           </motion.div>
@@ -229,34 +174,7 @@ export default function About() {
                 <div
                   className="absolute top-0 left-0 bottom-0 right-0"
                   style={{
-                    backdropFilter: "blur(1px)",
-                    mask: "linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1) 15%, rgba(0, 0, 0, 1) 35%, rgba(0, 0, 0, 0) 45%)",
-                    WebkitMask:
-                      "linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1) 15%, rgba(0, 0, 0, 1) 35%, rgba(0, 0, 0, 0) 45%)",
-                  }}
-                ></div>
-                <div
-                  className="absolute top-0 left-0 bottom-0 right-0"
-                  style={{
                     backdropFilter: "blur(2px)",
-                    mask: "linear-gradient(rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, 1) 25%, rgba(0, 0, 0, 1) 45%, rgba(0, 0, 0, 0) 55%)",
-                    WebkitMask:
-                      "linear-gradient(rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, 1) 25%, rgba(0, 0, 0, 1) 45%, rgba(0, 0, 0, 0) 55%)",
-                  }}
-                ></div>
-                <div
-                  className="absolute top-0 left-0 bottom-0 right-0"
-                  style={{
-                    backdropFilter: "blur(4px)",
-                    mask: "linear-gradient(rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 35%, rgba(0, 0, 0, 1) 55%, rgba(0, 0, 0, 0) 65%)",
-                    WebkitMask:
-                      "linear-gradient(rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 35%, rgba(0, 0, 0, 1) 55%, rgba(0, 0, 0, 0) 65%)",
-                  }}
-                ></div>
-                <div
-                  className="absolute top-0 left-0 bottom-0 right-0"
-                  style={{
-                    backdropFilter: "blur(8px)",
                     mask: "linear-gradient(rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 1) 45%, rgba(0, 0, 0, 1) 65%, rgba(0, 0, 0, 0) 75%)",
                     WebkitMask:
                       "linear-gradient(rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 1) 45%, rgba(0, 0, 0, 1) 65%, rgba(0, 0, 0, 0) 75%)",
@@ -265,7 +183,7 @@ export default function About() {
                 <div
                   className="absolute top-0 left-0 bottom-0 right-0"
                   style={{
-                    backdropFilter: "blur(16px)",
+                    backdropFilter: "blur(4px)",
                     mask: "linear-gradient(rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 1) 65%, rgba(0, 0, 0, 1) 85%, rgba(0, 0, 0, 0) 95%)",
                     WebkitMask:
                       "linear-gradient(rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 1) 65%, rgba(0, 0, 0, 1) 85%, rgba(0, 0, 0, 0) 95%)",
@@ -274,7 +192,7 @@ export default function About() {
                 <div
                   className="absolute top-0 left-0 bottom-0 right-0"
                   style={{
-                    backdropFilter: "blur(32px)",
+                    backdropFilter: "blur(8px)",
                     mask: "linear-gradient(rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 85%)",
                     WebkitMask:
                       "linear-gradient(rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 85%)",
@@ -339,18 +257,6 @@ export default function About() {
                 </span>
               </motion.div>
             </div>
-
-            {/* Enhanced decorative elements */}
-            <motion.div
-              className="absolute -bottom-12 -left-12 h-24 w-24 bg-gradient-to-br from-blue-400/20 to-blue-600/20 rounded-full blur-xl z-10"
-              animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.6, 0.3] }}
-              transition={{ duration: 4, repeat: Infinity }}
-            ></motion.div>
-            <motion.div
-              className="absolute -top-12 -right-12 h-32 w-32 bg-gradient-to-br from-orange-400/20 to-orange-600/20 rounded-2xl rotate-12 blur-xl z-10"
-              animate={{ rotate: [12, 25, 12], scale: [1, 1.1, 1] }}
-              transition={{ duration: 5, repeat: Infinity }}
-            ></motion.div>
           </motion.div>
 
           <motion.div
@@ -402,7 +308,7 @@ export default function About() {
                     Friends With Benefit
                   </span>{" "}
                   dalam arti positif, yaitu membangun kolaborasi yang saling
-                  menguntungkan. Hingga kini, kami terus berkomitmen
+                  menguntungkan. Kami terus berkomitmen
                   menghadirkan layanan event yang kreatif, profesional, dan
                   penuh integritas mulai dari exhibition, konser, corporate
                   event, hingga penyediaan equipment dan manpower.
@@ -488,25 +394,6 @@ export default function About() {
                 whileTap={{ scale: 0.95 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
-                <Link
-                  href="/about"
-                  className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 via-blue-500 to-blue-600 text-white font-inter font-semibold rounded-2xl hover:shadow-xl transition-all duration-300 group bg-size-200 bg-pos-0 hover:bg-pos-100"
-                >
-                  Pelajari Lebih Lanjut
-                  <svg
-                    className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M17 8l4 4m0 0l-4 4m4-4H3"
-                    />
-                  </svg>
-                </Link>
               </motion.div>
             </motion.div>
           </motion.div>
@@ -584,14 +471,6 @@ export default function About() {
                       opacity: [0.6, 1, 0.6],
                     }}
                     transition={{ duration: 3, repeat: Infinity }}
-                  />
-                  <motion.div
-                    className="absolute bottom-2 -left-2 w-1.5 h-1.5 bg-blue-500/50 rounded-full"
-                    animate={{
-                      x: [0, 6, 0],
-                      opacity: [0.5, 1, 0.5],
-                    }}
-                    transition={{ duration: 4, repeat: Infinity }}
                   />
                 </div>
 
@@ -685,14 +564,6 @@ export default function About() {
                       opacity: [0.6, 1, 0.6],
                     }}
                     transition={{ duration: 3.5, repeat: Infinity }}
-                  />
-                  <motion.div
-                    className="absolute bottom-2 -left-2 w-1.5 h-1.5 bg-orange-500/50 rounded-full"
-                    animate={{
-                      x: [0, 6, 0],
-                      opacity: [0.5, 1, 0.5],
-                    }}
-                    transition={{ duration: 4.5, repeat: Infinity }}
                   />
                 </div>
 
@@ -876,34 +747,6 @@ export default function About() {
                         >
                           {achievement.number}
                         </div>
-
-                        {/* Sparkle effects */}
-                        <motion.div
-                          className="absolute -top-2 -right-2 w-3 h-3 rounded-full"
-                          style={{ backgroundColor: achievement.color }}
-                          animate={{
-                            scale: [0, 1, 0],
-                            opacity: [0, 1, 0],
-                          }}
-                          transition={{
-                            duration: 2,
-                            repeat: Infinity,
-                            delay: index * 0.3,
-                          }}
-                        />
-                        <motion.div
-                          className="absolute -bottom-1 -left-3 w-2 h-2 rounded-full"
-                          style={{ backgroundColor: achievement.color }}
-                          animate={{
-                            scale: [0, 1, 0],
-                            opacity: [0, 0.7, 0],
-                          }}
-                          transition={{
-                            duration: 2.5,
-                            repeat: Infinity,
-                            delay: index * 0.4 + 0.5,
-                          }}
-                        />
                       </motion.div>
                     </div>
 

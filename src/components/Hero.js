@@ -33,7 +33,7 @@ export default function Hero() {
 
     const interval = setInterval(() => {
       setCurrentImage((prev) => (prev + 1) % heroEvents.length);
-    }, 4000);
+    }, 8000);
 
     return () => clearInterval(interval);
   }, [isHovering, heroEvents.length]);
@@ -55,50 +55,6 @@ export default function Hero() {
       id="hero"
       className="relative min-h-[90vh] md:min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-blue-50 via-white to-blue-50"
     >
-      {/* Decorative elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        {/* Circles */}
-        <div className="absolute top-20 right-[10%] w-64 h-64 rounded-full bg-blue-100/30 blur-3xl"></div>
-        <div className="absolute bottom-20 left-[5%] w-80 h-80 rounded-full bg-orange-100/30 blur-3xl"></div>
-
-        {/* Floating shapes */}
-        <motion.div
-          className="absolute top-[20%] left-[10%] w-8 h-8 rounded-md bg-[#1a7be6]/20"
-          animate={{
-            y: [0, -15, 0],
-            rotate: [0, 10, 0],
-          }}
-          transition={{
-            duration: 5,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-        <motion.div
-          className="absolute top-[30%] right-[15%] w-10 h-10 rounded-full bg-[#f35e0e]/20"
-          animate={{
-            y: [0, 20, 0],
-            x: [0, -10, 0],
-          }}
-          transition={{
-            duration: 7,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-        <motion.div
-          className="absolute bottom-[25%] right-[20%] w-12 h-12 rounded-md rotate-45 bg-[#ce1010]/10"
-          animate={{
-            y: [0, -20, 0],
-            x: [0, 15, 0],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-      </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-12 md:py-20">
         <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center mt-11">
@@ -109,36 +65,6 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-center lg:text-left"
           >
-            {/* <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6 }}
-              className="mb-4 inline-block"
-            >
-              <motion.div
-                whileHover={{ scale: 1.05, rotate: 2 }}
-                className="bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 text-white py-2 px-5 rounded-full inline-flex items-center text-sm font-medium shadow-lg shadow-blue-200"
-              >
-                <motion.span 
-                  animate={{ 
-                    rotate: [0, 360],
-                  }} 
-                  transition={{ 
-                    duration: 4, 
-                    repeat: Infinity,
-                    ease: "linear"
-                  }}
-                  className="mr-2"
-                >
-                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
-                    <path fill="white" d="M15.707 10.707a1 1 0 00-1.414-1.414L12 11.586l-2.293-2.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l3-3z"/>
-                  </svg>
-                </motion.span>
-                Event Organizer Terpercaya
-              </motion.div>
-            </motion.div> */}
-
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -237,7 +163,7 @@ export default function Hero() {
               transition={{ duration: 0.8, delay: 0.9 }}
               className="mt-6 md:mt-10 flex flex-col sm:flex-row gap-3 md:gap-4 justify-center lg:justify-start"
             >
-              <Link href="/contact">
+              <Link href="wa.me/6281944074542">
                 <motion.div
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
@@ -312,7 +238,7 @@ export default function Hero() {
                         zIndex: index === currentImage ? 20 : 10,
                       }}
                       exit={{ opacity: 0, scale: 0.8 }}
-                      transition={{ duration: 0.7 }}
+                      transition={{ duration: 1 }}
                     >
                       <div className="h-full w-full overflow-hidden rounded-3xl shadow-2xl shadow-blue-200/50 hover:shadow-blue-300/70 transition-shadow group">
                         <div className="relative h-full w-full overflow-hidden">
@@ -331,52 +257,7 @@ export default function Hero() {
                             <div
                               className="absolute top-0 left-0 bottom-0 right-0"
                               style={{
-                                backdropFilter: "blur(1px)",
-                                mask: "linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1) 10%, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 40%)",
-                                WebkitMask:
-                                  "linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1) 10%, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 40%)",
-                              }}
-                            ></div>
-                            <div
-                              className="absolute top-0 left-0 bottom-0 right-0"
-                              style={{
-                                backdropFilter: "blur(2px)",
-                                mask: "linear-gradient(rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 0) 50%)",
-                                WebkitMask:
-                                  "linear-gradient(rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 0) 50%)",
-                              }}
-                            ></div>
-                            <div
-                              className="absolute top-0 left-0 bottom-0 right-0"
-                              style={{
-                                backdropFilter: "blur(4px)",
-                                mask: "linear-gradient(rgba(0, 0, 0, 0) 15%, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 60%)",
-                                WebkitMask:
-                                  "linear-gradient(rgba(0, 0, 0, 0) 15%, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 60%)",
-                              }}
-                            ></div>
-                            <div
-                              className="absolute top-0 left-0 bottom-0 right-0"
-                              style={{
                                 backdropFilter: "blur(8px)",
-                                mask: "linear-gradient(rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0) 70%)",
-                                WebkitMask:
-                                  "linear-gradient(rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0) 70%)",
-                              }}
-                            ></div>
-                            <div
-                              className="absolute top-0 left-0 bottom-0 right-0"
-                              style={{
-                                backdropFilter: "blur(16px)",
-                                mask: "linear-gradient(rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 1) 80%, rgba(0, 0, 0, 0) 90%)",
-                                WebkitMask:
-                                  "linear-gradient(rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 1) 80%, rgba(0, 0, 0, 0) 90%)",
-                              }}
-                            ></div>
-                            <div
-                              className="absolute top-0 left-0 bottom-0 right-0"
-                              style={{
-                                backdropFilter: "blur(32px)",
                                 mask: "linear-gradient(rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 1) 80%)",
                                 WebkitMask:
                                   "linear-gradient(rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 1) 80%)",
@@ -385,7 +266,7 @@ export default function Hero() {
                             <div
                               className="absolute top-0 left-0 bottom-0 right-0 z-10"
                               style={{
-                                backdropFilter: "blur(64px)",
+                                backdropFilter: "blur(16px)",
                                 mask: "linear-gradient(rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%)",
                                 WebkitMask:
                                   "linear-gradient(rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%)",
@@ -482,27 +363,6 @@ export default function Hero() {
             />
           </motion.div>
         </div>
-      </div>
-
-      {/* Wave divider integrated with background */}
-      <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
-        <svg
-          className="relative block w-full h-32"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 1200 120"
-          preserveAspectRatio="none"
-        >
-          <defs>
-            <linearGradient id="waveGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor="#F5F9FF" />
-              <stop offset="50%" stopColor="#ffffff" />
-            </linearGradient>
-          </defs>
-          <path
-            d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z"
-            fill="url(#waveGradient)"
-          />
-        </svg>
       </div>
     </section>
   );
