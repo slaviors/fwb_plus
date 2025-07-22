@@ -236,7 +236,7 @@ export default function About() {
 
               {/* Enhanced floating badge */}
               <motion.div
-                className="absolute top-8 right-8 bg-white/95 backdrop-blur-sm rounded-2xl py-3 px-5 shadow-xl flex items-center border border-white/20 z-50"
+                className="absolute top-8 right-8 bg-white/95 backdrop-blur-sm rounded-2xl py-3 px-5 shadow-xl hidden sm:flex items-center border border-white/20 z-50"
                 animate={{
                   y: [0, -12, 0],
                   rotate: [0, 2, -2, 0],

@@ -648,33 +648,6 @@ export default function ContactLocation() {
                 </motion.button>
               ))}
             </div>
-
-            {/* Floating Decorative Elements */}
-            <motion.div
-              className="absolute -top-4 left-1/4 w-3 h-3 bg-[#1a7be6]/30 rounded-full blur-sm"
-              animate={{
-                y: [0, -10, 0],
-                opacity: [0.3, 0.8, 0.3],
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-            />
-            <motion.div
-              className="absolute -bottom-4 right-1/4 w-2 h-2 bg-[#f35e0e]/40 rounded-full blur-sm"
-              animate={{
-                y: [0, 10, 0],
-                opacity: [0.2, 0.7, 0.2],
-              }}
-              transition={{
-                duration: 4,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: 1,
-              }}
-            />
           </div>
         </motion.div>
 
@@ -847,7 +820,7 @@ export default function ContactLocation() {
                   {contactInfo.map((info, index) => (
                     <motion.div
                       key={info.title}
-                      className="relative backdrop-blur-xl bg-white/40 border border-white/60 rounded-3xl p-8 shadow-2xl hover:shadow-3xl transition-all duration-500 group"
+                      className="relative backdrop-blur-xl bg-white/40 border border-white/60 rounded-3xl p-4 sm:p-8 shadow-2xl hover:shadow-3xl transition-all duration-500 group"
                       initial={{ opacity: 0, x: 30 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.6, delay: 0.6 + index * 0.1 }}
@@ -855,10 +828,6 @@ export default function ContactLocation() {
                     >
                       {/* Decorative Background */}
                       <div className="absolute inset-0 bg-gradient-to-br from-white/50 via-transparent to-white/30 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-
-                      {/* Floating Elements */}
-                      <div className="absolute -top-2 -right-2 w-4 h-4 bg-[#1a7be6]/60 rounded-full opacity-60 group-hover:opacity-100 transition-opacity duration-300"></div>
-                      <div className="absolute -bottom-2 -left-2 w-3 h-3 bg-[#f35e0e]/40 rounded-full opacity-40 group-hover:opacity-80 transition-opacity duration-300"></div>
 
                       <div className="relative z-10 flex items-start gap-6">
                         <motion.div
@@ -944,49 +913,6 @@ export default function ContactLocation() {
                       referrerPolicy="no-referrer-when-downgrade"
                       className="rounded-3xl"
                     />
-
-                    {/* Enhanced Custom Pin */}
-                    <div className="absolute inset-0 pointer-events-none z-20">
-                      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-full">
-                        <motion.div
-                          animate={{ y: [0, -8, 0] }}
-                          transition={{
-                            duration: 3,
-                            repeat: Infinity,
-                            ease: "easeInOut",
-                          }}
-                          className="relative"
-                        >
-                          {/* Pin Shadow */}
-                          <div className="absolute top-12 left-1/2 transform -translate-x-1/2 w-6 h-3 bg-black/20 rounded-full blur-sm"></div>
-
-                          {/* Main Pin */}
-                          <div className="w-12 h-12 bg-[#1a7be6] rounded-full shadow-2xl flex items-center justify-center border-4 border-white/80 backdrop-blur-sm">
-                            <svg
-                              className="w-6 h-6 text-white"
-                              fill="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
-                            </svg>
-                          </div>
-
-                          {/* Pulsing Ring */}
-                          <motion.div
-                            animate={{
-                              scale: [1, 2, 1],
-                              opacity: [0.8, 0, 0.8],
-                            }}
-                            transition={{
-                              duration: 2,
-                              repeat: Infinity,
-                              ease: "easeInOut",
-                            }}
-                            className="absolute inset-0 w-12 h-12 border-2 border-[#1a7be6] rounded-full"
-                          />
-                        </motion.div>
-                      </div>
-                    </div>
                   </div>
                 </motion.div>
               </div>
@@ -1000,9 +926,6 @@ export default function ContactLocation() {
                   transition={{ duration: 0.6, delay: 0.4 }}
                 >
                   <div className="relative backdrop-blur-xl bg-white/40 border border-white/60 rounded-3xl p-8 shadow-2xl">
-                    {/* Decorative Elements */}
-                    <div className="absolute -top-2 -right-2 w-4 h-4 bg-[#1a7be6]/60 rounded-full opacity-60"></div>
-                    <div className="absolute -bottom-2 -left-2 w-3 h-3 bg-[#f35e0e]/40 rounded-full opacity-40"></div>
 
                     <motion.h3
                       className="text-2xl font-bold mb-6 text-[#1a7be6]"

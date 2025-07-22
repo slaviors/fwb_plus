@@ -592,16 +592,7 @@ export default function Services() {
                                 <div
                                   className="absolute top-0 left-0 bottom-0 right-0"
                                   style={{
-                                    backdropFilter: "blur(4px)",
-                                    mask: "linear-gradient(rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 1) 70%, rgba(0, 0, 0, 0) 80%)",
-                                    WebkitMask:
-                                      "linear-gradient(rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 1) 70%, rgba(0, 0, 0, 0) 80%)",
-                                  }}
-                                />
-                                <div
-                                  className="absolute top-0 left-0 bottom-0 right-0"
-                                  style={{
-                                    backdropFilter: "blur(16px)",
+                                    backdropFilter: "blur(2px)",
                                     mask: "linear-gradient(rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 1) 80%)",
                                     WebkitMask:
                                       "linear-gradient(rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 1) 80%)",
@@ -1102,7 +1093,7 @@ export default function Services() {
             className="relative overflow-hidden rounded-3xl p-1 bg-gradient-to-r from-[#1a7be6]/90 via-[#1e40af]/90 to-[#1a7be6]/90 backdrop-blur-xl border border-white/20 shadow-2xl"
           >
             {/* Inner glassmorphism layer */}
-            <div className="relative rounded-[22px] bg-gradient-to-r from-[#1a7be6] to-[#1e40af] p-8 md:p-12 overflow-hidden">
+            <div className="relative rounded-[22px] bg-gradient-to-r from-[#1a7be6] to-[#1e40af] p-6 sm:p-12 overflow-hidden">
 
               <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8">
                 <div className="lg:max-w-xl text-center lg:text-left">

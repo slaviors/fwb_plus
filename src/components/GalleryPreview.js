@@ -149,162 +149,6 @@ export default function GalleryPreview() {
       
       {/* Enhanced decorative elements - Orange themed for visibility */}
       <div className="absolute inset-0 pointer-events-none">
-        {/* Orange gradient orbs with better visibility */}
-        <motion.div 
-          className="absolute top-10 right-10 w-72 h-72 rounded-full blur-3xl opacity-30"
-          style={{
-            background: 'radial-gradient(circle, rgba(243,94,14,0.6) 0%, rgba(251,146,60,0.4) 50%, transparent 80%)'
-          }}
-          animate={{ 
-            scale: [1, 1.2, 1],
-            opacity: [0.25, 0.35, 0.25]
-          }}
-          transition={{ 
-            duration: 12, 
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
-        <motion.div 
-          className="absolute bottom-10 left-10 w-80 h-80 rounded-full blur-3xl opacity-25"
-          style={{
-            background: 'radial-gradient(circle, rgba(251,146,60,0.5) 0%, rgba(254,215,170,0.3) 50%, transparent 80%)'
-          }}
-          animate={{ 
-            scale: [1, 1.1, 1],
-            opacity: [0.2, 0.3, 0.2]
-          }}
-          transition={{ 
-            duration: 15, 
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
-
-        {/* Orange accent orb for depth */}
-        <motion.div 
-          className="absolute top-1/2 left-1/4 w-48 h-48 rounded-full blur-2xl opacity-20"
-          style={{
-            background: 'radial-gradient(circle, rgba(234,88,12,0.7) 0%, rgba(249,115,22,0.4) 60%, transparent 80%)'
-          }}
-          animate={{ 
-            scale: [1, 1.3, 1],
-            x: [0, 20, 0],
-            opacity: [0.15, 0.25, 0.15]
-          }}
-          transition={{ 
-            duration: 18, 
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
-
-        {/* Orange geometric shapes with better visibility */}
-        <motion.div
-          animate={{ 
-            y: [0, -30, 0], 
-            rotate: [0, 180, 360]
-          }}
-          transition={{ 
-            duration: 20, 
-            repeat: Infinity, 
-            ease: "easeInOut" 
-          }}
-          className="hidden lg:block absolute top-20 right-20 w-16 h-16 border-2 border-orange-300/60 rounded-2xl backdrop-blur-sm bg-orange-100/20"
-          style={{
-            boxShadow: '0 0 20px rgba(243,94,14,0.3)'
-          }}
-        />
-        <motion.div
-          animate={{ 
-            y: [0, 25, 0], 
-            x: [0, -15, 0],
-            rotate: [0, -90, 0]
-          }}
-          transition={{ 
-            duration: 18, 
-            repeat: Infinity, 
-            ease: "easeInOut" 
-          }}
-          className="hidden md:block absolute bottom-32 right-32 w-12 h-12 rounded-full border-2 border-orange-400/70 backdrop-blur-sm bg-orange-200/25"
-          style={{
-            boxShadow: '0 0 15px rgba(251,146,60,0.4)'
-          }}
-        />
-
-        {/* Additional orange geometric elements */}
-        <motion.div
-          animate={{ 
-            y: [0, -20, 0], 
-            rotate: [0, 120, 240, 360],
-            scale: [1, 1.1, 1]
-          }}
-          transition={{ 
-            duration: 16, 
-            repeat: Infinity, 
-            ease: "easeInOut" 
-          }}
-          className="hidden xl:block absolute top-1/3 left-20 w-10 h-10 border-2 border-amber-400/60 rounded-xl backdrop-blur-sm bg-amber-100/20"
-          style={{
-            boxShadow: '0 0 12px rgba(245,158,11,0.3)'
-          }}
-        />
-
-        {/* Orange dot pattern overlay */}
-        <div 
-          className="absolute inset-0 opacity-[0.08]"
-          style={{
-            backgroundImage: `radial-gradient(circle, rgba(243,94,14,0.6) 1px, transparent 1px)`,
-            backgroundSize: '50px 50px'
-          }}
-        />
-
-        {/* Orange constellation dots */}
-        <motion.div 
-          className="absolute top-32 left-1/3 w-3 h-3 rounded-full bg-orange-400/80"
-          animate={{ 
-            scale: [0, 1.2, 0],
-            opacity: [0, 0.9, 0]
-          }}
-          transition={{ 
-            duration: 4,
-            repeat: Infinity,
-            delay: 0
-          }}
-          style={{
-            boxShadow: '0 0 8px rgba(251,146,60,0.6)'
-          }}
-        />
-        <motion.div 
-          className="absolute bottom-48 right-1/4 w-2.5 h-2.5 rounded-full bg-amber-400/85"
-          animate={{ 
-            scale: [0, 1.3, 0],
-            opacity: [0, 0.8, 0]
-          }}
-          transition={{ 
-            duration: 5,
-            repeat: Infinity,
-            delay: 2
-          }}
-          style={{
-            boxShadow: '0 0 6px rgba(245,158,11,0.7)'
-          }}
-        />
-        <motion.div 
-          className="absolute top-2/3 left-16 w-2 h-2 rounded-full bg-orange-300/90"
-          animate={{ 
-            scale: [0, 1.1, 0],
-            opacity: [0, 0.7, 0]
-          }}
-          transition={{ 
-            duration: 3.5,
-            repeat: Infinity,
-            delay: 4
-          }}
-          style={{
-            boxShadow: '0 0 5px rgba(253,186,116,0.8)'
-          }}
-        />
 
         {/* Orange grid lines */}
         <svg className="absolute inset-0 w-full h-full opacity-[0.06]" xmlns="http://www.w3.org/2000/svg">
@@ -466,43 +310,10 @@ export default function GalleryPreview() {
                     
                     {/* Progressive Blur Effect - Only on hover */}
                     <div className="absolute left-0 bottom-0 right-0 w-full h-1/2 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                      {/* Multiple blur layers with precise masking */}
                       <div 
                         className="absolute top-0 left-0 bottom-0 right-0" 
                         style={{
                           backdropFilter: 'blur(1px)',
-                          mask: 'linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1) 10%, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 40%)',
-                          WebkitMask: 'linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1) 10%, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 40%)'
-                        }}
-                      ></div>
-                      <div 
-                        className="absolute top-0 left-0 bottom-0 right-0" 
-                        style={{
-                          backdropFilter: 'blur(2px)',
-                          mask: 'linear-gradient(rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 0) 50%)',
-                          WebkitMask: 'linear-gradient(rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 0) 50%)'
-                        }}
-                      ></div>
-                      <div 
-                        className="absolute top-0 left-0 bottom-0 right-0" 
-                        style={{
-                          backdropFilter: 'blur(4px)',
-                          mask: 'linear-gradient(rgba(0, 0, 0, 0) 15%, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 60%)',
-                          WebkitMask: 'linear-gradient(rgba(0, 0, 0, 0) 15%, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 60%)'
-                        }}
-                      ></div>
-                      <div 
-                        className="absolute top-0 left-0 bottom-0 right-0" 
-                        style={{
-                          backdropFilter: 'blur(8px)',
-                          mask: 'linear-gradient(rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0) 70%)',
-                          WebkitMask: 'linear-gradient(rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0) 70%)'
-                        }}
-                      ></div>
-                      <div 
-                        className="absolute top-0 left-0 bottom-0 right-0" 
-                        style={{
-                          backdropFilter: 'blur(16px)',
                           mask: 'linear-gradient(rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 1) 80%, rgba(0, 0, 0, 0) 90%)',
                           WebkitMask: 'linear-gradient(rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 1) 80%, rgba(0, 0, 0, 0) 90%)'
                         }}
@@ -510,7 +321,7 @@ export default function GalleryPreview() {
                       <div 
                         className="absolute top-0 left-0 bottom-0 right-0" 
                         style={{
-                          backdropFilter: 'blur(32px)',
+                          backdropFilter: 'blur(2px)',
                           mask: 'linear-gradient(rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 1) 80%)',
                           WebkitMask: 'linear-gradient(rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 1) 80%)'
                         }}
@@ -518,7 +329,7 @@ export default function GalleryPreview() {
                       <div 
                         className="absolute top-0 left-0 bottom-0 right-0 z-10" 
                         style={{
-                          backdropFilter: 'blur(64px)',
+                          backdropFilter: 'blur(4px)',
                           mask: 'linear-gradient(rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%)',
                           WebkitMask: 'linear-gradient(rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%)'
                         }}
@@ -1084,49 +895,6 @@ export default function GalleryPreview() {
             fill="rgba(255,255,255,0.4)"
           />
         </svg>
-        
-        {/* Animated floating elements on the wave */}
-        <motion.div
-          className="absolute top-4 left-1/4 w-3 h-3 bg-white/60 rounded-full"
-          animate={{
-            y: [0, -10, 0],
-            opacity: [0.4, 0.8, 0.4],
-            scale: [1, 1.2, 1]
-          }}
-          transition={{
-            duration: 4,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
-        <motion.div
-          className="absolute top-8 right-1/3 w-2 h-2 bg-white/50 rounded-full"
-          animate={{
-            y: [0, -8, 0],
-            opacity: [0.3, 0.7, 0.3],
-            scale: [1, 1.1, 1]
-          }}
-          transition={{
-            duration: 3.5,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 1
-          }}
-        />
-        <motion.div
-          className="absolute top-2 right-1/4 w-2.5 h-2.5 bg-white/40 rounded-full"
-          animate={{
-            y: [0, -12, 0],
-            opacity: [0.2, 0.6, 0.2],
-            scale: [1, 1.3, 1]
-          }}
-          transition={{
-            duration: 5,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 2
-          }}
-        />
       </div>
     </section>
   );
