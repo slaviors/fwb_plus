@@ -1627,7 +1627,7 @@ export default function EventComponent() {
                           animate={{ opacity: 1, scale: 1 }}
                           className="relative overflow-hidden rounded-3xl p-1 bg-gradient-to-br from-white/40 via-white/30 to-transparent backdrop-blur-xl border border-white/50"
                         >
-                          <div className="relative rounded-[22px] bg-white/90 backdrop-blur-lg border border-white/95 p-12 text-center">
+                          <div className="relative rounded-[22px] bg-white/90 backdrop-blur-lg border border-white/95 p-6 lg:p-12 text-center">
                             <motion.div
                               className="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-br from-[#1a7be6]/20 to-[#f35e0e]/20 flex items-center justify-center"
                               animate={{ rotate: [0, 5, -5, 0] }}

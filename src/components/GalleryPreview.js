@@ -311,22 +311,6 @@ export default function GalleryPreview() {
                     {/* Progressive Blur Effect - Only on hover */}
                     <div className="absolute left-0 bottom-0 right-0 w-full h-1/2 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                       <div 
-                        className="absolute top-0 left-0 bottom-0 right-0" 
-                        style={{
-                          backdropFilter: 'blur(1px)',
-                          mask: 'linear-gradient(rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 1) 80%, rgba(0, 0, 0, 0) 90%)',
-                          WebkitMask: 'linear-gradient(rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 1) 80%, rgba(0, 0, 0, 0) 90%)'
-                        }}
-                      ></div>
-                      <div 
-                        className="absolute top-0 left-0 bottom-0 right-0" 
-                        style={{
-                          backdropFilter: 'blur(2px)',
-                          mask: 'linear-gradient(rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 1) 80%)',
-                          WebkitMask: 'linear-gradient(rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 1) 80%)'
-                        }}
-                      ></div>
-                      <div 
                         className="absolute top-0 left-0 bottom-0 right-0 z-10" 
                         style={{
                           backdropFilter: 'blur(4px)',
@@ -541,7 +525,7 @@ export default function GalleryPreview() {
                                   animate={{ opacity: 1, y: 0 }}
                                   transition={{ duration: 0.5, delay: 0.6 }}
                                 >
-                                  <div className="flex items-center gap-2 p-3 bg-white/10 rounded-xl backdrop-blur-sm border border-white/20">
+                                  <div className="hidden sm:flex items-center gap-2 p-3 bg-white/10 rounded-xl backdrop-blur-xs border border-white/20">
                                     <svg className="w-4 h-4 text-[#f35e0e] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -551,7 +535,7 @@ export default function GalleryPreview() {
                                       <p className="text-white text-sm font-semibold">{image.location}</p>
                                     </div>
                                   </div>
-                                  <div className="flex items-center gap-2 p-3 bg-white/10 rounded-xl backdrop-blur-sm border border-white/20">
+                                  <div className="hidden sm:flex items-center gap-2 p-3 bg-white/10 rounded-xl backdrop-blur-xs border border-white/20">
                                     <svg className="w-4 h-4 text-[#f35e0e] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z" />
                                     </svg>

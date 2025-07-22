@@ -208,32 +208,6 @@ export default function ContactLocation() {
         {/* Floating Geometric Shapes */}
         <motion.div
           animate={{
-            y: [0, -30, 0],
-            rotate: [0, 180, 360],
-            scale: [1, 1.1, 1],
-          }}
-          transition={{
-            duration: 25,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-          className="hidden lg:block absolute top-20 right-20 w-16 h-16 border-2 border-[#1a7be6]/30 rounded-2xl backdrop-blur-sm bg-blue-100/20 shadow-lg"
-        />
-        <motion.div
-          animate={{
-            y: [0, 20, 0],
-            x: [0, -15, 0],
-            rotate: [0, -90, 0],
-          }}
-          transition={{
-            duration: 18,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="hidden md:block absolute bottom-32 right-32 w-12 h-12 rounded-full border-2 border-[#f35e0e]/40 backdrop-blur-sm bg-orange-100/30 shadow-lg"
-        />
-        <motion.div
-          animate={{
             y: [0, -25, 0],
             rotate: [0, 45, 90, 135, 180, 225, 270, 315, 360],
           }}
@@ -243,87 +217,6 @@ export default function ContactLocation() {
             ease: "linear",
           }}
           className="hidden xl:block absolute top-40 left-20 w-8 h-8 bg-[#1a7be6]/20 rounded-lg backdrop-blur-sm shadow-lg"
-        />
-
-        {/* Decorative SVG Elements */}
-        <motion.div
-          animate={{
-            y: [0, -20, 0],
-            rotate: [0, 10, 0],
-          }}
-          transition={{
-            duration: 12,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="absolute top-32 left-32 opacity-20 hidden lg:block"
-        >
-          <svg
-            width="100"
-            height="100"
-            viewBox="0 0 100 100"
-            className="text-[#1a7be6]"
-          >
-            <path
-              d="M50 10L60 40L90 40L68 58L78 88L50 70L22 88L32 58L10 40L40 40Z"
-              fill="currentColor"
-              opacity="0.6"
-            />
-            <circle
-              cx="50"
-              cy="50"
-              r="30"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeDasharray="5,5"
-            />
-          </svg>
-        </motion.div>
-
-        <motion.div
-          animate={{
-            y: [0, 15, 0],
-            rotate: [0, -15, 0],
-          }}
-          transition={{
-            duration: 16,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="absolute bottom-40 right-40 opacity-15 hidden md:block"
-        >
-          <svg
-            width="80"
-            height="80"
-            viewBox="0 0 80 80"
-            className="text-[#f35e0e]"
-          >
-            <polygon
-              points="40,10 60,30 60,50 40,70 20,50 20,30"
-              fill="currentColor"
-              opacity="0.5"
-            />
-            <circle
-              cx="40"
-              cy="40"
-              r="20"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-            />
-            <circle cx="40" cy="40" r="10" fill="currentColor" opacity="0.8" />
-          </svg>
-        </motion.div>
-
-        {/* Enhanced Dot Pattern */}
-        <div
-          className="absolute inset-0 opacity-[0.04]"
-          style={{
-            backgroundImage: `radial-gradient(circle, rgba(26,123,230,0.6) 1px, transparent 1px), radial-gradient(circle, rgba(243,94,14,0.4) 1px, transparent 1px)`,
-            backgroundSize: "60px 60px, 40px 40px",
-            backgroundPosition: "0 0, 30px 30px",
-          }}
         />
 
         {/* Animated Lines */}
@@ -665,7 +558,7 @@ export default function ContactLocation() {
               {/* Contact Form */}
               <div className="order-2 lg:order-1">
                 <motion.div
-                  className="relative backdrop-blur-xl bg-white/40 border border-white/50 rounded-3xl p-8 md:p-10 shadow-2xl"
+                  className="relative backdrop-blur-xl bg-white/40 border border-white/50 rounded-3xl p-4 sm:p-6 shadow-2xl"
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.2 }}
@@ -673,21 +566,7 @@ export default function ContactLocation() {
                   {/* Inner Glow Effect */}
                   <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-transparent to-white/20 rounded-3xl"></div>
 
-                  {/* Decorative Elements */}
-                  <div className="absolute -top-4 -right-4 w-8 h-8 bg-[#1a7be6] rounded-full opacity-60 blur-sm"></div>
-                  <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-[#f35e0e] rounded-full opacity-40 blur-sm"></div>
-
                   <div className="relative z-10">
-                    <motion.h3
-                      className="text-2xl md:text-3xl lg:text-4xl font-bold mb-8"
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.6, delay: 0.3 }}
-                    >
-                      <span className="text-[#1a7be6] font-unbounded">
-                        Hubungi Kami
-                      </span>
-                    </motion.h3>
 
                     <form onSubmit={handleSubmit} className="space-y-6">
                       <motion.div
@@ -820,7 +699,7 @@ export default function ContactLocation() {
                   {contactInfo.map((info, index) => (
                     <motion.div
                       key={info.title}
-                      className="relative backdrop-blur-xl bg-white/40 border border-white/60 rounded-3xl p-4 sm:p-8 shadow-2xl hover:shadow-3xl transition-all duration-500 group"
+                      className="relative backdrop-blur-xl bg-white/40 border border-white/60 rounded-3xl p-4 sm:p-6 shadow-2xl hover:shadow-3xl transition-all duration-500 group"
                       initial={{ opacity: 0, x: 30 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.6, delay: 0.6 + index * 0.1 }}
@@ -839,7 +718,7 @@ export default function ContactLocation() {
                         </motion.div>
                         <div className="flex-1">
                           <motion.h4
-                            className="font-bold text-xl text-gray-900 mb-2"
+                            className="font-bold text-xl text-gray-900 mb-1"
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ delay: 0.7 + index * 0.1 }}
@@ -847,7 +726,7 @@ export default function ContactLocation() {
                             {info.title}
                           </motion.h4>
                           <motion.p
-                            className="text-lg font-semibold mb-2 text-[#f35e0e]"
+                            className="text-lg font-semibold mb-1 text-[#f35e0e]"
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ delay: 0.8 + index * 0.1 }}
@@ -886,7 +765,7 @@ export default function ContactLocation() {
               {/* Map */}
               <div className="lg:col-span-2 order-2 lg:order-1">
                 <motion.div
-                  className="relative backdrop-blur-xl bg-white/40 border border-white/60 rounded-3xl p-6 md:p-8 shadow-2xl overflow-hidden"
+                  className="relative backdrop-blur-xl bg-white/40 border border-white/60 rounded-4xl p-4 md:p-6 shadow-2xl overflow-hidden"
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.2 }}
@@ -925,8 +804,7 @@ export default function ContactLocation() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.4 }}
                 >
-                  <div className="relative backdrop-blur-xl bg-white/40 border border-white/60 rounded-3xl p-8 shadow-2xl">
-
+                  <div className="relative backdrop-blur-xl bg-white/40 border border-white/60 rounded-3xl p-4 sm:p-6 shadow-2xl">
                     <motion.h3
                       className="text-2xl font-bold mb-6 text-[#1a7be6]"
                       initial={{ opacity: 0, x: -20 }}
@@ -1047,7 +925,7 @@ export default function ContactLocation() {
                   </div>
 
                   <motion.button
-                    className="w-full py-5 px-8 bg-[#1a7be6] hover:bg-[#1357a6] text-white font-bold rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-500 backdrop-blur-sm border border-white/30"
+                    className="w-full py-4 px-6 bg-[#1a7be6] hover:bg-[#1357a6] text-white font-bold rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-500 backdrop-blur-sm border border-white/30"
                     whileHover={{ scale: 1.05, y: -4 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={() =>

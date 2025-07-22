@@ -34,7 +34,6 @@ export default function Navbar() {
         setScrolled(false);
       }
 
-      // Determine active section based on page.js order
       const sections = [
         "hero",
         "about",
@@ -68,33 +67,27 @@ export default function Navbar() {
     setIsOpen(false);
   }, [pathname]);
 
-  // Improved smooth scroll function with navbar offset
+  // Smooth scroll function with navbar offset
   const scrollToSection = (sectionId) => {
-    // Tutup menu mobile terlebih dahulu jika terbuka
     if (isOpen) {
       setIsOpen(false);
     }
 
-    // Tunggu sedikit untuk animasi menu mobile selesai
     const delay = isOpen ? 300 : 0;
 
     setTimeout(() => {
       const element = document.getElementById(sectionId);
       if (element) {
-        // Hitung navbar height berdasarkan breakpoint
-        const navHeight = window.innerWidth >= 1280 ? 60 : 40; // xl breakpoint
+        const navHeight = window.innerWidth >= 1280 ? 60 : 40;
 
-        // Tambahkan offset tambahan untuk spacing (20px default)
         const additionalOffset = 20;
         const totalOffset = navHeight + additionalOffset;
 
-        // Hitung posisi target
         const elementPosition = element.offsetTop;
         const targetPosition = elementPosition - totalOffset;
 
-        // Scroll ke posisi target
         window.scrollTo({
-          top: Math.max(0, targetPosition), // Pastikan tidak scroll ke posisi negatif
+          top: Math.max(0, targetPosition),
           behavior: "smooth",
         });
       }
