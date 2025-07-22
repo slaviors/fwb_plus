@@ -16,7 +16,7 @@ export default function Logo() {
       >
         {/* Logo desktop - Full logo */}
         <div className="relative hidden md:block">
-          <div className="relative h-8 w-[180px]">
+          <div className="relative h-6 sm:h-10 w-[180px]">
             <Image
               src={logoPath}
               alt="FWB Plus Logo"

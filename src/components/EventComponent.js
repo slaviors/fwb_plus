@@ -556,19 +556,6 @@ export default function EventComponent() {
                     }}
                     transition={{ duration: 3, repeat: Infinity, delay: 1 }}
                   />
-                  {/* Event sparkle indicator */}
-                  <motion.div
-                    className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-[#f35e0e]"
-                    animate={{
-                      scale: [0, 1, 0],
-                      opacity: [0, 1, 0],
-                    }}
-                    transition={{
-                      duration: 1.5,
-                      repeat: Infinity,
-                      delay: 2,
-                    }}
-                  />
                 </div>
                 <motion.span
                   className="font-semibold text-gray-700 group-hover:text-orange-600 transition-colors duration-300"
@@ -1165,7 +1152,7 @@ export default function EventComponent() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <div className="relative rounded-[22px] bg-white/90 backdrop-blur-lg border border-white/95 p-6">
+            <div className="relative rounded-[22px] bg-white/90 backdrop-blur-lg border border-white/95 p-4 sm:p-6">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 p-4 rounded-xl bg-gradient-to-r from-blue-50/60 to-orange-50/40">
                 <div>
                   <h2 className="font-unbounded text-2xl font-bold text-gray-900 mb-2">
@@ -1320,7 +1307,7 @@ export default function EventComponent() {
                       animate={{ opacity: 1, scale: 1 }}
                       className="relative overflow-hidden rounded-3xl p-1 bg-gradient-to-br from-white/40 via-white/30 to-transparent backdrop-blur-xl border border-white/50 shadow-2xl"
                     >
-                      <div className="relative rounded-[22px] bg-white/90 backdrop-blur-lg border border-white/95 p-12 text-center">
+                      <div className="relative rounded-[22px] bg-white/90 backdrop-blur-lg border border-white/95 p-4 sm:p-12 text-center">
                         <motion.div
                           className="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-br from-[#1a7be6]/20 to-[#f35e0e]/20 flex items-center justify-center"
                           animate={{ rotate: [0, 5, -5, 0] }}
