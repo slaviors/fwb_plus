@@ -322,78 +322,6 @@ export default function Services() {
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
           >
-            {/* Desktop Navigation - Hidden on Mobile */}
-            <div className="hidden md:flex flex-wrap justify-center gap-3 md:gap-4">
-              {services.map((service, index) => (
-                <motion.button
-                  key={service.id}
-                  onClick={() => setActiveTab(service.id)}
-                  variants={scaleIn}
-                  custom={index + 3}
-                  whileHover={{ scale: 1.05, y: -3 }}
-                  whileTap={{ scale: 0.95 }}
-                  className={`relative group overflow-hidden rounded-2xl p-1 transition-all duration-500 ${
-                    activeTab === service.id ? "scale-105" : "hover:scale-105"
-                  }`}
-                  style={{
-                    background:
-                      activeTab === service.id
-                        ? `linear-gradient(135deg, ${service.color}20, ${service.color}10)`
-                        : "transparent",
-                  }}
-                >
-                  {/* Glassmorphism container */}
-                  <div
-                    className={`relative flex items-center px-6 py-3 rounded-xl backdrop-blur-sm border transition-all duration-300 ${
-                      activeTab === service.id
-                        ? "bg-white/90 border-white/50 shadow-xl text-gray-900"
-                        : "bg-white/60 border-white/30 hover:bg-white/80 hover:border-white/50 text-gray-600 hover:text-gray-800"
-                    }`}
-                  >
-                    {/* Active service glow */}
-                    {activeTab === service.id && (
-                      <motion.div
-                        className="absolute inset-0 rounded-xl blur-xl opacity-30"
-                        style={{ backgroundColor: service.color }}
-                        layoutId="activeServiceGlow"
-                        transition={{
-                          type: "spring",
-                          bounce: 0.2,
-                          duration: 0.6,
-                        }}
-                      />
-                    )}
-
-                    {/* Icon with enhanced styling */}
-                    <motion.div
-                      className={`mr-3 p-1.5 rounded-lg transition-all duration-300 ${
-                        activeTab === service.id
-                          ? "bg-gradient-to-br from-white to-gray-50 shadow-sm"
-                          : "group-hover:bg-white/50"
-                      }`}
-                      whileHover={{ rotate: 5 }}
-                    >
-                      {renderServiceIcon(
-                        service.icon,
-                        activeTab === service.id ? service.color : "#64748b",
-                        "1.125rem"
-                      )}
-                    </motion.div>
-
-                    <span className="font-inter font-semibold text-base relative z-10">
-                      {service.title}
-                    </span>
-
-                    {/* Floating micro elements for active state */}
-                    {activeTab === service.id && (
-                      <>
-                      </>
-                    )}
-                  </div>
-                </motion.button>
-              ))}
-            </div>
-
             {/* Mobile Navigation - Compact Card-Style */}
             <div className="md:hidden px-1">
               <div className="relative overflow-hidden rounded-3xl p-1 bg-white/20 backdrop-blur-xl border border-white/30 shadow-lg">
@@ -506,16 +434,166 @@ export default function Services() {
                         </div>
 
                         {/* Active indicator dots */}
-                        {activeTab === service.id && (
-                          <>
-                          </>
-                        )}
+                        {activeTab === service.id && <></>}
                       </div>
                     </motion.button>
                   ))}
                 </div>
               </div>
             </div>
+          </motion.div>
+
+          {/* Enhanced Service Cards - Mini Overview with Glassmorphism - Desktop Only */}
+          <motion.div
+            className="hidden md:grid sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mb-16 md:mb-20 relative z-20"
+            variants={staggerContainer}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+          >
+            {services.map((service, i) => (
+              <motion.div
+                key={service.id}
+                variants={scaleIn}
+                custom={i + 6}
+                whileHover={{ y: -12, scale: 1.02 }}
+                className={`relative group cursor-pointer transition-all duration-500 ${
+                  activeTab === service.id ? "scale-105" : ""
+                }`}
+                onClick={() => setActiveTab(service.id)}
+              >
+                {/* Glassmorphism card container */}
+                <div className="relative overflow-hidden rounded-3xl p-1 bg-gradient-to-br from-white/30 via-white/20 to-transparent backdrop-blur-xl border border-white/40 shadow-2xl group-hover:shadow-3xl transition-all duration-500">
+                  {/* Dynamic color background for active state */}
+                  {activeTab === service.id && (
+                    <motion.div
+                      className="absolute inset-0 rounded-3xl opacity-20"
+                      style={{
+                        background: `linear-gradient(135deg, ${service.color}30, transparent)`,
+                      }}
+                      layoutId="activeServiceCard"
+                      transition={{
+                        type: "spring",
+                        bounce: 0.2,
+                        duration: 0.6,
+                      }}
+                    />
+                  )}
+
+                  {/* Inner glassmorphism layer */}
+                  <div className="relative rounded-[22px] bg-white/60 backdrop-blur-md border border-white/70 p-6 overflow-hidden">
+                    {/* Floating decorative elements */}
+                    <motion.div
+                      className="absolute -top-3 -right-3 w-12 h-12 rounded-full blur-lg opacity-50"
+                      style={{
+                        background: `linear-gradient(135deg, ${service.color}40, ${service.color}20)`,
+                      }}
+                      animate={{
+                        scale: [1, 1.2, 1],
+                        opacity: [0.3, 0.6, 0.3],
+                        rotate: [0, 180, 360],
+                      }}
+                      transition={{
+                        duration: 8 + i,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                      }}
+                    />
+                    <motion.div
+                      className="absolute -bottom-2 -left-2 w-8 h-8 rounded-lg rotate-45 blur-md opacity-40"
+                      style={{
+                        background: `linear-gradient(45deg, ${service.color}30, transparent)`,
+                      }}
+                      animate={{
+                        scale: [1, 1.1, 1],
+                        rotate: [45, 90, 45],
+                      }}
+                      transition={{
+                        duration: 6 + i * 0.5,
+                        repeat: Infinity,
+                      }}
+                    />
+
+                    {/* Enhanced icon container */}
+                    <div className="relative mb-4">
+                      <motion.div
+                        className="relative inline-flex items-center justify-center w-16 h-16 rounded-2xl backdrop-blur-sm border transition-all duration-300"
+                        style={{
+                          backgroundColor: `${service.color}15`,
+                          borderColor: `${service.color}30`,
+                        }}
+                        whileHover={{ scale: 1.1, rotate: 5 }}
+                      >
+                        {/* Icon glow effect */}
+                        <div
+                          className="absolute inset-0 rounded-2xl blur-xl opacity-0 group-hover:opacity-40 transition-opacity duration-300"
+                          style={{ backgroundColor: service.color }}
+                        />
+                        <span
+                          className="relative z-10"
+                          style={{ color: service.color }}
+                        >
+                          {renderServiceIcon(
+                            service.icon,
+                            service.color,
+                            "1.75rem"
+                          )}
+                        </span>
+                      </motion.div>
+                    </div>
+
+                    <div className="relative z-10">
+                      <h3 className="font-unbounded text-lg md:text-xl font-bold text-gray-900 mb-3 leading-tight group-hover:text-gray-800 transition-colors duration-200">
+                        {service.title}
+                      </h3>
+                      <p className="font-inter text-gray-600 mb-4 text-sm md:text-base leading-relaxed group-hover:text-gray-700 transition-colors duration-200">
+                        {service.shortDesc}
+                      </p>
+
+                      {/* Enhanced CTA with micro-interaction */}
+                      <motion.button
+                        className="font-inter text-sm md:text-base font-semibold group/btn flex items-center transition-all duration-200"
+                        style={{ color: service.color }}
+                        whileHover={{ x: 3 }}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setActiveTab(service.id);
+                        }}
+                      >
+                        Selengkapnya
+                        <motion.span
+                          className="ml-2 transition-transform group-hover/btn:translate-x-1"
+                          whileHover={{ scale: 1.2 }}
+                        >
+                          <svg
+                            className="w-4 h-4"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M9 5l7 7-7 7"
+                            />
+                          </svg>
+                        </motion.span>
+                      </motion.button>
+                    </div>
+
+                    {/* Corner accent decorations */}
+                    <div
+                      className="absolute top-3 left-3 w-6 h-6 border-l-2 border-t-2 rounded-tl-lg opacity-20 group-hover:opacity-40 transition-opacity duration-300"
+                      style={{ borderColor: service.color }}
+                    />
+                    <div
+                      className="absolute bottom-3 right-3 w-6 h-6 border-r-2 border-b-2 rounded-br-lg opacity-20 group-hover:opacity-40 transition-opacity duration-300"
+                      style={{ borderColor: service.color }}
+                    />
+                  </div>
+                </div>
+              </motion.div>
+            ))}
           </motion.div>
 
           {/* Enhanced Service Detail Panels - Mobile Optimized */}
@@ -932,159 +1010,6 @@ export default function Services() {
             </AnimatePresence>
           </div>
 
-          {/* Enhanced Service Cards - Mini Overview with Glassmorphism - Desktop Only */}
-          <motion.div
-            className="hidden md:grid sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mb-16 md:mb-20 relative z-20"
-            variants={staggerContainer}
-            initial="hidden"
-            animate={isInView ? "visible" : "hidden"}
-          >
-            {services.map((service, i) => (
-              <motion.div
-                key={service.id}
-                variants={scaleIn}
-                custom={i + 6}
-                whileHover={{ y: -12, scale: 1.02 }}
-                className={`relative group cursor-pointer transition-all duration-500 ${
-                  activeTab === service.id ? "scale-105" : ""
-                }`}
-                onClick={() => setActiveTab(service.id)}
-              >
-                {/* Glassmorphism card container */}
-                <div className="relative overflow-hidden rounded-3xl p-1 bg-gradient-to-br from-white/30 via-white/20 to-transparent backdrop-blur-xl border border-white/40 shadow-2xl group-hover:shadow-3xl transition-all duration-500">
-                  {/* Dynamic color background for active state */}
-                  {activeTab === service.id && (
-                    <motion.div
-                      className="absolute inset-0 rounded-3xl opacity-20"
-                      style={{
-                        background: `linear-gradient(135deg, ${service.color}30, transparent)`,
-                      }}
-                      layoutId="activeServiceCard"
-                      transition={{
-                        type: "spring",
-                        bounce: 0.2,
-                        duration: 0.6,
-                      }}
-                    />
-                  )}
-
-                  {/* Inner glassmorphism layer */}
-                  <div className="relative rounded-[22px] bg-white/60 backdrop-blur-md border border-white/70 p-6 overflow-hidden">
-                    {/* Floating decorative elements */}
-                    <motion.div
-                      className="absolute -top-3 -right-3 w-12 h-12 rounded-full blur-lg opacity-50"
-                      style={{
-                        background: `linear-gradient(135deg, ${service.color}40, ${service.color}20)`,
-                      }}
-                      animate={{
-                        scale: [1, 1.2, 1],
-                        opacity: [0.3, 0.6, 0.3],
-                        rotate: [0, 180, 360],
-                      }}
-                      transition={{
-                        duration: 8 + i,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                      }}
-                    />
-                    <motion.div
-                      className="absolute -bottom-2 -left-2 w-8 h-8 rounded-lg rotate-45 blur-md opacity-40"
-                      style={{
-                        background: `linear-gradient(45deg, ${service.color}30, transparent)`,
-                      }}
-                      animate={{
-                        scale: [1, 1.1, 1],
-                        rotate: [45, 90, 45],
-                      }}
-                      transition={{
-                        duration: 6 + i * 0.5,
-                        repeat: Infinity,
-                      }}
-                    />
-
-                    {/* Enhanced icon container */}
-                    <div className="relative mb-4">
-                      <motion.div
-                        className="relative inline-flex items-center justify-center w-16 h-16 rounded-2xl backdrop-blur-sm border transition-all duration-300"
-                        style={{
-                          backgroundColor: `${service.color}15`,
-                          borderColor: `${service.color}30`,
-                        }}
-                        whileHover={{ scale: 1.1, rotate: 5 }}
-                      >
-                        {/* Icon glow effect */}
-                        <div
-                          className="absolute inset-0 rounded-2xl blur-xl opacity-0 group-hover:opacity-40 transition-opacity duration-300"
-                          style={{ backgroundColor: service.color }}
-                        />
-                        <span
-                          className="relative z-10"
-                          style={{ color: service.color }}
-                        >
-                          {renderServiceIcon(
-                            service.icon,
-                            service.color,
-                            "1.75rem"
-                          )}
-                        </span>
-                      </motion.div>
-                    </div>
-
-                    <div className="relative z-10">
-                      <h3 className="font-unbounded text-lg md:text-xl font-bold text-gray-900 mb-3 leading-tight group-hover:text-gray-800 transition-colors duration-200">
-                        {service.title}
-                      </h3>
-                      <p className="font-inter text-gray-600 mb-4 text-sm md:text-base leading-relaxed group-hover:text-gray-700 transition-colors duration-200">
-                        {service.shortDesc}
-                      </p>
-
-                      {/* Enhanced CTA with micro-interaction */}
-                      <motion.button
-                        className="font-inter text-sm md:text-base font-semibold group/btn flex items-center transition-all duration-200"
-                        style={{ color: service.color }}
-                        whileHover={{ x: 3 }}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setActiveTab(service.id);
-                        }}
-                      >
-                        Selengkapnya
-                        <motion.span
-                          className="ml-2 transition-transform group-hover/btn:translate-x-1"
-                          whileHover={{ scale: 1.2 }}
-                        >
-                          <svg
-                            className="w-4 h-4"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M9 5l7 7-7 7"
-                            />
-                          </svg>
-                        </motion.span>
-                      </motion.button>
-                    </div>
-
-                    {/* Corner accent decorations */}
-                    <div
-                      className="absolute top-3 left-3 w-6 h-6 border-l-2 border-t-2 rounded-tl-lg opacity-20 group-hover:opacity-40 transition-opacity duration-300"
-                      style={{ borderColor: service.color }}
-                    />
-                    <div
-                      className="absolute bottom-3 right-3 w-6 h-6 border-r-2 border-b-2 rounded-br-lg opacity-20 group-hover:opacity-40 transition-opacity duration-300"
-                      style={{ borderColor: service.color }}
-                    />
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-
           {/* Enhanced CTA Box with Glassmorphism - Blue Theme */}
           <motion.div
             initial={{ opacity: 0, y: 60 }}
@@ -1094,7 +1019,6 @@ export default function Services() {
           >
             {/* Inner glassmorphism layer */}
             <div className="relative rounded-[22px] bg-gradient-to-r from-[#1a7be6] to-[#1e40af] p-6 sm:p-12 overflow-hidden">
-
               <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8">
                 <div className="lg:max-w-xl text-center lg:text-left">
                   <motion.h3
@@ -1164,7 +1088,6 @@ export default function Services() {
                       <span className="relative z-10">Konsultasi Gratis</span>
                     </motion.div>
                   </Link>
-
                 </motion.div>
               </div>
             </div>
