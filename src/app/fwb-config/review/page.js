@@ -120,6 +120,11 @@ export default function ReviewAdminPage() {
 
     const filtered = filterByRange(reviews, filter, customStart, customEnd);
 
+    const averageRating =
+        filtered.length > 0
+            ? (filtered.reduce((sum, r) => sum + (Number(r.star) || 0), 0) / filtered.length).toFixed(2)
+            : null;
+
     return (
         <div className="max-w-2xl mx-auto py-10">
             <button
@@ -128,7 +133,19 @@ export default function ReviewAdminPage() {
             >
                 ← Back to Admin Panel
             </button>
-            <h1 className="text-2xl font-bold mb-6">Review List</h1>
+            <h1 className="text-2xl font-bold mb-2">Review List</h1>
+            <div className="mb-4 flex items-center gap-4">
+                <span className="text-lg font-medium">
+                    Rata-rata rating:{" "}
+                    <span className="text-yellow-500 font-bold">
+                        {averageRating !== null ? averageRating : "-"}
+                    </span>
+                    <span className="ml-1 text-yellow-400">★</span>
+                </span>
+                <span className="text-gray-500 text-sm">
+                    ({filtered.length} review)
+                </span>
+            </div>
             <div className="flex flex-wrap items-center gap-2 mb-6">
                 <span className="font-medium">Filter:</span>
                 <button
