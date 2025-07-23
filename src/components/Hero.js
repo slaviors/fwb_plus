@@ -38,18 +38,6 @@ export default function Hero() {
     return () => clearInterval(interval);
   }, [isHovering, heroEvents.length]);
 
-  // Event stat items dengan animasi
-  const statItems = [
-    { number: "100+", label: "Events", delay: 0.3, color: "#1a7be6" },
-    { number: "50+", label: "Locations", delay: 0.5, color: "#f35e0e" },
-    {
-      number: "98%",
-      label: "Client Satisfaction",
-      delay: 0.7,
-      color: "#ce1010",
-    },
-  ];
-
   return (
     <section
       id="hero"
@@ -123,38 +111,75 @@ export default function Hero() {
             >
               Kami hadir untuk membantu merancang dan mengeksekusi berbagai
               jenis event dengan{" "}
-              <span className="font-semibold text-[#1a7be6]">integritas</span>,{" "}
-              <span className="font-semibold text-[#1a7be6]">kreativitas</span>,
+              <span className="font-semibold text-[#1a7be6]">Integritas</span>,{" "}
+              <span className="font-semibold text-[#1a7be6]">Kreativitas</span>,
               dan{" "}
               <span className="font-semibold text-[#1a7be6]">
-                komitmen profesional
+                Komitmen Profesional
               </span>{" "}
               demi hasil yang memberi manfaat nyata bagi semua pihak.
             </motion.p>
 
-            {/* Stats with animation */}
-            <div className="mt-6 md:mt-8 grid grid-cols-3 gap-3 md:gap-4">
-              {statItems.map((stat, index) => (
+            {/* Compact Tagline */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.8 }}
+              className="mt-6 md:mt-8 w-full max-w-2xl mx-auto lg:mx-0"
+            >
+              <div className="relative flex flex-nowrap items-center justify-center lg:justify-start gap-1 md:gap-2 bg-white/80 backdrop-blur-sm rounded-full px-4 py-3 md:px-6 md:py-4 shadow-lg border border-gray-100">
+                {/* Opening Quote Icon */}
                 <motion.div
-                  key={stat.label}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: stat.delay }}
-                  whileHover={{ y: -5 }}
-                  className="p-2 md:p-3 rounded-xl bg-white shadow-md hover:shadow-lg transition-all duration-300"
+                  className="flex items-center justify-center"
+                  initial={{ opacity: 0, scale: 0, rotate: -180 }}
+                  animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                  transition={{ duration: 0.6, delay: 1 }}
                 >
-                  <h3
-                    className="font-unbounded text-xl md:text-2xl lg:text-3xl font-bold"
-                    style={{ color: stat.color }}
+                  <svg 
+                    className="w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6 text-[#1a7be6] opacity-70" 
+                    fill="currentColor" 
+                    viewBox="0 0 24 24"
                   >
-                    {stat.number}
-                  </h3>
-                  <p className="text-xs md:text-sm text-gray-600">
-                    {stat.label}
-                  </p>
+                    <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z"/>
+                  </svg>
                 </motion.div>
-              ))}
-            </div>
+
+                {/* "Impian Bersama" text */}
+                <motion.span
+                  className="font-unbounded text-sm md:text-lg lg:text-xl xl:text-2xl font-bold text-gray-800 whitespace-nowrap"
+                  whileHover={{ scale: 1.02 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  Impian Bersama
+                </motion.span>
+
+                {/* FWB+ Logo - same size as text */}
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.3 }}
+                  className="relative flex items-center"
+                >
+                  <Image
+                    src="/images/assets/logo/Logo FWB PNG Transparan.png"
+                    alt="FWB Plus Logo"
+                    width={120}
+                    height={40}
+                    className="h-4 w-auto md:h-6 lg:h-7 xl:h-8 object-contain"
+                    priority
+                    style={{ filter: 'brightness(1) contrast(1.1)' }}
+                  />
+                </motion.div>
+
+                {/* "Organizer" text */}
+                <motion.span
+                  className="font-unbounded text-sm md:text-lg lg:text-xl xl:text-2xl font-bold text-[#f35e0e] whitespace-nowrap"
+                  whileHover={{ scale: 1.02 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  Organizer
+                </motion.span>
+              </div>
+            </motion.div>
 
             {/* CTA buttons with hover effects */}
             <motion.div
@@ -163,7 +188,7 @@ export default function Hero() {
               transition={{ duration: 0.8, delay: 0.9 }}
               className="mt-6 md:mt-10 flex flex-col sm:flex-row gap-3 md:gap-4 justify-center lg:justify-start"
             >
-              <Link href="wa.me/6281944074542">
+              <Link href="https://wa.me/6281944074542">
                 <motion.div
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
