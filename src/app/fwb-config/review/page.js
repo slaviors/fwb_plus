@@ -2,6 +2,7 @@
 import { useEffect, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import * as XLSX from "xlsx";
+import jsPDF from "jspdf";
 
 function filterByRange(reviews, range, customStart, customEnd) {
     const now = new Date();
@@ -76,6 +77,37 @@ function exportToXLSX(reviews) {
     const wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, "Reviews");
     XLSX.writeFile(wb, "review-export.xlsx");
+}
+
+function exportToJSON(reviews) {
+    const blob = new Blob([JSON.stringify(reviews, null, 2)], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "review-export.json";
+    a.click();
+    URL.revokeObjectURL(url);
+}
+
+function exportToPDF(reviews) {
+    const doc = new jsPDF();
+    doc.setFontSize(12);
+    let y = 10;
+    reviews.forEach((r, i) => {
+        doc.text(`Nama: ${r.name}`, 10, y);
+        y += 7;
+        doc.text(`Bintang: ${r.star}`, 10, y);
+        y += 7;
+        doc.text(`Pesan: ${r.message}`, 10, y);
+        y += 7;
+        doc.text(`Waktu: ${new Date(r.createdAt).toLocaleString("id-ID")}`, 10, y);
+        y += 10;
+        if (y > 270 && i < reviews.length - 1) {
+            doc.addPage();
+            y = 10;
+        }
+    });
+    doc.save("review-export.pdf");
 }
 
 export default function ReviewAdminPage() {
@@ -206,6 +238,18 @@ export default function ReviewAdminPage() {
                     onClick={() => exportToXLSX(filtered)}
                 >
                     Export Excel
+                </button>
+                <button
+                    className="px-4 py-2 rounded bg-red-600 text-white hover:bg-red-700"
+                    onClick={() => exportToPDF(filtered)}
+                >
+                    Export PDF
+                </button>
+                <button
+                    className="px-4 py-2 rounded bg-orange-600 text-white hover:bg-orange-700"
+                    onClick={() => exportToJSON(filtered)}
+                >
+                    Export JSON
                 </button>
                 <button
                     className="px-4 py-2 rounded bg-gray-600 text-white hover:bg-gray-700"
