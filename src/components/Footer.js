@@ -3,15 +3,16 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import ReviewModal from './ReviewModal';
 
 export default function Footer() {
   const [currentYear, setCurrentYear] = useState('');
   const [isVisible, setIsVisible] = useState(false);
+    const [reviewOpen, setReviewOpen] = useState(false);
 
   useEffect(() => {
     setCurrentYear(new Date().getFullYear().toString());
     
-    // Untuk animasi scroll in
     const handleScroll = () => {
       if (window.scrollY > 200) {
         setIsVisible(true);
@@ -19,7 +20,7 @@ export default function Footer() {
     };
 
     window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Check pada load pertama
+    handleScroll(); 
     
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -50,7 +51,6 @@ export default function Footer() {
 
   return (
     <footer className="relative bg-gradient-to-br from-white via-blue-50/50 to-orange-50/30 text-gray-800 overflow-hidden border-t border-gray-100">
-      {/* Advanced animated background elements with separated blue and orange */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div 
           className="absolute top-0 left-1/4 w-80 h-80 bg-blue-200/25 rounded-full blur-3xl"
@@ -103,8 +103,7 @@ export default function Footer() {
           }}
         />
       </div>
-      
-      {/* Enhanced animated grid pattern */}
+
       <div className="absolute inset-0 opacity-[0.05]">
         <motion.div 
           className="absolute inset-0" 
@@ -123,14 +122,29 @@ export default function Footer() {
         />
       </div>
       
-      {/* Enhanced scroll to top button */}
+      <motion.button
+        onClick={() => setReviewOpen(true)}
+        className={`fixed bottom-24 right-8 z-50 bg-blue-600 hover:bg-blue-700 text-white px-5 py-3 rounded-full shadow-lg flex items-center space-x-2 transition-all duration-200 ${
+          isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'
+        }`}
+        whileHover={{ scale: 1.08 }}
+        whileTap={{ scale: 0.95 }}
+        aria-label="Tulis Review"
+      >
+        <svg className="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 11V7a4 4 0 118 0v4m-4 4v4m0 0H7a4 4 0 01-4-4V7a4 4 0 014-4h10a4 4 0 014 4v10a4 4 0 01-4 4z" />
+        </svg>
+        <span>Tulis Review</span>
+      </motion.button>
+      <ReviewModal isOpen={reviewOpen} onClose={() => setReviewOpen(false)} />
+
       <motion.button
         onClick={() => scrollToSection('hero')}
         className={`fixed bottom-8 right-8 z-50 bg-gradient-to-r from-[#1a7be6] to-blue-600 p-4 rounded-full shadow-2xl hover:shadow-blue-500/30 transition-all duration-300 border border-blue-200 backdrop-blur-sm ${
           isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}
-        whileHover={{ 
-          scale: 1.15, 
+        whileHover={{
+          scale: 1.15,
           rotate: 360,
           boxShadow: "0 0 30px rgba(26, 123, 230, 0.6)"
         }}
@@ -138,10 +152,10 @@ export default function Footer() {
         transition={{ duration: 0.3 }}
         aria-label="Scroll to top"
       >
-        <motion.svg 
-          className="w-6 h-6 text-white" 
-          fill="none" 
-          stroke="currentColor" 
+        <motion.svg
+          className="w-6 h-6 text-white"
+          fill="none"
+          stroke="currentColor"
           viewBox="0 0 24 24"
           animate={{ y: [0, -3, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
@@ -151,10 +165,8 @@ export default function Footer() {
       </motion.button>
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Main footer content - compact and modern */}
         <div className="py-16">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-            {/* Company info - enhanced and compact */}
             <motion.div 
               className="lg:col-span-5 text-center lg:text-left"
               initial={{ opacity: 0, y: 30 }}
@@ -208,8 +220,7 @@ export default function Footer() {
                 ))}
               </div>
             </motion.div>
-            
-            {/* Navigation - compact and stylish */}
+
             <motion.div 
               className="lg:col-span-4 text-center lg:text-left"
               initial={{ opacity: 0, y: 30 }}
@@ -248,8 +259,7 @@ export default function Footer() {
                 ))}
               </ul>
             </motion.div>
-            
-            {/* Contact Info - compact and modern */}
+
             <motion.div 
               className="lg:col-span-3 text-center lg:text-left"
               initial={{ opacity: 0, y: 30 }}
@@ -316,8 +326,7 @@ export default function Footer() {
             </motion.div>
           </div>
         </div>
-        
-        {/* Enhanced bottom section */}
+
         <motion.div 
           className="border-t border-gray-200 py-6 backdrop-blur-sm"
           initial={{ opacity: 0 }}
@@ -367,7 +376,6 @@ export default function Footer() {
   );
 }
 
-// Helper function to render social media icons with enhanced styling
 function renderSocialIcon(platform) {
   const iconClass = "w-5 h-5";
   
