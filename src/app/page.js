@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Hero from "@/components/Hero";
-import EventComponent from "@/components/EventComponent";
+// import EventComponent from "@/components/EventComponent";
 import TestimonialSlider from "@/components/TestimonialSlider";
 import ClientsSlider from "@/components/ClientsSlider";
 import GalleryPreview from "@/components/GalleryPreview";
@@ -32,7 +32,7 @@ export default function Home() {
       <About />
       <ClientsSlider />
       <Services />
-      <EventComponent />
+      {/* <EventComponent /> */}
       <GalleryPreview />
       <TestimonialSlider />
       <ContactLocation />
