@@ -12,14 +12,14 @@ export default function FWBConfigPage() {
   const router = useRouter();
 
   const adminCards = [
-    {
-      title: "Event Management",
-      description:
-        "Buat, edit, dan kelola semua event FWB Plus. Atur detail acara, peserta, dan jadwal.",
-      icon: "M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z",
-      color: "#1a7be6",
-      path: "/fwb-config/event",
-    },
+    // {
+    //   title: "Event Management",
+    //   description:
+    //     "Buat, edit, dan kelola semua event FWB Plus. Atur detail acara, peserta, dan jadwal.",
+    //   icon: "M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z",
+    //   color: "#1a7be6",
+    //   path: "/fwb-config/event",
+    // },
     {
       title: "Microsite Builder",
       description:
