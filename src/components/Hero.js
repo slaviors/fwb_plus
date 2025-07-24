@@ -16,9 +16,9 @@ export default function Hero() {
       description: "Meeting, conference & seminar",
     },
     {
-      image: "/images/event-collage-3.png",
-      title: "Wedding Ceremonies",
-      description: "Indoor & outdoor settings",
+      image: "/images/gallery/event3.png",
+      title: "Entertainment",
+      description: "Concert, festival & live shows",
     },
     {
       image: "/images/event-collage-2.png",

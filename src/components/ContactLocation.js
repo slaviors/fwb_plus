@@ -159,7 +159,7 @@ export default function ContactLocation() {
   return (
     <section
       id="contact"
-      className="relative py-20 md:py-32 overflow-hidden bg-gradient-to-br from-blue-50 via-white to-orange-50"
+      className="relative py-12 md:py-20 overflow-hidden bg-gradient-to-br from-blue-50 via-white to-orange-50"
     >
       {/* Advanced Background Elements */}
       <div className="absolute inset-0 pointer-events-none">
@@ -246,22 +246,22 @@ export default function ContactLocation() {
       <div className="relative container mx-auto px-4">
         {/* Header */}
         <motion.div
-          className="text-center mb-16 md:mb-20"
+          className="text-center mb-10 md:mb-12"
           initial={{ opacity: 0, y: -30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
           <motion.div
-            className="inline-block mb-8"
+            className="inline-block mb-4"
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <span className="inline-flex items-center py-3 px-6 text-sm font-semibold backdrop-blur-md bg-[#1a7be6]/20 border border-white/50 text-gray-800 rounded-full shadow-lg">
+            <span className="inline-flex items-center py-2 px-4 text-sm font-semibold backdrop-blur-md bg-[#1a7be6]/20 border border-white/50 text-gray-800 rounded-full shadow-lg">
               <motion.svg
-                className="w-5 h-5 mr-3 text-[#1a7be6]"
+                className="w-4 h-4 mr-2 text-[#1a7be6]"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -280,7 +280,7 @@ export default function ContactLocation() {
           </motion.div>
 
           <motion.h2
-            className="font-unbounded text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
+            className="font-unbounded text-3xl md:text-4xl lg:text-5xl font-bold mb-4"
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -303,16 +303,16 @@ export default function ContactLocation() {
               <Image
                 src="/images/assets/logo/Logo FWB PNG Transparan.png"
                 alt="FWB Plus Logo"
-                width={200}
-                height={80}
-                className="w-auto h-8 ml-2 md:h-16 md:ml-0 lg:h-20 mt-2"
+                width={160}
+                height={64}
+                className="w-auto h-6 ml-2 md:h-12 md:ml-0 lg:h-16 mt-2"
                 priority
               />
             </motion.div>
           </motion.h2>
 
           <motion.p
-            className="text-lg md:text-xl lg:text-2xl text-gray-700 max-w-3xl mx-auto leading-relaxed"
+            className="text-base md:text-lg lg:text-xl text-gray-700 max-w-2xl mx-auto leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -325,7 +325,7 @@ export default function ContactLocation() {
 
         {/* Advanced Tab Navigation */}
         <motion.div
-          className="flex justify-center mb-12 md:mb-16"
+          className="flex justify-center mb-8 md:mb-10"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}

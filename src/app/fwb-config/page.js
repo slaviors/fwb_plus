@@ -207,32 +207,6 @@ export default function FWBConfigPage() {
                 </motion.div>
               </Link>
 
-              <div className="flex items-center space-x-3 bg-white rounded-lg px-3 py-2 shadow-sm">
-                <div className="w-8 h-8 bg-[#1a7be6] rounded-full flex items-center justify-center">
-                  <svg
-                    className="w-4 h-4 text-white"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                    />
-                  </svg>
-                </div>
-                <div className="hidden sm:block">
-                  <div className="text-sm font-rubik font-medium text-gray-900">
-                    {user.username}
-                  </div>
-                  <div className="text-xs font-rubik text-gray-500">
-                    Administrator
-                  </div>
-                </div>
-              </div>
-
               <motion.button
                 onClick={handleLogout}
                 whileHover={{ scale: 1.05 }}
@@ -342,7 +316,7 @@ export default function FWBConfigPage() {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5, delay: 0.7 }}
               >
-                <div className="w-24 h-24 bg-white shadow-lg rounded-2xl flex items-center justify-center border border-blue-100/50">
+                <div className="w-24 h-24 bg-white shadow-lg rounded-2xl hidden lg:flex items-center justify-center border border-blue-100/50">
                   <motion.div
                     whileHover={{ rotate: 10 }}
                     transition={{ duration: 0.3 }}

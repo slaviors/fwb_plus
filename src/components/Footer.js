@@ -14,8 +14,22 @@ export default function Footer() {
     setCurrentYear(new Date().getFullYear().toString());
     
     const handleScroll = () => {
-      if (window.scrollY > 200) {
+      const heroSection = document.getElementById('hero');
+      const footerSection = document.querySelector('footer');
+      const heroHeight = heroSection ? heroSection.offsetHeight : 800;
+      const scrollPosition = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+      
+      // Calculate if footer is in view
+      const footerTop = footerSection ? footerSection.offsetTop : documentHeight;
+      const isFooterInView = scrollPosition + windowHeight >= footerTop;
+      
+      // Show buttons only when scrolled past hero section and footer is not in view
+      if (scrollPosition > heroHeight - 100 && !isFooterInView) {
         setIsVisible(true);
+      } else {
+        setIsVisible(false);
       }
     };
 
@@ -123,24 +137,8 @@ export default function Footer() {
       </div>
       
       <motion.button
-        onClick={() => setReviewOpen(true)}
-        className={`fixed bottom-24 right-8 z-50 bg-blue-600 hover:bg-blue-700 text-white px-5 py-3 rounded-full shadow-lg flex items-center space-x-2 transition-all duration-200 ${
-          isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'
-        }`}
-        whileHover={{ scale: 1.08 }}
-        whileTap={{ scale: 0.95 }}
-        aria-label="Tulis Review"
-      >
-        <svg className="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 11V7a4 4 0 118 0v4m-4 4v4m0 0H7a4 4 0 01-4-4V7a4 4 0 014-4h10a4 4 0 014 4v10a4 4 0 01-4 4z" />
-        </svg>
-        <span>Tulis Review</span>
-      </motion.button>
-      <ReviewModal isOpen={reviewOpen} onClose={() => setReviewOpen(false)} />
-
-      <motion.button
         onClick={() => scrollToSection('hero')}
-        className={`fixed bottom-8 right-8 z-50 bg-gradient-to-r from-[#1a7be6] to-blue-600 p-4 rounded-full shadow-2xl hover:shadow-blue-500/30 transition-all duration-300 border border-blue-200 backdrop-blur-sm ${
+        className={`fixed bottom-24 right-8 z-50 bg-gradient-to-r from-[#1a7be6] to-blue-600 p-4 rounded-full shadow-2xl hover:shadow-blue-500/30 transition-all duration-300 border border-blue-200 backdrop-blur-sm ${
           isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}
         whileHover={{
@@ -163,6 +161,27 @@ export default function Footer() {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 10l7-7m0 0l7 7m-7-7v18" />
         </motion.svg>
       </motion.button>
+
+      <motion.button
+        onClick={() => setReviewOpen(true)}
+        className={`fixed bottom-8 right-8 z-50 bg-orange-600/80 hover:bg-orange-700/80 backdrop-blur-sm border text-white px-5 py-3 rounded-full shadow-lg flex items-center space-x-2 transition-all duration-200 ${
+          isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'
+        }`}
+        whileHover={{ scale: 1.08 }}
+        whileTap={{ scale: 0.95 }}
+        aria-label="Beri Ulasan"
+      >
+        <motion.svg
+          className="w-6 h-6 text-white"
+          fill="currentColor"
+          stroke="none"
+          viewBox="0 0 24 24"
+        >
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+        </motion.svg>
+        <span>Beri Ulasan</span>
+      </motion.button>
+      <ReviewModal isOpen={reviewOpen} onClose={() => setReviewOpen(false)} />
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="py-16">

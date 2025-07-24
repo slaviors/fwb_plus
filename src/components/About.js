@@ -147,8 +147,8 @@ export default function About() {
               <Image
                 src="/images/assets/logo/fwb-text.svg"
                 alt="FWB Plus"
-                width={50}
-                height={15}
+                width={40}
+                height={12}
                 className="inline-block mx-1 align-middle brightness-0 saturate-100"
                 style={{ filter: 'invert(19%) sepia(10%) saturate(1029%) hue-rotate(184deg) brightness(97%) contrast(88%)' }}
               />{" "}
