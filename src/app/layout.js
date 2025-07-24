@@ -6,19 +6,19 @@ import { ConditionalNavbar } from "@/components/ConditionalNavbar";
 export const metadata = {
   title: {
     default:
-      "FWB Plus | Event Organizer & Penyelenggara Acara di Jogja, Semarang",
-    template: "%s | FWB Plus Event Organizer",
+      "FWB+ | Event Organizer & Penyelenggara Acara di Jogja, Semarang",
+    template: "%s | FWB+ Event Organizer",
   },
   description:
-    "FWB Plus adalah penyelenggara acara (event organizer) profesional di Jogja dan Semarang. Sebagai EO terpercaya, kami menyediakan jasa untuk corporate gathering, pameran (exhibition), konser, dan penyewaan alat event.",
+    "FWB+ adalah penyelenggara acara (event organizer) profesional di Jogja dan Semarang. Sebagai EO terpercaya, kami menyediakan jasa untuk corporate gathering, pameran (exhibition), konser, dan penyewaan alat event.",
   keywords: [
     // Brand & Variasi Nama
-    "FWB Plus",
-    "FWB Plus EO",
-    "FWB Plus Event Organizer",
-    "FWB Plus Jogja",
-    "FWB Plus Semarang",
-    "fwb-plus.vercel.app",
+    "FWB+",
+    "FWB+ EO",
+    "FWB+ Event Organizer",
+    "FWB+ Jogja",
+    "FWB+ Semarang",
+    "fwbplus.id",
 
     // Umum: Event Organizer
     "event organizer",
