@@ -628,7 +628,8 @@ export default function About() {
           </motion.div>
         </div>
 
-        {/* Achievements Section */}
+        {/* Achievements Section - TEMPORARILY DISABLED */}
+        {/*
         <motion.div
           className="mb-12 md:mb-16 relative z-20"
           variants={staggerContainer}
@@ -675,9 +676,7 @@ export default function About() {
                 custom={6 + index}
                 whileHover={{ scale: 1.08, y: -8 }}
               >
-                {/* Glassmorphism achievement card with enhanced effects */}
                 <div className="relative overflow-hidden rounded-3xl p-1 bg-gradient-to-br from-white/30 via-white/20 to-transparent backdrop-blur-xl border border-white/40 shadow-xl group-hover:shadow-3xl transition-all duration-500">
-                  {/* Dynamic color border based on achievement */}
                   <div
                     className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-30 transition-opacity duration-500"
                     style={{
@@ -685,9 +684,7 @@ export default function About() {
                     }}
                   />
 
-                  {/* Inner glassmorphism layer */}
                   <div className="relative rounded-[22px] bg-white/50 backdrop-blur-md border border-white/60 p-4 lg:p-6 text-center overflow-hidden">
-                    {/* Animated background with achievement color */}
                     <div
                       className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500"
                       style={{
@@ -695,7 +692,6 @@ export default function About() {
                       }}
                     />
 
-                    {/* Floating decorative elements */}
                     <motion.div
                       className="absolute -top-3 -right-3 w-12 h-12 rounded-full blur-lg opacity-60"
                       style={{
@@ -727,7 +723,6 @@ export default function About() {
                       }}
                     />
 
-                    {/* Achievement number with enhanced styling */}
                     <div className="relative z-10 mb-3">
                       <motion.div
                         className="relative inline-block"
@@ -740,7 +735,6 @@ export default function About() {
                           stiffness: 150,
                         }}
                       >
-                        {/* Number glow effect */}
                         <div
                           className="absolute inset-0 text-3xl lg:text-4xl xl:text-5xl font-unbounded font-bold blur-lg opacity-30"
                           style={{ color: achievement.color }}
@@ -748,7 +742,6 @@ export default function About() {
                           {achievement.number}
                         </div>
 
-                        {/* Main number */}
                         <div
                           className="relative text-3xl lg:text-4xl xl:text-5xl font-unbounded font-bold"
                           style={{ color: achievement.color }}
@@ -758,7 +751,6 @@ export default function About() {
                       </motion.div>
                     </div>
 
-                    {/* Achievement label with micro animations */}
                     <motion.div
                       className="relative z-10"
                       initial={{ opacity: 0, y: 20 }}
@@ -771,7 +763,6 @@ export default function About() {
                         {achievement.label}
                       </p>
 
-                      {/* Underline effect */}
                       <motion.div
                         className="mt-2 h-0.5 rounded-full mx-auto"
                         style={{ backgroundColor: achievement.color }}
@@ -785,7 +776,6 @@ export default function About() {
                       />
                     </motion.div>
 
-                    {/* Corner accent decorations */}
                     <div
                       className="absolute top-3 left-3 w-6 h-6 border-l-2 border-t-2 rounded-tl-lg opacity-20 group-hover:opacity-40 transition-opacity duration-300"
                       style={{ borderColor: achievement.color }}
@@ -800,6 +790,7 @@ export default function About() {
             ))}
           </div>
         </motion.div>
+        */}
       </div>
     </section>
   );
