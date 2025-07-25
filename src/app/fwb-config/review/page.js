@@ -123,6 +123,8 @@ export default function ReviewAdminPage() {
   const [filter, setFilter] = useState("7hari");
   const [customStart, setCustomStart] = useState("");
   const [customEnd, setCustomEnd] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [reviewsPerPage] = useState(10);
   const router = useRouter();
 
   const checkAuth = useCallback(async () => {
@@ -153,6 +155,11 @@ export default function ReviewAdminPage() {
         setLoading(false);
       });
   }, [user]);
+
+  // Reset to first page when filter changes
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [filter, customStart, customEnd]);
 
   const handleLogout = async () => {
     try {
@@ -202,6 +209,12 @@ export default function ReviewAdminPage() {
   if (!user) return null;
 
   const filtered = filterByRange(reviews, filter, customStart, customEnd);
+
+  // Pagination calculations
+  const totalPages = Math.ceil(filtered.length / reviewsPerPage);
+  const startIndex = (currentPage - 1) * reviewsPerPage;
+  const endIndex = startIndex + reviewsPerPage;
+  const currentReviews = filtered.slice(startIndex, endIndex);
 
   const averageRating =
     filtered.length > 0
@@ -348,14 +361,14 @@ export default function ReviewAdminPage() {
       </div>
 
       {/* Admin Navbar */}
-      <nav className="bg-white/95 backdrop-blur-md shadow-md border-b border-gray-100 relative z-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16">
+      <nav className="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-md shadow-md border-b border-gray-100 z-50 transition-all duration-300">
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 xl:px-8">
+          <div className="flex justify-between h-14 sm:h-16">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
-              className="flex items-center space-x-4"
+              className="flex items-center space-x-2 sm:space-x-4"
             >
               <motion.button
                 onClick={() => router.push("/fwb-config")}
@@ -364,7 +377,7 @@ export default function ReviewAdminPage() {
                 className="flex items-center text-[#1a7be6] hover:text-blue-700 font-medium"
               >
                 <svg
-                  className="w-5 h-5 mr-2"
+                  className="w-4 h-4 sm:w-5 sm:h-5 mr-1 sm:mr-2"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -377,27 +390,19 @@ export default function ReviewAdminPage() {
                   />
                 </svg>
               </motion.button>
-              <div className="flex items-center space-x-3">
-                <div className="w-10 h-10 bg-[#f35e0e] rounded-xl flex items-center justify-center">
-                  <svg
-                    className="w-6 h-6 text-white"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0zM2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7-1.274 4.057-5.065 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-                    />
-                  </svg>
+              <div className="flex items-center space-x-2 sm:space-x-3">
+                <div className="w-20 h-20 sm:w-12 sm:h-12 lg:w-16 lg:h-16 rounded-xl flex items-center justify-center p-1">
+                  <img 
+                    src="/images/assets/logo/Logo FWB PNG Transparan.png" 
+                    alt="FWB Plus" 
+                    className="w-full h-full object-contain"
+                  />
                 </div>
-                <div>
-                  <h1 className="text-xl font-unbounded font-bold text-gray-900">
-                    Panel
+                <div className="hidden xs:block sm:block">
+                  <h1 className="text-sm sm:text-lg lg:text-xl font-unbounded font-bold text-gray-900">
+                    Admin Panel
                   </h1>
-                  <p className="text-xs font-rubik text-gray-500">Review</p>
+                  <p className="text-xs font-rubik text-gray-500 hidden sm:block">Review Management</p>
                 </div>
               </div>
             </motion.div>
@@ -406,17 +411,17 @@ export default function ReviewAdminPage() {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="flex items-center space-x-4"
+              className="flex items-center space-x-2 sm:space-x-4"
             >
               <motion.button
                 onClick={handleLogout}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="relative overflow-hidden px-5 py-2 rounded-full bg-[#f35e0e] text-white font-medium text-sm shadow-md group"
+                className="relative overflow-hidden px-3 py-2 sm:px-5 sm:py-2 rounded-full bg-[#f35e0e] text-white font-medium text-xs sm:text-sm shadow-md group"
               >
                 <span className="relative z-10 flex items-center justify-center">
                   <svg
-                    className="w-4 h-4 mr-1"
+                    className="w-3 h-3 sm:w-4 sm:h-4 sm:mr-1"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -428,7 +433,7 @@ export default function ReviewAdminPage() {
                       d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
                     />
                   </svg>
-                  <span>Logout</span>
+                  <span className="sm:inline pl-2">Logout</span>
                 </span>
                 <motion.span
                   className="absolute inset-0 bg-orange-600 z-0"
@@ -442,25 +447,29 @@ export default function ReviewAdminPage() {
         </div>
       </nav>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-12 md:py-20">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 relative z-10 pt-20 sm:pt-24 pb-8 md:pb-12 lg:pb-20">
         {/* Header Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-12"
+          className="text-center mb-8 sm:mb-12"
         >
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="font-unbounded text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-gray-900"
+            className="font-unbounded text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold leading-tight text-gray-900"
           >
             Kelola Review
-            <span className="relative">
-              <span className="relative z-10 text-[#1a7be6]"> FWB Plus </span>
+            <span className="relative inline-block ml-2">
+              <img 
+                src="/images/assets/logo/Logo FWB PNG Transparan.png" 
+                alt="FWB Plus" 
+                className="inline-block h-8 md:h-10 lg:h-12 xl:h-14 w-auto object-contain align-baseline"
+              />
               <motion.span
-                className="absolute -bottom-2 left-0 right-0 h-3 bg-blue-100 rounded-full -z-0"
+                className="absolute -bottom-1 md:-bottom-2 left-0 right-0 h-1 bg-blue-100 rounded-full -z-0"
                 initial={{ width: 0 }}
                 animate={{ width: "100%" }}
                 transition={{ duration: 1, delay: 1 }}
@@ -472,23 +481,23 @@ export default function ReviewAdminPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="mt-4 md:mt-6 text-lg md:text-xl text-gray-600 max-w-lg mx-auto font-rubik"
+            className="mt-3 md:mt-4 lg:mt-6 text-base md:text-lg lg:text-xl text-gray-600 max-w-lg mx-auto font-rubik px-4"
           >
             Analisis dan kelola review pelanggan dengan mudah. Export data dalam
             berbagai format.
           </motion.p>
 
           {/* Stats Cards */}
-          <div className="mt-8 grid grid-cols-3 sm:grid-cols-3 gap-6 max-w-4xl mx-auto">
+          <div className="mt-6 sm:mt-8 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 md:gap-6 max-w-4xl mx-auto">
             {[
               {
                 number: filtered.length,
-                label: "Total Review",
+                label: "Reviews",
                 delay: 0.3,
                 color: "#1a7be6",
                 icon: (
                   <svg
-                    className="w-8 h-8"
+                    className="w-6 h-6 md:w-8 md:h-8"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -509,7 +518,7 @@ export default function ReviewAdminPage() {
                 color: "#f59e0b",
                 icon: (
                   <svg
-                    className="w-8 h-8"
+                    className="w-6 h-6 md:w-8 md:h-8"
                     fill="currentColor"
                     viewBox="0 0 24 24"
                   >
@@ -520,12 +529,12 @@ export default function ReviewAdminPage() {
               },
               {
                 number: reviews.length,
-                label: "Total Semua Review",
+                label: "Total Semua Reviews",
                 delay: 0.7,
                 color: "#10b981",
                 icon: (
                   <svg
-                    className="w-8 h-8"
+                    className="w-6 h-6 md:w-8 md:h-8"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -546,16 +555,19 @@ export default function ReviewAdminPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: stat.delay }}
                 whileHover={{ y: -5 }}
-                className="p-6 rounded-2xl bg-white shadow-lg hover:shadow-xl transition-all duration-300 border border-blue-100/50"
+                className="p-4 md:p-6 rounded-2xl bg-white shadow-lg hover:shadow-xl transition-all duration-300 border border-blue-100/50"
               >
+                <div className="flex items-center justify-center mb-2">
+                  <div style={{ color: stat.color }}>{stat.icon}</div>
+                </div>
                 <h3
-                  className="font-unbounded text-2xl md:text-3xl font-bold text-center"
+                  className="font-unbounded text-xl md:text-2xl lg:text-3xl font-bold text-center"
                   style={{ color: stat.color }}
                 >
                   {stat.number}
                   {stat.suffix}
                 </h3>
-                <p className="text-sm text-gray-600 font-rubik text-center">
+                <p className="text-xs md:text-sm text-gray-600 font-rubik text-center mt-1">
                   {stat.label}
                 </p>
               </motion.div>
@@ -568,12 +580,12 @@ export default function ReviewAdminPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="bg-white rounded-3xl shadow-xl p-6 md:p-8 border border-blue-100/50 mb-8"
+          className="bg-white rounded-2xl sm:rounded-3xl shadow-xl p-4 sm:p-6 md:p-8 border border-blue-100/50 mb-6 sm:mb-8"
         >
-          <div className="flex items-center mb-6">
-            <div className="w-10 h-10 bg-[#1a7be6] rounded-xl flex items-center justify-center mr-3">
+          <div className="flex items-center mb-4 sm:mb-6">
+            <div className="w-8 h-8 sm:w-10 sm:h-10 bg-[#1a7be6] rounded-xl flex items-center justify-center mr-2 sm:mr-3">
               <svg
-                className="w-5 h-5 text-white"
+                className="w-4 h-4 sm:w-5 sm:h-5 text-white"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -586,32 +598,33 @@ export default function ReviewAdminPage() {
                 />
               </svg>
             </div>
-            <h3 className="text-xl font-unbounded font-bold text-gray-900">
+            <h3 className="text-lg sm:text-xl font-unbounded font-bold text-gray-900">
               Filter & Export
             </h3>
           </div>
 
           {/* Filter Buttons */}
-          <div className="flex flex-wrap gap-3 mb-6">
+          <div className="grid grid-cols-2 sm:flex sm:flex-wrap gap-2 md:gap-3 mb-6">
             {[
-              { key: "24jam", label: "24 Jam Terakhir" },
-              { key: "7hari", label: "7 Hari Terakhir" },
-              { key: "1bulan", label: "1 Bulan Terakhir" },
-              { key: "all", label: "Semua" },
-              { key: "custom", label: "Custom" },
+              { key: "24jam", label: "24 Jam", shortLabel: "24h" },
+              { key: "7hari", label: "7 Hari", shortLabel: "7h" },
+              { key: "1bulan", label: "1 Bulan", shortLabel: "1bln" },
+              { key: "all", label: "Semua", shortLabel: "All" },
+              { key: "custom", label: "Custom", shortLabel: "Custom" },
             ].map((filterOption) => (
               <motion.button
                 key={filterOption.key}
                 onClick={() => setFilter(filterOption.key)}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className={`px-4 py-2 rounded-full font-medium text-sm transition-all duration-300 ${
+                className={`px-3 py-2 rounded-full font-medium text-xs sm:text-sm transition-all duration-300 text-center ${
                   filter === filterOption.key
                     ? "bg-[#1a7be6] text-white shadow-md"
                     : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                 }`}
               >
-                {filterOption.label}
+                <span className="sm:hidden">{filterOption.shortLabel}</span>
+                <span className="hidden sm:inline">{filterOption.label}</span>
               </motion.button>
             ))}
           </div>
@@ -653,20 +666,20 @@ export default function ReviewAdminPage() {
           </AnimatePresence>
 
           {/* Export Buttons */}
-          <div className="flex flex-wrap gap-3">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:flex md:flex-wrap gap-2 md:gap-3">
             {exportButtons.map((btn, index) => (
               <motion.button
                 key={btn.label}
                 onClick={btn.action}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className={`px-4 py-2 rounded-full text-white font-medium text-sm shadow-md transition-all duration-300 ${btn.color}`}
+                className={`px-3 py-2 rounded-full text-white font-medium text-xs sm:text-sm shadow-md transition-all duration-300 flex items-center justify-center ${btn.color}`}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <span className="mr-2">{btn.icon}</span>
-                Export {btn.label}
+                <span className="mr-1 sm:mr-2">{btn.icon}</span>
+                <span className="truncate">Export {btn.label}</span>
               </motion.button>
             ))}
           </div>
@@ -695,8 +708,13 @@ export default function ReviewAdminPage() {
                 />
               </svg>
             </div>
-            <h3 className="text-xl font-unbounded font-bold text-gray-900">
+            <h3 className="text-lg md:text-xl font-unbounded font-bold text-gray-900">
               Daftar Review ({filtered.length})
+              {totalPages > 1 && (
+                <span className="block text-xs md:text-sm font-rubik font-normal text-gray-500 mt-1">
+                  Halaman {currentPage} dari {totalPages}
+                </span>
+              )}
             </h3>
           </div>
 
@@ -731,31 +749,31 @@ export default function ReviewAdminPage() {
             </motion.div>
           ) : (
             <div className="space-y-4">
-              {filtered.map((review, index) => (
+              {currentReviews.map((review, index) => (
                 <motion.div
                   key={review._id}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   whileHover={{ y: -2 }}
-                  className="p-6 rounded-2xl bg-gradient-to-r from-blue-50/50 to-white border border-blue-100/50 hover:shadow-lg transition-all duration-300"
+                  className="p-4 md:p-6 rounded-2xl bg-gradient-to-r from-blue-50/50 to-white border border-blue-100/50 hover:shadow-lg transition-all duration-300"
                 >
-                  <div className="flex items-start justify-between mb-4">
+                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-4 space-y-3 sm:space-y-0">
                     <div className="flex items-center space-x-3">
-                      <div className="w-12 h-12 bg-[#1a7be6] rounded-full flex items-center justify-center">
-                        <span className="text-white font-unbounded font-bold text-lg">
+                      <div className="w-10 h-10 md:w-12 md:h-12 bg-[#1a7be6] rounded-full flex items-center justify-center flex-shrink-0">
+                        <span className="text-white font-unbounded font-bold text-sm md:text-lg">
                           {review.name.charAt(0).toUpperCase()}
                         </span>
                       </div>
-                      <div>
-                        <h4 className="font-unbounded font-semibold text-gray-900">
+                      <div className="min-w-0 flex-1">
+                        <h4 className="font-unbounded font-semibold text-gray-900 text-sm md:text-base truncate">
                           {review.name}
                         </h4>
                         <div className="flex items-center mt-1">
                           {[...Array(5)].map((_, i) => (
                             <svg
                               key={i}
-                              className={`w-4 h-4 ${
+                              className={`w-3 h-3 md:w-4 md:h-4 ${
                                 i < review.star
                                   ? "text-yellow-400"
                                   : "text-gray-300"
@@ -766,13 +784,13 @@ export default function ReviewAdminPage() {
                               <path d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
                             </svg>
                           ))}
-                          <span className="ml-2 text-sm text-gray-600 font-rubik">
+                          <span className="ml-2 text-xs md:text-sm text-gray-600 font-rubik">
                             {review.star}/5
                           </span>
                         </div>
                       </div>
                     </div>
-                    <div className="text-right">
+                    <div className="text-left sm:text-right flex-shrink-0">
                       <div className="text-xs text-gray-500 font-rubik">
                         {new Date(review.createdAt).toLocaleDateString(
                           "id-ID",
@@ -796,13 +814,204 @@ export default function ReviewAdminPage() {
                     </div>
                   </div>
 
-                  <div className="bg-white/70 rounded-xl p-4 border border-blue-100/30">
-                    <p className="text-gray-700 font-rubik leading-relaxed">
+                  <div className="bg-white/70 rounded-xl p-3 md:p-4 border border-blue-100/30">
+                    <p className="text-gray-700 font-rubik leading-relaxed text-sm md:text-base break-words">
                       "{review.message}"
                     </p>
                   </div>
                 </motion.div>
               ))}
+
+              {/* Pagination Component */}
+              {totalPages > 1 && (
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.3 }}
+                  className="mt-8 space-y-4"
+                >
+                  {/* Mobile Pagination Info */}
+                  <div className="text-center">
+                    <div className="text-sm text-gray-600 font-rubik">
+                      Menampilkan {startIndex + 1} - {Math.min(endIndex, filtered.length)} dari {filtered.length} review
+                    </div>
+                  </div>
+
+                  {/* Desktop Pagination */}
+                  <div className="hidden sm:flex items-center justify-between p-6 bg-gradient-to-r from-blue-50/50 to-white rounded-2xl border border-blue-100/50">
+                    <div className="text-sm text-gray-600 font-rubik">
+                      Menampilkan {startIndex + 1} - {Math.min(endIndex, filtered.length)} dari {filtered.length} review
+                    </div>
+
+                    <div className="flex items-center space-x-2">
+                      {/* Previous Button */}
+                      <motion.button
+                        onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+                        disabled={currentPage === 1}
+                        whileHover={{ scale: currentPage === 1 ? 1 : 1.05 }}
+                        whileTap={{ scale: currentPage === 1 ? 1 : 0.95 }}
+                        className={`px-3 py-2 rounded-xl font-medium text-sm transition-all duration-300 flex items-center ${
+                          currentPage === 1
+                            ? "bg-gray-100 text-gray-400 cursor-not-allowed"
+                            : "bg-white text-[#1a7be6] border border-blue-200 hover:bg-blue-50 shadow-sm"
+                        }`}
+                      >
+                        <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                        </svg>
+                        Prev
+                      </motion.button>
+
+                      {/* Page Numbers */}
+                      <div className="flex items-center space-x-1">
+                        {(() => {
+                          const pages = [];
+                          const maxVisiblePages = 5;
+                          let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+                          let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+
+                          if (endPage - startPage < maxVisiblePages - 1) {
+                            startPage = Math.max(1, endPage - maxVisiblePages + 1);
+                          }
+
+                          if (startPage > 1) {
+                            pages.push(
+                              <motion.button
+                                key={1}
+                                onClick={() => setCurrentPage(1)}
+                                whileHover={{ scale: 1.1 }}
+                                whileTap={{ scale: 0.9 }}
+                                className="w-8 h-8 rounded-lg bg-white text-[#1a7be6] border border-blue-200 hover:bg-blue-50 font-medium text-sm transition-all duration-300"
+                              >
+                                1
+                              </motion.button>
+                            );
+                            if (startPage > 2) {
+                              pages.push(
+                                <span key="ellipsis1" className="text-gray-400 text-sm">...</span>
+                              );
+                            }
+                          }
+
+                          for (let page = startPage; page <= endPage; page++) {
+                            pages.push(
+                              <motion.button
+                                key={page}
+                                onClick={() => setCurrentPage(page)}
+                                whileHover={{ scale: page === currentPage ? 1 : 1.1 }}
+                                whileTap={{ scale: page === currentPage ? 1 : 0.9 }}
+                                className={`w-8 h-8 rounded-lg font-medium text-sm transition-all duration-300 ${
+                                  page === currentPage
+                                    ? "bg-[#1a7be6] text-white shadow-md"
+                                    : "bg-white text-[#1a7be6] border border-blue-200 hover:bg-blue-50"
+                                }`}
+                              >
+                                {page}
+                              </motion.button>
+                            );
+                          }
+
+                          if (endPage < totalPages) {
+                            if (endPage < totalPages - 1) {
+                              pages.push(
+                                <span key="ellipsis2" className="text-gray-400 text-sm">...</span>
+                              );
+                            }
+                            pages.push(
+                              <motion.button
+                                key={totalPages}
+                                onClick={() => setCurrentPage(totalPages)}
+                                whileHover={{ scale: 1.1 }}
+                                whileTap={{ scale: 0.9 }}
+                                className="w-8 h-8 rounded-lg bg-white text-[#1a7be6] border border-blue-200 hover:bg-blue-50 font-medium text-sm transition-all duration-300"
+                              >
+                                {totalPages}
+                              </motion.button>
+                            );
+                          }
+
+                          return pages;
+                        })()}
+                      </div>
+
+                      {/* Next Button */}
+                      <motion.button
+                        onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
+                        disabled={currentPage === totalPages}
+                        whileHover={{ scale: currentPage === totalPages ? 1 : 1.05 }}
+                        whileTap={{ scale: currentPage === totalPages ? 1 : 0.95 }}
+                        className={`px-3 py-2 rounded-xl font-medium text-sm transition-all duration-300 flex items-center ${
+                          currentPage === totalPages
+                            ? "bg-gray-100 text-gray-400 cursor-not-allowed"
+                            : "bg-white text-[#1a7be6] border border-blue-200 hover:bg-blue-50 shadow-sm"
+                        }`}
+                      >
+                        Next
+                        <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </motion.button>
+                    </div>
+                  </div>
+
+                  {/* Mobile Pagination */}
+                  <div className="sm:hidden space-y-4 p-4 bg-gradient-to-r from-blue-50/50 to-white rounded-2xl border border-blue-100/50">
+                    {/* Mobile Navigation Buttons */}
+                    <div className="flex justify-between items-center">
+                      <motion.button
+                        onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+                        disabled={currentPage === 1}
+                        whileHover={{ scale: currentPage === 1 ? 1 : 1.05 }}
+                        whileTap={{ scale: currentPage === 1 ? 1 : 0.95 }}
+                        className={`px-4 py-2 rounded-xl font-medium text-sm transition-all duration-300 flex items-center ${
+                          currentPage === 1
+                            ? "bg-gray-100 text-gray-400 cursor-not-allowed"
+                            : "bg-white text-[#1a7be6] border border-blue-200 hover:bg-blue-50 shadow-sm"
+                        }`}
+                      >
+                        <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                        </svg>
+                        Prev
+                      </motion.button>
+
+                      <div className="text-sm font-medium text-gray-900">
+                        {currentPage} / {totalPages}
+                      </div>
+
+                      <motion.button
+                        onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
+                        disabled={currentPage === totalPages}
+                        whileHover={{ scale: currentPage === totalPages ? 1 : 1.05 }}
+                        whileTap={{ scale: currentPage === totalPages ? 1 : 0.95 }}
+                        className={`px-4 py-2 rounded-xl font-medium text-sm transition-all duration-300 flex items-center ${
+                          currentPage === totalPages
+                            ? "bg-gray-100 text-gray-400 cursor-not-allowed"
+                            : "bg-white text-[#1a7be6] border border-blue-200 hover:bg-blue-50 shadow-sm"
+                        }`}
+                      >
+                        Next
+                        <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </motion.button>
+                    </div>
+
+                    {/* Quick Jump Dropdown */}
+                    <select
+                      value={currentPage}
+                      onChange={(e) => setCurrentPage(Number(e.target.value))}
+                      className="w-full px-3 py-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#1a7be6] focus:border-[#1a7be6] transition-colors font-rubik text-sm bg-white"
+                    >
+                      {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                        <option key={page} value={page}>
+                          Halaman {page} dari {totalPages}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </motion.div>
+              )}
             </div>
           )}
         </motion.div>

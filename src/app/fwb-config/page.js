@@ -159,21 +159,28 @@ export default function FWBConfigPage() {
         />
       </div>
 
-      <nav className="bg-white/95 backdrop-blur-md shadow-md border-b border-gray-100 relative z-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16">
+      <nav className="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-md shadow-md border-b border-gray-100 z-50 transition-all duration-300">
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 xl:px-8">
+          <div className="flex justify-between h-14 sm:h-16">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
-              className="flex items-center space-x-4"
+              className="flex items-center space-x-2 sm:space-x-4"
             >
-              <div className="flex items-center space-x-3">
+              <div className="flex items-center space-x-2 sm:space-x-3">
+                <div className="w-20 h-20 rounded-xl flex items-center justify-center p-1">
+                  <img 
+                    src="/images/assets/logo/Logo FWB PNG Transparan.png" 
+                    alt="FWB Plus" 
+                    className="w-full h-full object-contain"
+                  />
+                </div>
                 <div>
-                  <h1 className="text-xl font-unbounded font-bold text-gray-900">
-                    Panel
+                  <h1 className="text-sm sm:text-lg lg:text-xl font-unbounded font-bold text-gray-900">
+                    Admin Panel
                   </h1>
-                  <p className="text-xs font-rubik text-gray-500">FWB Plus</p>
+                  <p className="text-xs font-rubik text-gray-500 hidden sm:block">FWB Plus</p>
                 </div>
               </div>
             </motion.div>
@@ -182,16 +189,16 @@ export default function FWBConfigPage() {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="flex items-center space-x-4"
+              className="flex items-center space-x-2 sm:space-x-4"
             >
               <Link href="/">
                 <motion.div
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="text-gray-600 hover:text-[#1a7be6] px-3 py-2 rounded-lg text-sm font-medium transition-colors flex items-center"
+                  className="text-gray-600 hover:text-[#1a7be6] px-2 py-2 sm:px-3 sm:py-2 rounded-lg text-xs sm:text-sm font-medium transition-colors flex items-center"
                 >
                   <svg
-                    className="w-4 h-4 mr-1"
+                    className="w-3 h-3 sm:w-4 sm:h-4 sm:mr-1"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -203,7 +210,7 @@ export default function FWBConfigPage() {
                       d="M10 19l-7-7m0 0l7-7m-7 7h18"
                     />
                   </svg>
-                  Website
+                  <span className="hidden sm:inline">Website</span>
                 </motion.div>
               </Link>
 
@@ -211,11 +218,11 @@ export default function FWBConfigPage() {
                 onClick={handleLogout}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="relative overflow-hidden px-5 py-2 rounded-full bg-[#f35e0e] text-white font-medium text-sm shadow-md group"
+                className="relative overflow-hidden px-3 py-2 sm:px-5 sm:py-2 rounded-full bg-[#f35e0e] text-white font-medium text-xs sm:text-sm shadow-md group"
               >
                 <span className="relative z-10 flex items-center justify-center">
                   <svg
-                    className="w-4 h-4 mr-1"
+                    className="w-3 h-3 sm:w-4 sm:h-4 sm:mr-1"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -227,7 +234,7 @@ export default function FWBConfigPage() {
                       d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
                     />
                   </svg>
-                  <span>Logout</span>
+                  <span className="hidden sm:inline">Logout</span>
                 </span>
                 <motion.span
                   className="absolute inset-0 bg-orange-600 z-0"
@@ -241,7 +248,7 @@ export default function FWBConfigPage() {
         </div>
       </nav>
 
-      <main className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 relative z-10">
+      <main className="max-w-7xl mx-auto pt-20 sm:pt-24 pb-8 px-3 sm:px-4 md:px-6 lg:px-8 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -264,7 +271,7 @@ export default function FWBConfigPage() {
                       {user.username}!{" "}
                     </span>
                     <motion.span
-                      className="absolute -bottom-2 left-0 right-0 h-3 bg-blue-100 rounded-full -z-0"
+                      className="absolute -bottom-1 left-0 right-0 h-1 bg-blue-100 rounded-full -z-0"
                       initial={{ width: 0 }}
                       animate={{ width: "100%" }}
                       transition={{ duration: 1, delay: 1 }}
@@ -316,7 +323,7 @@ export default function FWBConfigPage() {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5, delay: 0.7 }}
               >
-                <div className="w-24 h-24 bg-white shadow-lg rounded-2xl hidden lg:flex items-center justify-center border border-blue-100/50">
+                <div className="w-24 h-24  rounded-2xl hidden lg:flex items-center justify-center">
                   <motion.div
                     whileHover={{ rotate: 10 }}
                     transition={{ duration: 0.3 }}

@@ -181,7 +181,7 @@ export default function About() {
                 <div
                   className="absolute top-0 left-0 bottom-0 right-0"
                   style={{
-                    backdropFilter: "blur(2px)",
+                    backdropFilter: "blur(1px)",
                     mask: "linear-gradient(rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 1) 45%, rgba(0, 0, 0, 1) 65%, rgba(0, 0, 0, 0) 75%)",
                     WebkitMask:
                       "linear-gradient(rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 1) 45%, rgba(0, 0, 0, 1) 65%, rgba(0, 0, 0, 0) 75%)",
@@ -190,7 +190,7 @@ export default function About() {
                 <div
                   className="absolute top-0 left-0 bottom-0 right-0"
                   style={{
-                    backdropFilter: "blur(4px)",
+                    backdropFilter: "blur(2px)",
                     mask: "linear-gradient(rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 1) 65%, rgba(0, 0, 0, 1) 85%, rgba(0, 0, 0, 0) 95%)",
                     WebkitMask:
                       "linear-gradient(rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 1) 65%, rgba(0, 0, 0, 1) 85%, rgba(0, 0, 0, 0) 95%)",
@@ -199,7 +199,7 @@ export default function About() {
                 <div
                   className="absolute top-0 left-0 bottom-0 right-0"
                   style={{
-                    backdropFilter: "blur(8px)",
+                    backdropFilter: "blur(4px)",
                     mask: "linear-gradient(rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 85%)",
                     WebkitMask:
                       "linear-gradient(rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 85%)",
@@ -297,7 +297,7 @@ export default function About() {
               >
                 <p>
                   Berawal dari ide tiga individu berpengalaman sejak tahun{" "}
-                  <span className="font-semibold text-[#1a7be6]">2005</span>,
+                  <span className="font-semibold text-[#1a7be6]">2005</span>, dengan total pengalaman lebih dari 100 event jika digabungkan,
                   kami resmi mendirikan{" "}
                   <Image
                     src="/images/assets/logo/fwb-text.svg"
@@ -329,7 +329,7 @@ export default function About() {
                   />{" "}
                   berasal dari semangat{" "}
                   <span className="font-semibold text-[#1a7be6]">
-                    Friends With Benefit
+                    Friends With Benefits
                   </span>{" "}
                   dalam arti positif, yaitu membangun kolaborasi yang saling
                   menguntungkan. Kami terus berkomitmen

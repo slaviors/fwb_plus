@@ -43,7 +43,6 @@ export default function Hero() {
       id="hero"
       className="relative min-h-[90vh] md:min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-blue-50 via-white to-blue-50"
     >
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-12 md:py-20">
         <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center mt-11">
           {/* Left Content */}
@@ -111,10 +110,15 @@ export default function Hero() {
             >
               Kami hadir untuk membantu merancang dan mengeksekusi berbagai
               jenis event dengan{" "}
-              <span className="font-semibold text-[#1a7be6]">Integritas</span>,{" "}
-              <span className="font-semibold text-[#1a7be6]">Kreativitas</span>,
-              dan{" "}
-              <span className="font-semibold text-[#1a7be6]">
+              <span className="text-xl md:text-2xl font-semibold text-[#1a7be6]">
+                Integritas
+              </span>
+              ,{" "}
+              <span className="text-xl md:text-2xl font-semibold text-[#1a7be6]">
+                Kreativitas
+              </span>
+              , dan{" "}
+              <span className="text-xl md:text-2xl font-semibold text-[#1a7be6]">
                 Komitmen Profesional
               </span>{" "}
               demi hasil yang memberi manfaat nyata bagi semua pihak.
@@ -131,7 +135,7 @@ export default function Hero() {
                 <motion.div
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="relative overflow-hidden px-8 py-4 rounded-full bg-[#1a7be6] text-white font-medium text-lg shadow-lg shadow-blue-200 group"
+                  className="relative overflow-hidden px-6 py-3 sm:px-8 sm:py-4 rounded-full bg-[#1a7be6] text-white font-medium text-lg shadow-lg shadow-blue-200 group"
                 >
                   <span className="relative z-10 flex items-center justify-center">
                     <span>Hubungi Kami</span>
@@ -158,7 +162,6 @@ export default function Hero() {
                   />
                 </motion.div>
               </Link>
-              
             </motion.div>
           </motion.div>
 

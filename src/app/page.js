@@ -15,7 +15,7 @@ export default function Home() {
     <main className="min-h-screen relative">
       <Hero />
       <About />
-      <ClientsSlider />
+      {/* <ClientsSlider /> */}
       <Services />
       {/* <EventComponent /> */}
       {/* <GalleryPreview /> */}

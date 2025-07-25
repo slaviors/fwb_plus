@@ -16,7 +16,6 @@ export default function ContactLocation() {
 
   const eventTypes = [
     "Corporate Event",
-    "Wedding",
     "Birthday Party",
     "Conference",
     "Product Launch",
@@ -41,7 +40,7 @@ export default function ContactLocation() {
         </svg>
       ),
       title: "Telepon",
-      value: "081944074542",
+      value: "+62 0819 4407 4542",
       description: "Hubungi kami untuk konsultasi gratis",
     },
     {
@@ -86,10 +85,9 @@ export default function ContactLocation() {
           />
         </svg>
       ),
-      title: "Alamat",
+      title: "Office Jogja",
       value:
         "Jl. Sidorejo No.5, Rejodadi, Nggobayan, Ngestiharjo, Kec. Kasihan, Bantul, D.I Yogyakarta 55182",
-      description: "Kunjungi kantor kami untuk konsultasi langsung",
     },
     {
       icon: (
@@ -103,13 +101,19 @@ export default function ContactLocation() {
             strokeLinecap="round"
             strokeLinejoin="round"
             strokeWidth={2}
-            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+          />
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
           />
         </svg>
       ),
-      title: "Jam Operasional",
-      value: "Senin - Jumat: 08:00 - 17:00",
-      description: "Sabtu & Minggu: Tutup (kecuali ada janji)",
+      title: "Office Semarang",
+      value:
+        "Jl. Sinar Waluyo Raya No.523, Kedungmandu, Kec. Tembalang, Kota Semarang, 50273",
     },
   ];
 
@@ -159,24 +163,10 @@ export default function ContactLocation() {
   return (
     <section
       id="contact"
-      className="relative py-12 md:py-20 overflow-hidden bg-gradient-to-br from-blue-50 via-white to-orange-50"
+      className="relative py-12 md:py-24 overflow-hidden bg-gradient-to-br from-blue-50 via-white to-orange-50"
     >
       {/* Advanced Background Elements */}
       <div className="absolute inset-0 pointer-events-none">
-        {/* Large Blue Orb */}
-        <motion.div
-          className="absolute -top-40 -right-40 w-96 h-96 rounded-full blur-3xl opacity-30 bg-[#1a7be6]"
-          animate={{
-            scale: [1, 1.3, 1],
-            opacity: [0.2, 0.4, 0.2],
-            rotate: [0, 180, 360],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
         {/* Large Orange Orb */}
         <motion.div
           className="absolute -bottom-40 -left-40 w-80 h-80 rounded-full blur-3xl opacity-25 bg-[#f35e0e]"
@@ -243,7 +233,7 @@ export default function ContactLocation() {
         </motion.div>
       </div>
 
-      <div className="relative container mx-auto px-4">
+      <div className="relative container max-w-7xl mx-auto px-4">
         {/* Header */}
         <motion.div
           className="text-center mb-10 md:mb-12"
@@ -290,14 +280,6 @@ export default function ContactLocation() {
             <br />
             <motion.div
               className="inline-block relative"
-              animate={{
-                filter: [
-                  "drop-shadow(0 0 10px rgba(243,94,14,0.4))",
-                  "drop-shadow(0 0 20px rgba(243,94,14,0.6))",
-                  "drop-shadow(0 0 15px rgba(243,94,14,0.5))",
-                  "drop-shadow(0 0 10px rgba(243,94,14,0.4))",
-                ],
-              }}
               transition={{ duration: 5, repeat: Infinity, delay: 1 }}
             >
               <Image
@@ -558,7 +540,7 @@ export default function ContactLocation() {
               {/* Contact Form */}
               <div className="order-2 lg:order-1">
                 <motion.div
-                  className="relative backdrop-blur-xl bg-white/40 border border-white/50 rounded-3xl p-4 sm:p-6 shadow-2xl"
+                  className="relative backdrop-blur-xl bg-white/40 border border-white/50 rounded-3xl p-2 sm:p-4 shadow-2xl"
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.2 }}
@@ -567,7 +549,6 @@ export default function ContactLocation() {
                   <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-transparent to-white/20 rounded-3xl"></div>
 
                   <div className="relative z-10">
-
                     <form onSubmit={handleSubmit} className="space-y-6">
                       <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -699,7 +680,7 @@ export default function ContactLocation() {
                   {contactInfo.map((info, index) => (
                     <motion.div
                       key={info.title}
-                      className="relative backdrop-blur-xl bg-white/40 border border-white/60 rounded-3xl p-4 sm:p-6 shadow-2xl hover:shadow-3xl transition-all duration-500 group"
+                      className="relative backdrop-blur-xl bg-white/40 border border-white/60 rounded-3xl p-2 sm:p-4 shadow-2xl hover:shadow-3xl transition-all duration-500 group"
                       initial={{ opacity: 0, x: 30 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.6, delay: 0.6 + index * 0.1 }}
@@ -710,7 +691,7 @@ export default function ContactLocation() {
 
                       <div className="relative z-10 flex items-start gap-6">
                         <motion.div
-                          className="flex-shrink-0 w-16 h-16 bg-[#1a7be6] text-white rounded-2xl flex items-center justify-center shadow-xl"
+                          className="flex-shrink-0 w-12 h-12 lg:w-16 lg:h-16 bg-[#1a7be6] text-white rounded-2xl flex items-center justify-center shadow-xl"
                           whileHover={{ rotate: 10, scale: 1.1 }}
                           transition={{ duration: 0.3 }}
                         >
@@ -718,7 +699,7 @@ export default function ContactLocation() {
                         </motion.div>
                         <div className="flex-1">
                           <motion.h4
-                            className="font-bold text-xl text-gray-900 mb-1"
+                            className="font-bold text-lg text-gray-900 mb-1"
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ delay: 0.7 + index * 0.1 }}
@@ -726,7 +707,7 @@ export default function ContactLocation() {
                             {info.title}
                           </motion.h4>
                           <motion.p
-                            className="text-lg font-semibold mb-1 text-[#f35e0e]"
+                            className="text-md font-semibold mb-1 text-[#f35e0e]"
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ delay: 0.8 + index * 0.1 }}
@@ -762,10 +743,10 @@ export default function ContactLocation() {
               transition={{ duration: 0.5 }}
               className="grid lg:grid-cols-3 gap-8 md:gap-12"
             >
-              {/* Map */}
+              {/* Maps Section with 2 locations */}
               <div className="lg:col-span-2 order-2 lg:order-1">
                 <motion.div
-                  className="relative backdrop-blur-xl bg-white/40 border border-white/60 rounded-4xl p-4 md:p-6 shadow-2xl overflow-hidden"
+                  className="relative backdrop-blur-xl bg-white/40 border border-white/60 rounded-4xl p-2 sm:p-4 shadow-2xl overflow-hidden"
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.2 }}
@@ -774,37 +755,93 @@ export default function ContactLocation() {
                   <div className="absolute -top-4 -right-4 w-8 h-8 bg-[#1a7be6] rounded-full opacity-60 blur-sm"></div>
                   <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-[#f35e0e] rounded-full opacity-40 blur-sm"></div>
 
-                  <div className="relative w-full h-[400px] md:h-[500px] rounded-3xl overflow-hidden shadow-2xl">
-                    {/* Enhanced Glassmorphic Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-white/10 z-10"></div>
+                  {/* Maps Grid */}
+                  <div className="relative grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {/* First Map - FWB PLUS ORGANIZER */}
+                    <div className="relative">
+                      <div className="relative w-full h-[350px] rounded-3xl overflow-hidden shadow-2xl">
+                        <iframe
+                          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3994.065939912892!2d110.33350809999999!3d-7.8014688!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a57004cdf7643%3A0x508e2431933f9dd4!2sFWB%20PLUS%20ORGANIZER!5e1!3m2!1sid!2sid!4v1751902089114!5m2!1sid!2sid"
+                          width="100%"
+                          height="100%"
+                          style={{
+                            border: 0,
+                            filter:
+                              "grayscale(10%) contrast(1.1) saturate(1.2)",
+                            borderRadius: "24px",
+                            pointerEvents: "auto",
+                          }}
+                          allowFullScreen=""
+                          loading="lazy"
+                          referrerPolicy="no-referrer-when-downgrade"
+                          className="rounded-3xl"
+                          title="FWB Plus Organizer Location"
+                          tabIndex="0"
+                        />
 
-                    <iframe
-                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3994.065939912892!2d110.33350809999999!3d-7.8014688!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a57004cdf7643%3A0x508e2431933f9dd4!2sFWB%20PLUS%20ORGANIZER!5e1!3m2!1sid!2sid!4v1751902089114!5m2!1sid!2sid"
-                      width="100%"
-                      height="100%"
-                      style={{
-                        border: 0,
-                        filter: "grayscale(10%) contrast(1.1) saturate(1.2)",
-                        borderRadius: "24px",
-                      }}
-                      allowFullScreen=""
-                      loading="lazy"
-                      referrerPolicy="no-referrer-when-downgrade"
-                      className="rounded-3xl"
-                    />
+                        {/* Location Label */}
+                        <div className="absolute top-3 right-3 bg-black/70 text-white px-3 py-1.5 rounded-full text-xs font-medium backdrop-blur-sm">
+                          Jogja
+                        </div>
+
+                        {/* Click hint overlay */}
+                        <div className="absolute inset-0 bg-transparent pointer-events-none z-10 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+                          <div className="bg-black/60 text-white px-4 py-2 rounded-lg text-sm backdrop-blur-sm">
+                            Klik dan geser untuk menjelajahi peta
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Second Map - Additional Location */}
+                    <div className="relative">
+                      <div className="relative w-full h-[350px] rounded-3xl overflow-hidden shadow-2xl">
+                        <iframe
+                          src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d250.06949775110255!2d110.4720447!3d-7.0253399!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e708c4d146d5d77%3A0xe4b4ea507c3f32ce!2sJl.%20Sinar%20Waluyo%20Raya%20No.523%2C%20Kedungmundu%2C%20Kec.%20Tembalang%2C%20Kota%20Semarang%2C%20Jawa%20Tengah%2050273!5e1!3m2!1sen!2sid!4v1753444550650!5m2!1sen!2sid"
+                          width="100%"
+                          height="100%"
+                          style={{
+                            border: 0,
+                            filter:
+                              "grayscale(10%) contrast(1.1) saturate(1.2)",
+                            borderRadius: "24px",
+                            pointerEvents: "auto",
+                          }}
+                          allowFullScreen=""
+                          loading="lazy"
+                          referrerPolicy="no-referrer-when-downgrade"
+                          className="rounded-3xl"
+                          title="Lokasi Kedua"
+                          tabIndex="0"
+                        />
+
+                        {/* Location Label */}
+                        <div className="absolute top-3 right-3 bg-black/70 text-white px-3 py-1.5 rounded-full text-xs font-medium backdrop-blur-sm">
+                          Semarang
+                        </div>
+
+                        {/* Click hint overlay */}
+                        <div className="absolute inset-0 bg-transparent pointer-events-none z-10 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+                          <div className="bg-black/60 text-white px-4 py-2 rounded-lg text-sm backdrop-blur-sm">
+                            Klik dan geser untuk menjelajahi peta
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
+
                 </motion.div>
               </div>
 
               {/* Location Info */}
               <div className="order-1 lg:order-2">
                 <motion.div
-                  className="space-y-8"
+                  className="space-y-6"
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.4 }}
                 >
-                  <div className="relative backdrop-blur-xl bg-white/40 border border-white/60 rounded-3xl p-4 sm:p-6 shadow-2xl">
+                  <div className="relative backdrop-blur-xl bg-white/40 border border-white/60 rounded-3xl p-2 sm:p-4 shadow-2xl">
                     <motion.h3
                       className="text-2xl font-bold mb-6 text-[#1a7be6]"
                       initial={{ opacity: 0, x: -20 }}
@@ -815,148 +852,162 @@ export default function ContactLocation() {
                     </motion.h3>
 
                     <div className="space-y-6">
+                      {/* Office Jogja */}
                       <motion.div
-                        className="flex items-start gap-4"
+                        className="space-y-4"
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.6 }}
                       >
-                        <div className="flex-shrink-0 w-8 h-8 bg-[#1a7be6] text-white rounded-xl flex items-center justify-center mt-1">
-                          <svg
-                            className="w-4 h-4"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                            />
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                            />
-                          </svg>
+                        <div className="flex items-start gap-4">
+                          <div className="flex-shrink-0 w-12 h-12 bg-[#1a7be6] text-white rounded-xl flex items-center justify-center mt-1">
+                            <svg
+                              className="w-8 h-8"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                              />
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                              />
+                            </svg>
+                          </div>
+                          <div>
+                            <p className="font-bold text-gray-900 text-lg">
+                              Office Jogja:
+                            </p>
+                            <p className="text-gray-700 leading-relaxed">
+                              Jl. Sidorejo No.5, Rejodadi, Nggobayan, Ngestiharjo,
+                              Kec. Kasihan, Bantul, <br /> D.I Yogyakarta 55182
+                            </p>
+                          </div>
                         </div>
-                        <div>
-                          <p className="font-bold text-gray-900 text-lg">
-                            Office Jogja:
-                          </p>
-                          <p className="text-gray-700 leading-relaxed">
-                            Jl. Sidorejo No.5, Rejodadi, Nggobayan, Ngestiharjo,
-                            Kec. Kasihan, Bantul, <br /> D.I Yogyakarta 55182
-                          </p>
-                        </div>
+
+                        {/* Button Google Maps Jogja */}
+                        <motion.button
+                          className="w-full py-3 px-4 bg-[#1a7be6] hover:bg-[#1357a6] text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 backdrop-blur-sm border border-white/30"
+                          whileHover={{ scale: 1.02, y: -2 }}
+                          whileTap={{ scale: 0.98 }}
+                          onClick={() =>
+                            window.open(
+                              "https://maps.app.goo.gl/S7h6ybaWcDzQB4U98",
+                              "_blank"
+                            )
+                          }
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 0.7 }}
+                        >
+                          <span className="flex items-center justify-center gap-2">
+                            <motion.svg
+                              className="w-5 h-5"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                              whileHover={{ x: 3 }}
+                              transition={{ duration: 0.3 }}
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                              />
+                            </motion.svg>
+                            <span className="text-sm">Buka Di Google Maps</span>
+                          </span>
+                        </motion.button>
                       </motion.div>
 
-                      <motion.div
-                        className="flex items-start gap-4"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.6 }}
-                      >
-                        <div className="flex-shrink-0 w-8 h-8 bg-[#1a7be6] text-white rounded-xl flex items-center justify-center mt-1">
-                          <svg
-                            className="w-4 h-4"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                            />
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                            />
-                          </svg>
-                        </div>
-                        <div>
-                          <p className="font-bold text-gray-900 text-lg">
-                            Office Semarang:
-                          </p>
-                          <p className="text-gray-700 leading-relaxed">
-                            Jl. Sinar Waluyo Raya No.523, Kedungmandu, Kec.
-                            Tembalang, Kota Semarang, 50273
-                          </p>
-                        </div>
-                      </motion.div>
+                      {/* Divider */}
+                      <div className="border-t border-white/30"></div>
 
+                      {/* Office Semarang */}
                       <motion.div
-                        className="flex items-start gap-4"
+                        className="space-y-4"
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.7 }}
+                        transition={{ delay: 0.8 }}
                       >
-                        <div className="flex-shrink-0 w-8 h-8 bg-[#f35e0e] text-white rounded-xl flex items-center justify-center">
-                          <svg
-                            className="w-4 h-4"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                            />
-                          </svg>
+                        <div className="flex items-start gap-4">
+                          <div className="flex-shrink-0 w-12 h-12 bg-[#f35e0e] text-white rounded-xl flex items-center justify-center mt-1">
+                            <svg
+                              className="w-8 h-8"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                              />
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                              />
+                            </svg>
+                          </div>
+                          <div>
+                            <p className="font-bold text-gray-900 text-lg">
+                              Office Semarang:
+                            </p>
+                            <p className="text-gray-700 leading-relaxed">
+                              Jl. Sinar Waluyo Raya No.523, Kedungmandu, Kec.
+                              Tembalang, Kota Semarang, 50273
+                            </p>
+                          </div>
                         </div>
-                        <div>
-                          <p className="font-bold text-gray-900 text-lg">
-                            Jam Buka:
-                          </p>
-                          <p className="text-gray-700">
-                            Senin - Jumat: 08:00 - 17:00
-                          </p>
-                        </div>
+
+                        {/* Button Google Maps Semarang */}
+                        <motion.button
+                          className="w-full py-3 px-4 bg-[#f35e0e] hover:bg-[#f35e0eb3] text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 backdrop-blur-sm border border-white/30"
+                          whileHover={{ scale: 1.02, y: -2 }}
+                          whileTap={{ scale: 0.98 }}
+                          onClick={() =>
+                            window.open(
+                              "https://maps.app.goo.gl/3bqrM7r3u7hx2WECA",
+                              "_blank"
+                            )
+                          }
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 0.9 }}
+                        >
+                          <span className="flex items-center justify-center gap-2">
+                            <motion.svg
+                              className="w-5 h-5"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                              whileHover={{ x: 3 }}
+                              transition={{ duration: 0.3 }}
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                              />
+                            </motion.svg>
+                            <span className="text-sm">Buka Di Google Maps</span>
+                          </span>
+                        </motion.button>
                       </motion.div>
                     </div>
                   </div>
-
-                  <motion.button
-                    className="w-full py-4 px-6 bg-[#1a7be6] hover:bg-[#1357a6] text-white font-bold rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-500 backdrop-blur-sm border border-white/30"
-                    whileHover={{ scale: 1.05, y: -4 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={() =>
-                      window.open(
-                        "https://maps.app.goo.gl/S7h6ybaWcDzQB4U98",
-                        "_blank"
-                      )
-                    }
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.9 }}
-                  >
-                    <span className="flex items-center justify-center gap-3">
-                      <motion.svg
-                        className="w-6 h-6"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                        whileHover={{ x: 5 }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                        />
-                      </motion.svg>
-                      <span className="text-lg">Buka di Google Maps</span>
-                    </span>
-                  </motion.button>
                 </motion.div>
               </div>
             </motion.div>
