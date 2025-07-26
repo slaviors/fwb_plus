@@ -68,7 +68,7 @@ export default function ReviewModal({ isOpen, onClose, onSuccess }) {
           isOpen={isOpen}
           onRequestClose={onClose}
           ariaHideApp={false}
-          className="fixed inset-0 flex items-center justify-center z-[9999] scale-75 w-full"
+          className="fixed inset-0 flex items-center justify-center z-[9999] scale-90 lg:scale-75 w-full"
           overlayClassName="fixed inset-0 bg-black/60 backdrop-blur-sm z-[9998]"
         >
           <motion.div
@@ -81,7 +81,7 @@ export default function ReviewModal({ isOpen, onClose, onSuccess }) {
               damping: 25,
               duration: 0.4 
             }}
-            className="relative w-full max-w-2xl"
+            className="relative w-full max-w-3xl"
           >
             {/* Enhanced Background with Multiple Layers */}
             <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-3xl">
@@ -129,7 +129,7 @@ export default function ReviewModal({ isOpen, onClose, onSuccess }) {
             <div className="relative overflow-hidden rounded-3xl p-1 bg-gradient-to-br from-white/30 via-white/20 to-transparent backdrop-blur-xl border border-white/40 shadow-xl">
               <form
                 onSubmit={handleSubmit}
-                className="relative rounded-[22px] bg-white/50 backdrop-blur-md border border-white/60 p-6 lg:p-8 overflow-hidden"
+                className="relative rounded-[22px] bg-white/50 backdrop-blur-md border border-white/60 p-4 lg:p-8 overflow-hidden"
               >
                 {/* Floating decorative elements inside form */}
                 <motion.div
@@ -193,7 +193,7 @@ export default function ReviewModal({ isOpen, onClose, onSuccess }) {
                   >
                     Bagikan{" "}
                     <span className="relative">
-                      <span className="text-[#1a7be6]">Pengalaman</span>
+                      <span className="text-[#1a7be6]">Pengalaman </span>
                       <motion.span
                         className="absolute -bottom-1 left-0 right-0 h-1 bg-blue-100 rounded-full -z-10"
                         initial={{ width: 0 }}
@@ -201,21 +201,12 @@ export default function ReviewModal({ isOpen, onClose, onSuccess }) {
                         transition={{ duration: 1, delay: 1.5 }}
                       />
                     </span>
-                    <br />
-                    <span className="text-[#f35e0e]">Terbaik Anda</span>
+                    <span className="text-[#f35e0e]">Anda</span>
                   </motion.h2>
-
-                  <motion.p
-                    variants={fadeInUp}
-                    custom={2}
-                    className="font-inter text-lg text-gray-600 max-w-md mx-auto leading-relaxed"
-                  >
-                    Ceritakan kepuasan Anda bersama layanan kami
-                  </motion.p>
                 </motion.div>
 
                 {/* Form Fields */}
-                <div className="space-y-6 relative z-10">
+                <div className="space-y-3 sm:space-y-6 relative z-10">
                   {/* Name Input */}
                   <motion.div 
                     variants={fadeInUp}
@@ -366,7 +357,7 @@ export default function ReviewModal({ isOpen, onClose, onSuccess }) {
 
                 {/* Action Buttons */}
                 <motion.div 
-                  className="flex space-x-4 mt-8 relative z-10"
+                  className="flex space-x-4 mt-3 md:mt-8 relative z-10"
                   variants={fadeInUp}
                   initial="hidden"
                   animate="visible"
