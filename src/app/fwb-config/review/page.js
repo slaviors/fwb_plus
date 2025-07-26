@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import * as XLSX from "xlsx";
 import jsPDF from "jspdf";
+import Image from 'next/image'
 
 function filterByRange(reviews, range, customStart, customEnd) {
   const now = new Date();
@@ -392,9 +393,11 @@ export default function ReviewAdminPage() {
               </motion.button>
               <div className="flex items-center space-x-2 sm:space-x-3">
                 <div className="w-20 h-20 sm:w-12 sm:h-12 lg:w-16 lg:h-16 rounded-xl flex items-center justify-center p-1">
-                  <img 
-                    src="/images/assets/logo/Logo FWB PNG Transparan.png" 
-                    alt="FWB Plus" 
+                  <Image
+                    src="/images/assets/logo/Logo FWB PNG Transparan.png"
+                    alt="FWB Plus"
+                    width={56}
+                    height={56}
                     className="w-full h-full object-contain"
                   />
                 </div>
@@ -463,9 +466,11 @@ export default function ReviewAdminPage() {
           >
             Kelola Review
             <span className="relative inline-block ml-2">
-              <img 
-                src="/images/assets/logo/Logo FWB PNG Transparan.png" 
-                alt="FWB Plus" 
+              <Image
+                src="/images/assets/logo/Logo FWB PNG Transparan.png"
+                alt="FWB Plus"
+                width={50}
+                height={50}
                 className="inline-block h-8 md:h-10 lg:h-12 xl:h-14 w-auto object-contain align-baseline"
               />
               <motion.span
@@ -816,7 +821,7 @@ export default function ReviewAdminPage() {
 
                   <div className="bg-white/70 rounded-xl p-3 md:p-4 border border-blue-100/30">
                     <p className="text-gray-700 font-rubik leading-relaxed text-sm md:text-base break-words">
-                      "{review.message}"
+                      &quot;{review.message}&quot;
                     </p>
                   </div>
                 </motion.div>
