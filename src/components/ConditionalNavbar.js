@@ -10,6 +10,7 @@ export function ConditionalNavbar() {
   // Daftar path yang tidak boleh menampilkan navbar
   const hideNavbarPaths = [
     '/fwb-config',
+    '/login',
   ];
   
   // Detect if current page is 404

@@ -314,65 +314,6 @@ export default function NotFound() {
           </Link>
         </motion.div>
 
-        {/* Enhanced quick navigation */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          className="mb-10"
-        >
-          <p className="text-sm text-gray-500 mb-4">Atau kunjungi halaman populer:</p>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-            {[
-              { 
-                name: 'Tentang Kami', 
-                href: '/about', 
-                icon: (
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                )
-              },
-              { 
-                name: 'Kontak', 
-                href: 'wa.me/6281944074542', 
-                icon: (
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                  </svg>
-                )
-              },
-              { 
-                name: 'Gallery', 
-                href: '/gallery', 
-                icon: (
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
-                  </svg>
-                )
-              }
-            ].map((link, index) => (
-              <Link key={link.name} href={link.href}>
-                <motion.div
-                  whileHover={{ y: -3, scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 1.0 + index * 0.1, duration: 0.5 }}
-                  className="group p-4 bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 hover:border-blue-200"
-                >
-                  <div className="flex items-center justify-center mb-2 text-gray-600 group-hover:text-blue-600 transition-colors">
-                    {link.icon}
-                  </div>
-                  <span className="text-xs font-medium text-gray-700 group-hover:text-blue-700 transition-colors">
-                    {link.name}
-                  </span>
-                </motion.div>
-              </Link>
-            ))}
-          </div>
-        </motion.div>
-
         {/* Enhanced auto redirect timer */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}

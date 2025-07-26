@@ -16,9 +16,9 @@ export default function Hero() {
       description: "Meeting, conference & seminar",
     },
     {
-      image: "/images/event-collage-3.png",
-      title: "Wedding Ceremonies",
-      description: "Indoor & outdoor settings",
+      image: "/images/gallery/event3.png",
+      title: "Entertainment",
+      description: "Concert, festival & live shows",
     },
     {
       image: "/images/event-collage-2.png",
@@ -38,24 +38,11 @@ export default function Hero() {
     return () => clearInterval(interval);
   }, [isHovering, heroEvents.length]);
 
-  // Event stat items dengan animasi
-  const statItems = [
-    { number: "100+", label: "Events", delay: 0.3, color: "#1a7be6" },
-    { number: "50+", label: "Locations", delay: 0.5, color: "#f35e0e" },
-    {
-      number: "98%",
-      label: "Client Satisfaction",
-      delay: 0.7,
-      color: "#ce1010",
-    },
-  ];
-
   return (
     <section
       id="hero"
       className="relative min-h-[90vh] md:min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-blue-50 via-white to-blue-50"
     >
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-12 md:py-20">
         <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center mt-11">
           {/* Left Content */}
@@ -123,38 +110,19 @@ export default function Hero() {
             >
               Kami hadir untuk membantu merancang dan mengeksekusi berbagai
               jenis event dengan{" "}
-              <span className="font-semibold text-[#1a7be6]">integritas</span>,{" "}
-              <span className="font-semibold text-[#1a7be6]">kreativitas</span>,
-              dan{" "}
-              <span className="font-semibold text-[#1a7be6]">
-                komitmen profesional
+              <span className="text-xl md:text-2xl font-semibold text-[#1a7be6]">
+                Integritas
+              </span>
+              ,{" "}
+              <span className="text-xl md:text-2xl font-semibold text-[#1a7be6]">
+                Kreativitas
+              </span>
+              , dan{" "}
+              <span className="text-xl md:text-2xl font-semibold text-[#1a7be6]">
+                Komitmen Profesional
               </span>{" "}
               demi hasil yang memberi manfaat nyata bagi semua pihak.
             </motion.p>
-
-            {/* Stats with animation */}
-            <div className="mt-6 md:mt-8 grid grid-cols-3 gap-3 md:gap-4">
-              {statItems.map((stat, index) => (
-                <motion.div
-                  key={stat.label}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: stat.delay }}
-                  whileHover={{ y: -5 }}
-                  className="p-2 md:p-3 rounded-xl bg-white shadow-md hover:shadow-lg transition-all duration-300"
-                >
-                  <h3
-                    className="font-unbounded text-xl md:text-2xl lg:text-3xl font-bold"
-                    style={{ color: stat.color }}
-                  >
-                    {stat.number}
-                  </h3>
-                  <p className="text-xs md:text-sm text-gray-600">
-                    {stat.label}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
 
             {/* CTA buttons with hover effects */}
             <motion.div
@@ -163,11 +131,11 @@ export default function Hero() {
               transition={{ duration: 0.8, delay: 0.9 }}
               className="mt-6 md:mt-10 flex flex-col sm:flex-row gap-3 md:gap-4 justify-center lg:justify-start"
             >
-              <Link href="wa.me/6281944074542">
+              <Link href="https://wa.me/6281944074542">
                 <motion.div
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="relative overflow-hidden px-8 py-4 rounded-full bg-[#1a7be6] text-white font-medium text-lg shadow-lg shadow-blue-200 group"
+                  className="relative overflow-hidden px-6 py-3 sm:px-8 sm:py-4 rounded-full bg-[#1a7be6] text-white font-medium text-lg shadow-lg shadow-blue-200 group"
                 >
                   <span className="relative z-10 flex items-center justify-center">
                     <span>Hubungi Kami</span>
@@ -194,7 +162,6 @@ export default function Hero() {
                   />
                 </motion.div>
               </Link>
-              
             </motion.div>
           </motion.div>
 
