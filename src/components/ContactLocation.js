@@ -40,7 +40,7 @@ export default function ContactLocation() {
         </svg>
       ),
       title: "Telepon",
-      value: "+62 0819 4407 4542",
+      value: "+62 819 4407 4542",
       description: "Hubungi kami untuk konsultasi gratis",
     },
     {
