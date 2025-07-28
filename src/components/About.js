@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
@@ -144,13 +145,12 @@ export default function About() {
             className="max-w-3xl mx-auto"
           >
             <p className="font-inter text-lg md:text-xl text-gray-600 leading-relaxed">
-              <Image
-                src="/images/assets/logo/fwb-text.svg"
+              <img
+                src="/images/assets/logo/fwb-text.webp"
                 alt="FWB Plus"
                 width={40}
                 height={12}
-                className="inline-block mx-1 align-middle brightness-0 saturate-100"
-                style={{ filter: 'invert(19%) sepia(10%) saturate(1029%) hue-rotate(184deg) brightness(97%) contrast(88%)' }}
+                className="inline-block mx-1 align-middle"
               />{" "}
               adalah event organizer dan agency yang melayani berbagai acara, seperti corporate gathering,
               pameran, konser, hingga penyediaan peralatan dan manpower event.
@@ -168,7 +168,7 @@ export default function About() {
           >
             <div className="relative h-[350px] md:h-[400px] lg:h-[450px] w-full rounded-3xl overflow-hidden shadow-2xl shadow-blue-200/40 group z-40">
               <Image
-                src="/images/about/company-story.png"
+                src="/images/about/company-story.JPG"
                 alt="FWB Plus Company Story"
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
@@ -299,13 +299,12 @@ export default function About() {
                   Berawal dari ide tiga individu berpengalaman sejak tahun{" "}
                   <span className="font-semibold text-[#1a7be6]">2005</span>, dengan total pengalaman lebih dari 100 event jika digabungkan,
                   kami resmi mendirikan{" "}
-                  <Image
-                    src="/images/assets/logo/fwb-text.svg"
+                  <img
+                    src="/images/assets/logo/fwb-text.webp"
                     alt="FWB Plus"
                     width={40}
                     height={12}
-                    className="inline-block mx-1 align-middle brightness-0 saturate-100"
-                    style={{ filter: 'invert(19%) sepia(10%) saturate(1029%) hue-rotate(184deg) brightness(97%) contrast(88%)' }}
+                    className="inline-block mx-1 align-middle"
                   />{" "}
                   pada{" "}
                   <span className="font-semibold text-[#1a7be6]">
@@ -319,13 +318,12 @@ export default function About() {
 
                 <p>
                   Filosofi nama{" "}
-                  <Image
-                    src="/images/assets/logo/fwb-text.svg"
+                  <img
+                    src="/images/assets/logo/fwb-text.webp"
                     alt="FWB Plus"
                     width={40}
                     height={12}
-                    className="inline-block mx-1 align-middle brightness-0 saturate-100"
-                    style={{ filter: 'invert(19%) sepia(10%) saturate(1029%) hue-rotate(184deg) brightness(97%) contrast(88%)' }}
+                    className="inline-block mx-1 align-middle"
                   />{" "}
                   berasal dari semangat{" "}
                   <span className="font-semibold text-[#1a7be6]">

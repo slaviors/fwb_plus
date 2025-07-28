@@ -353,13 +353,6 @@ export default function ServiceGalleryModal({ isOpen, onClose, service }) {
                   <div className="absolute top-2 sm:top-4 right-2 sm:right-4 px-2 sm:px-3 py-1 sm:py-1.5 bg-black/50 text-white text-xs sm:text-sm rounded-full backdrop-blur-sm">
                     {currentImageIndex + 1} / {service.images.length}
                   </div>
-
-                  {/* Image Title */}
-                  <div className="absolute bottom-2 sm:bottom-4 left-2 sm:left-4 px-3 py-2 bg-black/60 text-white text-xs sm:text-sm rounded-lg backdrop-blur-sm max-w-[200px] sm:max-w-[300px]">
-                    <div className="font-semibold truncate">
-                      {getImageTitle(service, currentImageIndex)}
-                    </div>
-                  </div>
                 </div>
               </div>
 
