@@ -170,9 +170,11 @@ export default function FWBConfigPage() {
             >
               <div className="flex items-center space-x-2 sm:space-x-3">
                 <div className="w-20 h-20 rounded-xl flex items-center justify-center p-1">
-                  <img 
-                    src="/images/assets/logo/Logo FWB PNG Transparan.png" 
-                    alt="FWB Plus" 
+                  <Image
+                    src="/images/assets/logo/Logo FWB PNG Transparan.png"
+                    alt="FWB Plus"
+                    width={56}
+                    height={56}
                     className="w-full h-full object-contain"
                   />
                 </div>

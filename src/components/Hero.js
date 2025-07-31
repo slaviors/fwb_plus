@@ -11,19 +11,28 @@ export default function Hero() {
   // Gambar-gambar event dengan keterangan
   const heroEvents = [
     {
-      image: "/images/event-collage-1.png",
+      image: "/images/corporate-events.JPG",
       title: "Corporate Events",
       description: "Meeting, conference & seminar",
     },
     {
-      image: "/images/gallery/event3.png",
+      image: "/images/entertainment.JPG",
       title: "Entertainment",
       description: "Concert, festival & live shows",
     },
     {
-      image: "/images/event-collage-2.png",
-      title: "Celebrations",
-      description: "Birthday, anniversary & special moments",
+      image: "/images/exhibitions.JPG",
+      title: "Exhibitions",
+      description: "Trade shows, expos & fairs",
+    },
+    {
+      image: "/images/gathering.JPG",
+      title: "Gathering",
+      description: "Family & community gatherings",
+    },
+    {
+      image: "/images/event-equipment.JPG",
+      title: "Event Equipment & Manpower",
     },
   ];
 

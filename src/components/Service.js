@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import { useRef, useState, useEffect } from "react";
 import { motion, useInView, AnimatePresence, PanInfo } from "framer-motion";
@@ -29,25 +30,20 @@ export default function Services() {
       shortDesc: "Solusi acara perusahaan yang profesional",
       icon: "briefcase",
       images: [
-        "/images/services/corporate-event.png",
-        "/images/gallery/event1.png",
-        "/images/gallery/event4.png",
-        "/images/gallery/event2.png",
-        "/images/gallery/event5.png",
-        "/images/gallery/event6.png",
+        "/images/gallery/CORPORATE-EVENTS/corporate-events.jpg",
+        "/images/gallery/CORPORATE-EVENTS/corporate-events-2.jpg",
+        "/images/gallery/CORPORATE-EVENTS/corporate-events-3.jpg",
+        "/images/gallery/CORPORATE-EVENTS/corporate-events-4.jpg",
+        "/images/gallery/CORPORATE-EVENTS/corporate-events-5.jpg",
       ],
       description: (
         <>
-          <Image
-            src="/images/assets/logo/fwb-text.svg"
+          <img
+            src="/images/assets/logo/fwb-text.webp"
             alt="FWB Plus"
             width={40}
             height={12}
-            className="inline-block mx-1 align-middle brightness-0 saturate-100"
-            style={{
-              filter:
-                "invert(19%) sepia(10%) saturate(1029%) hue-rotate(184deg) brightness(97%) contrast(88%)",
-            }}
+            className="inline-block mx-1 align-middle"
           />{" "}
           siap membantu Anda menyelenggarakan berbagai acara perusahaan dengan
           pelayanan menyeluruh dan profesional. Kami menangani dari konsep
@@ -70,12 +66,13 @@ export default function Services() {
       shortDesc: "Rayakan kebersamaan dalam momen yang berkesan",
       icon: "party",
       images: [
-        "/images/services/gathering-event.png",
-        "/images/gallery/event3.png",
-        "/images/gallery/event6.png",
-        "/images/gallery/event1.png",
-        "/images/gallery/event4.png",
-        "/images/gallery/event5.png",
+        "/images/services/gathering.JPG",
+        "/images/gallery/GATHERING-CELEBRATION/gathering-2.jpg",
+        "/images/gallery/GATHERING-CELEBRATION/gathering-3.jpg",
+        "/images/gallery/GATHERING-CELEBRATION/gathering-4.jpg",
+        "/images/gallery/GATHERING-CELEBRATION/gathering-5.jpg",
+        "/images/gallery/GATHERING-CELEBRATION/gathering-6.jpg",
+        "/images/gallery/GATHERING-CELEBRATION/gathering-7.jpg",
       ],
       description:
         "Kami melayani berbagai jenis acara informal maupun komunitas dengan pendekatan kreatif dan menyenangkan. Cocok untuk acara internal perusahaan, keluarga, hingga komunitas dengan tema yang disesuaikan.",
@@ -94,25 +91,26 @@ export default function Services() {
       shortDesc: "Kelola hiburan berskala besar dengan tepat",
       icon: "music",
       images: [
-        "/images/services/concert-event.png",
-        "/images/gallery/event1.png",
-        "/images/gallery/event3.png",
-        "/images/gallery/event2.png",
-        "/images/gallery/event5.png",
-        "/images/gallery/event4.png",
+        "/images/services/concert-event.JPG",
+        "/images/gallery/CONCERT-ENTERTAINMENT/concert-entertain.jpg",
+        "/images/gallery/CONCERT-ENTERTAINMENT/concert-entertain-2.jpg",
+        "/images/gallery/CONCERT-ENTERTAINMENT/concert-entertain-3.jpg",
+        "/images/gallery/CONCERT-ENTERTAINMENT/concert-entertain-4.jpg",
+        "/images/gallery/CONCERT-ENTERTAINMENT/concert-entertain-5.jpg",
+        "/images/gallery/CONCERT-ENTERTAINMENT/concert-entertain-6.jpg",
+        "/images/gallery/CONCERT-ENTERTAINMENT/concert-entertain-7.jpg",
+        "/images/gallery/CONCERT-ENTERTAINMENT/concert-entertain-9.jpg",
+        "/images/gallery/CONCERT-ENTERTAINMENT/concert-entertain-10.jpg",
+        "/images/gallery/CONCERT-ENTERTAINMENT/concert-entertain-11.jpg",
       ],
       description: (
         <>
-          <Image
-            src="/images/assets/logo/fwb-text.svg"
+          <img
+            src="/images/assets/logo/fwb-text.webp"
             alt="FWB Plus"
             width={40}
             height={12}
-            className="inline-block mx-1 align-middle brightness-0 saturate-100"
-            style={{
-              filter:
-                "invert(19%) sepia(10%) saturate(1029%) hue-rotate(184deg) brightness(97%) contrast(88%)",
-            }}
+            className="inline-block mx-1 align-middle"
           />{" "}
           berpengalaman dalam penyelenggaraan konser dan hiburan skala kecil
           hingga besar, baik indoor maupun outdoor. Kami siap menangani produksi
@@ -134,12 +132,16 @@ export default function Services() {
       shortDesc: "Pameran dan produksi booth profesional",
       icon: "layout", // kamu bisa pakai ikon layout/display
       images: [
-        "/images/services/exhibition-event.png",
-        "/images/gallery/event2.png",
-        "/images/gallery/event4.png",
-        "/images/gallery/event1.png",
-        "/images/gallery/event6.png",
-        "/images/gallery/event3.png",
+        "/images/services/exhibitions.JPG",
+        "/images/gallery/EXHIBITION-BOOTH-PRODUCTION/exhibition-event-2.jpg",
+        "/images/gallery/EXHIBITION-BOOTH-PRODUCTION/exhibition-event-3.jpg",
+        "/images/gallery/EXHIBITION-BOOTH-PRODUCTION/exhibition-event-4.jpg",
+        "/images/gallery/EXHIBITION-BOOTH-PRODUCTION/exhibition-event-5.jpg",
+        "/images/gallery/EXHIBITION-BOOTH-PRODUCTION/exhibition-event-6.jpg",
+        "/images/gallery/EXHIBITION-BOOTH-PRODUCTION/exhibition-event-7.jpg",
+        "/images/gallery/EXHIBITION-BOOTH-PRODUCTION/exhibition-event-8.jpg",
+        "/images/gallery/EXHIBITION-BOOTH-PRODUCTION/exhibition-event-9.jpg",
+        "/images/gallery/EXHIBITION-BOOTH-PRODUCTION/exhibition-event-10.jpg",
       ],
       description:
         "Kami menyediakan layanan pameran dan produksi booth yang menarik serta fungsional, baik untuk kebutuhan expo, brand activation, maupun pameran dagang. Semua dikerjakan oleh tim profesional dan kreatif.",
@@ -158,25 +160,28 @@ export default function Services() {
       shortDesc: "Sewa alat event & tenaga kerja profesional",
       icon: "settings", // atau "users" / "tools"
       images: [
-        "/images/services/event-support.png",
-        "/images/gallery/event5.png",
-        "/images/gallery/event6.png",
-        "/images/gallery/event2.png",
-        "/images/gallery/event3.png",
-        "/images/gallery/event1.png",
+        "/images/gallery/EVENT-EQUIPMENT-MANPOWER/event-equipment-1.jpg",
+        "/images/gallery/EVENT-EQUIPMENT-MANPOWER/event-equipment-2.jpg",
+        "/images/gallery/EVENT-EQUIPMENT-MANPOWER/event-equipment-3.jpg",
+        "/images/gallery/EVENT-EQUIPMENT-MANPOWER/event-equipment-4.jpg",
+        "/images/gallery/EVENT-EQUIPMENT-MANPOWER/event-equipment-5.jpg",
+        "/images/gallery/EVENT-EQUIPMENT-MANPOWER/event-equipment-6.jpg",
+        "/images/gallery/EVENT-EQUIPMENT-MANPOWER/event-equipment-7.jpg",
+        "/images/gallery/EVENT-EQUIPMENT-MANPOWER/event-equipment-8.jpg",
+        "/images/gallery/EVENT-EQUIPMENT-MANPOWER/event-equipment-9.jpg",
+        "/images/gallery/EVENT-EQUIPMENT-MANPOWER/event-equipment-10.jpg",
+        "/images/gallery/EVENT-EQUIPMENT-MANPOWER/event-equipment-11.jpg",
+        "/images/gallery/EVENT-EQUIPMENT-MANPOWER/event-equipment-12.jpg",
+        "/images/gallery/EVENT-EQUIPMENT-MANPOWER/event-equipment-13.jpg",
       ],
       description: (
         <>
-          <Image
-            src="/images/assets/logo/fwb-text.svg"
+          <img
+            src="/images/assets/logo/fwb-text.webp"
             alt="FWB Plus"
             width={40}
             height={12}
-            className="inline-block mx-1 align-middle brightness-0 saturate-100"
-            style={{
-              filter:
-                "invert(19%) sepia(10%) saturate(1029%) hue-rotate(184deg) brightness(97%) contrast(88%)",
-            }}
+            className="inline-block mx-1 align-middle"
           />{" "}
           menyediakan berbagai kebutuhan teknis seperti penyewaan peralatan
           event dan penyediaan tenaga profesional. Mulai dari alat panggung,
@@ -455,15 +460,11 @@ export default function Services() {
             >
               <p className="font-inter text-lg md:text-xl text-gray-600 leading-relaxed">
                 <Image
-                  src="/images/assets/logo/fwb-text.svg"
+                  src="/images/assets/logo/fwb-text.webp"
                   alt="FWB Plus"
                   width={40}
                   height={12}
-                  className="inline-block mx-1 align-middle brightness-0 saturate-100"
-                  style={{
-                    filter:
-                      "invert(19%) sepia(10%) saturate(1029%) hue-rotate(184deg) brightness(97%) contrast(88%)",
-                  }}
+                  className="inline-block mx-1 align-middle"
                 />{" "}
                 menyediakan layanan{" "}
                 <span className="text-xl md:text-2xl font-semibold text-gray-800">
@@ -634,51 +635,12 @@ export default function Services() {
                                 className="inline-block py-1.5 px-3 text-xs bg-white/90 font-inter font-semibold rounded-full backdrop-blur-sm shadow-md"
                                 style={{ color: service.color }}
                               >
-                                <Image
-                                  src="/images/assets/logo/fwb-text.svg"
+                                <img
+                                  src="/images/assets/logo/fwb-text.webp"
                                   alt="FWB Plus"
-                                  width={40}
-                                  height={12}
-                                  className="inline-block mx-1 align-middle brightness-0 saturate-100"
-                                  style={{
-                                    filter: `invert(${
-                                      service.color === "#1a7be6"
-                                        ? "23"
-                                        : service.color === "#f35e0e"
-                                        ? "48"
-                                        : "19"
-                                    }%) sepia(${
-                                      service.color === "#1a7be6"
-                                        ? "100"
-                                        : service.color === "#f35e0e"
-                                        ? "100"
-                                        : "10"
-                                    }%) saturate(${
-                                      service.color === "#1a7be6"
-                                        ? "2500"
-                                        : service.color === "#f35e0e"
-                                        ? "1500"
-                                        : "1029"
-                                    }%) hue-rotate(${
-                                      service.color === "#1a7be6"
-                                        ? "200deg"
-                                        : service.color === "#f35e0e"
-                                        ? "14deg"
-                                        : "184deg"
-                                    }) brightness(${
-                                      service.color === "#1a7be6"
-                                        ? "100"
-                                        : service.color === "#f35e0e"
-                                        ? "100"
-                                        : "97"
-                                    }%) contrast(${
-                                      service.color === "#1a7be6"
-                                        ? "90"
-                                        : service.color === "#f35e0e"
-                                        ? "90"
-                                        : "88"
-                                    }%)`,
-                                  }}
+                                  width={32}
+                                  height={10}
+                                  className="inline-block mx-1 align-middle"
                                 />
                                 {service.title}
                               </span>
@@ -974,7 +936,7 @@ export default function Services() {
                         className="grid lg:grid-cols-2 gap-6 lg:gap-12 items-center"
                       >
                         {/* Desktop Service Image - Hidden on Mobile */}
-                        <div className="hidden lg:block relative order-2 lg:order-1">
+                        <div className="hidden md:block relative order-2 md:order-1">
                           <div className="relative h-[350px] md:h-[450px] lg:h-[500px] w-full rounded-3xl overflow-hidden group">
                             {/* Glassmorphism image container */}
                             <div
@@ -1096,63 +1058,12 @@ export default function Services() {
                                                 className="hidden md:inline-block py-1.5 px-3 mb-2 text-xs bg-white/95 font-inter font-semibold rounded-full backdrop-blur-sm shadow-lg"
                                                 style={{ color: service.color }}
                                               >
-                                                <Image
-                                                  src="/images/assets/logo/fwb-text.svg"
+                                                <img
+                                                  src="/images/assets/logo/fwb-text.webp"
                                                   alt="FWB Plus"
                                                   width={32}
                                                   height={10}
-                                                  className="inline-block mx-1 align-middle brightness-0 saturate-100"
-                                                  style={{
-                                                    filter: `invert(${
-                                                      service.color ===
-                                                      "#1a7be6"
-                                                        ? "23"
-                                                        : service.color ===
-                                                          "#f35e0e"
-                                                        ? "48"
-                                                        : "19"
-                                                    }%) sepia(${
-                                                      service.color ===
-                                                      "#1a7be6"
-                                                        ? "100"
-                                                        : service.color ===
-                                                          "#f35e0e"
-                                                        ? "100"
-                                                        : "10"
-                                                    }%) saturate(${
-                                                      service.color ===
-                                                      "#1a7be6"
-                                                        ? "2500"
-                                                        : service.color ===
-                                                          "#f35e0e"
-                                                        ? "1500"
-                                                        : "1029"
-                                                    }%) hue-rotate(${
-                                                      service.color ===
-                                                      "#1a7be6"
-                                                        ? "200deg"
-                                                        : service.color ===
-                                                          "#f35e0e"
-                                                        ? "14deg"
-                                                        : "184deg"
-                                                    }) brightness(${
-                                                      service.color ===
-                                                      "#1a7be6"
-                                                        ? "100"
-                                                        : service.color ===
-                                                          "#f35e0e"
-                                                        ? "100"
-                                                        : "97"
-                                                    }%) contrast(${
-                                                      service.color ===
-                                                      "#1a7be6"
-                                                        ? "90"
-                                                        : service.color ===
-                                                          "#f35e0e"
-                                                        ? "90"
-                                                        : "88"
-                                                    }%)`,
-                                                  }}
+                                                  className="inline-block mx-1 align-middle"
                                                 />{" "}
                                                 Services
                                               </motion.span>
@@ -1227,7 +1138,7 @@ export default function Services() {
 
                         {/* Desktop Service Information - Hidden on Mobile */}
                         <motion.div
-                          className="hidden lg:block space-y-6 order-1 lg:order-2"
+                          className="hidden md:block space-y-6 order-1 md:order-2"
                           initial={{ opacity: 0, x: 50 }}
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ duration: 0.8, delay: 0.2 }}

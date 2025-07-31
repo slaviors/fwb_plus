@@ -40,7 +40,7 @@ export default function ContactLocation() {
         </svg>
       ),
       title: "Telepon",
-      value: "+62 0819 4407 4542",
+      value: "+62 819 4407 4542",
       description: "Hubungi kami untuk konsultasi gratis",
     },
     {
@@ -761,7 +761,7 @@ export default function ContactLocation() {
                     <div className="relative">
                       <div className="relative w-full h-[350px] rounded-3xl overflow-hidden shadow-2xl">
                         <iframe
-                          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3994.065939912892!2d110.33350809999999!3d-7.8014688!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a57004cdf7643%3A0x508e2431933f9dd4!2sFWB%20PLUS%20ORGANIZER!5e1!3m2!1sid!2sid!4v1751902089114!5m2!1sid!2sid"
+                          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12460.059186581333!2d110.33166898700638!3d-7.801696648007992!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a57004cdf7643%3A0x508e2431933f9dd4!2sFWB%20PLUS%20ORGANIZER!5e1!3m2!1sid!2sid!4v1753543587083!5m2!1sid!2sid"
                           width="100%"
                           height="100%"
                           style={{
@@ -797,7 +797,7 @@ export default function ContactLocation() {
                     <div className="relative">
                       <div className="relative w-full h-[350px] rounded-3xl overflow-hidden shadow-2xl">
                         <iframe
-                          src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d250.06949775110255!2d110.4720447!3d-7.0253399!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e708c4d146d5d77%3A0xe4b4ea507c3f32ce!2sJl.%20Sinar%20Waluyo%20Raya%20No.523%2C%20Kedungmundu%2C%20Kec.%20Tembalang%2C%20Kota%20Semarang%2C%20Jawa%20Tengah%2050273!5e1!3m2!1sen!2sid!4v1753444550650!5m2!1sen!2sid"
+                          src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d4001.106783839721!2d110.47259102078309!3d-7.025941820657127!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zN8KwMDEnMzQuMCJTIDExMMKwMjgnMjEuOCJF!5e1!3m2!1sid!2sid!4v1753543519115!5m2!1sid!2sid"
                           width="100%"
                           height="100%"
                           style={{
