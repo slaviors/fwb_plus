@@ -113,7 +113,7 @@ export default function ContactLocation() {
       ),
       title: "Office Semarang",
       value:
-        "Jl. Sinar Waluyo Raya No.523, Kedungmandu, Kec. Tembalang, Kota Semarang, 50273",
+        "Jl. Sinar Waluyo Raya No.523, Kedungmundu, Kec. Tembalang, Kota Semarang, 50273",
     },
   ];
 
@@ -965,7 +965,7 @@ export default function ContactLocation() {
                               Office Semarang:
                             </p>
                             <p className="text-gray-700 leading-relaxed">
-                              Jl. Sinar Waluyo Raya No.523, Kedungmandu, Kec.
+                              Jl. Sinar Waluyo Raya No.523, Kedungmundu, Kec.
                               Tembalang, Kota Semarang, 50273
                             </p>
                           </div>
