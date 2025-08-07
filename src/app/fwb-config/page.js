@@ -11,16 +11,15 @@ export default function FWBConfigPage() {
   const [currentCard, setCurrentCard] = useState(0);
   const router = useRouter();
 
-  // List kartu navigasi admin (tanpa User Management)
   const adminCards = [
-    {
-      title: "Event Management",
-      description:
-        "Buat, edit, dan kelola semua event FWB Plus. Atur detail acara, peserta, dan jadwal.",
-      icon: "M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z",
-      color: "#1a7be6",
-      path: "/fwb-config/event",
-    },
+    // {
+    //   title: "Event Management",
+    //   description:
+    //     "Buat, edit, dan kelola semua event FWB Plus. Atur detail acara, peserta, dan jadwal.",
+    //   icon: "M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z",
+    //   color: "#1a7be6",
+    //   path: "/fwb-config/event",
+    // },
     {
       title: "Microsite Builder",
       description:
@@ -29,9 +28,15 @@ export default function FWBConfigPage() {
       color: "#f35e0e",
       path: "/fwb-config/microsite",
     },
+    {
+      title: "Review Management",
+      description: "Lihat dan kelola review dari pengguna.",
+      icon: "M15 12a3 3 0 11-6 0 3 3 0 016 0zM2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7-1.274 4.057-5.065 7-9.542 7-4.477 0-8.268-2.943-9.542-7z",
+      color: "#fbbf24",
+      path: "/fwb-config/review",
+    },
   ];
 
-  // Auto-rotate admin cards
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentCard((prev) => (prev + 1) % adminCards.length);
@@ -112,13 +117,10 @@ export default function FWBConfigPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 via-white to-blue-50">
-      {/* Decorative elements - seperti di Hero */}
       <div className="absolute inset-0 overflow-hidden">
-        {/* Circles */}
         <div className="absolute top-20 right-[10%] w-64 h-64 rounded-full bg-blue-100/30 blur-3xl"></div>
         <div className="absolute bottom-20 left-[5%] w-80 h-80 rounded-full bg-orange-100/30 blur-3xl"></div>
 
-        {/* Floating shapes */}
         <motion.div
           className="absolute top-[20%] left-[10%] w-8 h-8 rounded-md bg-[#1a7be6]/20"
           animate={{
@@ -157,22 +159,30 @@ export default function FWBConfigPage() {
         />
       </div>
 
-      {/* Admin Navbar */}
-      <nav className="bg-white/95 backdrop-blur-md shadow-md border-b border-gray-100 relative z-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16">
+      <nav className="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-md shadow-md border-b border-gray-100 z-50 transition-all duration-300">
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 xl:px-8">
+          <div className="flex justify-between h-14 sm:h-16">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
-              className="flex items-center space-x-4"
+              className="flex items-center space-x-2 sm:space-x-4"
             >
-              <div className="flex items-center space-x-3">
+              <div className="flex items-center space-x-2 sm:space-x-3">
+                <div className="w-20 h-20 rounded-xl flex items-center justify-center p-1">
+                  <Image
+                    src="/images/assets/logo/Logo FWB PNG Transparan.png"
+                    alt="FWB Plus"
+                    width={56}
+                    height={56}
+                    className="w-full h-full object-contain"
+                  />
+                </div>
                 <div>
-                  <h1 className="text-xl font-unbounded font-bold text-gray-900">
-                    Panel
+                  <h1 className="text-sm sm:text-lg lg:text-xl font-unbounded font-bold text-gray-900">
+                    Admin Panel
                   </h1>
-                  <p className="text-xs font-rubik text-gray-500">FWB Plus</p>
+                  <p className="text-xs font-rubik text-gray-500 hidden sm:block">FWB Plus</p>
                 </div>
               </div>
             </motion.div>
@@ -181,16 +191,16 @@ export default function FWBConfigPage() {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="flex items-center space-x-4"
+              className="flex items-center space-x-2 sm:space-x-4"
             >
               <Link href="/">
                 <motion.div
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="text-gray-600 hover:text-[#1a7be6] px-3 py-2 rounded-lg text-sm font-medium transition-colors flex items-center"
+                  className="text-gray-600 hover:text-[#1a7be6] px-2 py-2 sm:px-3 sm:py-2 rounded-lg text-xs sm:text-sm font-medium transition-colors flex items-center"
                 >
                   <svg
-                    className="w-4 h-4 mr-1"
+                    className="w-3 h-3 sm:w-4 sm:h-4 sm:mr-1"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -202,45 +212,19 @@ export default function FWBConfigPage() {
                       d="M10 19l-7-7m0 0l7-7m-7 7h18"
                     />
                   </svg>
-                  Website
+                  <span className="hidden sm:inline">Website</span>
                 </motion.div>
               </Link>
-
-              <div className="flex items-center space-x-3 bg-white rounded-lg px-3 py-2 shadow-sm">
-                <div className="w-8 h-8 bg-[#1a7be6] rounded-full flex items-center justify-center">
-                  <svg
-                    className="w-4 h-4 text-white"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                    />
-                  </svg>
-                </div>
-                <div className="hidden sm:block">
-                  <div className="text-sm font-rubik font-medium text-gray-900">
-                    {user.username}
-                  </div>
-                  <div className="text-xs font-rubik text-gray-500">
-                    Administrator
-                  </div>
-                </div>
-              </div>
 
               <motion.button
                 onClick={handleLogout}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="relative overflow-hidden px-5 py-2 rounded-full bg-[#f35e0e] text-white font-medium text-sm shadow-md group"
+                className="relative overflow-hidden px-3 py-2 sm:px-5 sm:py-2 rounded-full bg-[#f35e0e] text-white font-medium text-xs sm:text-sm shadow-md group"
               >
                 <span className="relative z-10 flex items-center justify-center">
                   <svg
-                    className="w-4 h-4 mr-1"
+                    className="w-3 h-3 sm:w-4 sm:h-4 sm:mr-1"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -252,7 +236,7 @@ export default function FWBConfigPage() {
                       d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
                     />
                   </svg>
-                  <span>Logout</span>
+                  <span className="hidden sm:inline">Logout</span>
                 </span>
                 <motion.span
                   className="absolute inset-0 bg-orange-600 z-0"
@@ -266,14 +250,13 @@ export default function FWBConfigPage() {
         </div>
       </nav>
 
-      <main className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 relative z-10">
+      <main className="max-w-7xl mx-auto pt-20 sm:pt-24 pb-8 px-3 sm:px-4 md:px-6 lg:px-8 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
           className="mb-8"
         >
-          {/* Welcome Header */}
           <div className="bg-white rounded-3xl shadow-md p-8 mb-8 border border-blue-100/50">
             <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
               <div>
@@ -290,7 +273,7 @@ export default function FWBConfigPage() {
                       {user.username}!{" "}
                     </span>
                     <motion.span
-                      className="absolute -bottom-2 left-0 right-0 h-3 bg-blue-100 rounded-full -z-0"
+                      className="absolute -bottom-1 left-0 right-0 h-1 bg-blue-100 rounded-full -z-0"
                       initial={{ width: 0 }}
                       animate={{ width: "100%" }}
                       transition={{ duration: 1, delay: 1 }}
@@ -342,7 +325,7 @@ export default function FWBConfigPage() {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5, delay: 0.7 }}
               >
-                <div className="w-24 h-24 bg-white shadow-lg rounded-2xl flex items-center justify-center border border-blue-100/50">
+                <div className="w-24 h-24  rounded-2xl hidden lg:flex items-center justify-center">
                   <motion.div
                     whileHover={{ rotate: 10 }}
                     transition={{ duration: 0.3 }}
@@ -360,7 +343,6 @@ export default function FWBConfigPage() {
             </div>
           </div>
 
-          {/* Admin Cards - Style mirip image carousel di Hero */}
           <div className="mb-12">
             <h3 className="font-unbounded text-2xl font-bold text-gray-900 mb-6">
               Management Menu
@@ -459,7 +441,6 @@ export default function FWBConfigPage() {
         </motion.div>
       </main>
 
-      {/* Wave divider integrated with background - seperti di Hero */}
       <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none z-0">
         <svg
           className="relative block w-full h-32"

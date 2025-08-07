@@ -1,13 +1,273 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
-import { useRef, useState } from "react";
-import { motion, useInView, AnimatePresence } from "framer-motion";
+import { useRef, useState, useEffect } from "react";
+import { motion, useInView, AnimatePresence, PanInfo } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import ServiceGalleryModal from "./ui/ServiceGalleryModal";
 
 export default function Services() {
   const sectionRef = useRef(null);
+  const detailsRef = useRef(null); // Add ref for details section
   const isInView = useInView(sectionRef, { once: true, margin: "-80px" });
   const [activeTab, setActiveTab] = useState("corporate");
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isCarouselHovering, setIsCarouselHovering] = useState(false);
+
+  // Mobile swipe states
+  const [currentServiceIndex, setCurrentServiceIndex] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+
+  // Gallery modal states
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedService, setSelectedService] = useState(null);
+
+  // Services data array
+  const services = [
+    {
+      id: "corporate",
+      title: "Corporate Events",
+      shortDesc: "Solusi acara perusahaan yang profesional",
+      icon: "briefcase",
+      images: [
+        "/images/gallery/CORPORATE-EVENTS/corporate-events.jpg",
+        "/images/gallery/CORPORATE-EVENTS/corporate-events-2.jpg",
+        "/images/gallery/CORPORATE-EVENTS/corporate-events-3.jpg",
+        "/images/gallery/CORPORATE-EVENTS/corporate-events-4.jpg",
+        "/images/gallery/CORPORATE-EVENTS/corporate-events-5.jpg",
+      ],
+      description: (
+        <>
+          <img
+            src="/images/assets/logo/fwb-text.webp"
+            alt="FWB Plus"
+            width={40}
+            height={12}
+            className="inline-block mx-1 align-middle"
+          />{" "}
+          siap membantu Anda menyelenggarakan berbagai acara perusahaan dengan
+          pelayanan menyeluruh dan profesional. Kami menangani dari konsep
+          hingga eksekusi, agar setiap momen berjalan lancar dan memberi kesan
+          positif bagi perusahaan Anda.
+        </>
+      ),
+      features: [
+        "Corporate Gathering",
+        "Meeting & Seminar",
+        "Product Launching",
+        "Team Building",
+        "Awarding Night",
+      ],
+      color: "#1a7be6",
+    },
+    {
+      id: "gathering",
+      title: "Gathering & Celebration",
+      shortDesc: "Rayakan kebersamaan dalam momen yang berkesan",
+      icon: "party",
+      images: [
+        "/images/services/gathering.JPG",
+        "/images/gallery/GATHERING-CELEBRATION/gathering-2.jpg",
+        "/images/gallery/GATHERING-CELEBRATION/gathering-3.jpg",
+        "/images/gallery/GATHERING-CELEBRATION/gathering-4.jpg",
+        "/images/gallery/GATHERING-CELEBRATION/gathering-5.jpg",
+        "/images/gallery/GATHERING-CELEBRATION/gathering-6.jpg",
+        "/images/gallery/GATHERING-CELEBRATION/gathering-7.jpg",
+      ],
+      description:
+        "Kami melayani berbagai jenis acara informal maupun komunitas dengan pendekatan kreatif dan menyenangkan. Cocok untuk acara internal perusahaan, keluarga, hingga komunitas dengan tema yang disesuaikan.",
+      features: [
+        "Family & Community Gathering",
+        "Birthday Celebration",
+        "Reunion & Anniversary",
+        "Themed Parties",
+        "Casual Outdoor Events",
+      ],
+      color: "#ce1010",
+    },
+    {
+      id: "concert",
+      title: "Concert & Entertainment",
+      shortDesc: "Kelola hiburan berskala besar dengan tepat",
+      icon: "music",
+      images: [
+        "/images/services/concert-event.JPG",
+        "/images/gallery/CONCERT-ENTERTAINMENT/concert-entertain.jpg",
+        "/images/gallery/CONCERT-ENTERTAINMENT/concert-entertain-2.jpg",
+        "/images/gallery/CONCERT-ENTERTAINMENT/concert-entertain-3.jpg",
+        "/images/gallery/CONCERT-ENTERTAINMENT/concert-entertain-4.jpg",
+        "/images/gallery/CONCERT-ENTERTAINMENT/concert-entertain-5.jpg",
+        "/images/gallery/CONCERT-ENTERTAINMENT/concert-entertain-6.jpg",
+        "/images/gallery/CONCERT-ENTERTAINMENT/concert-entertain-7.jpg",
+        "/images/gallery/CONCERT-ENTERTAINMENT/concert-entertain-9.jpg",
+        "/images/gallery/CONCERT-ENTERTAINMENT/concert-entertain-10.jpg",
+        "/images/gallery/CONCERT-ENTERTAINMENT/concert-entertain-11.jpg",
+      ],
+      description: (
+        <>
+          <img
+            src="/images/assets/logo/fwb-text.webp"
+            alt="FWB Plus"
+            width={40}
+            height={12}
+            className="inline-block mx-1 align-middle"
+          />{" "}
+          berpengalaman dalam penyelenggaraan konser dan hiburan skala kecil
+          hingga besar, baik indoor maupun outdoor. Kami siap menangani produksi
+          panggung, manajemen artis, hingga sistem ticketing.
+        </>
+      ),
+      features: [
+        "Konser Musik Indoor & Outdoor",
+        "Festival & Stage Management",
+        "Talent & Artist Handling",
+        "Booth Production",
+        "Ticketing & Crowd Flow",
+      ],
+      color: "#8e44ad",
+    },
+    {
+      id: "exhibition",
+      title: "Exhibition & Booth Production",
+      shortDesc: "Pameran dan produksi booth profesional",
+      icon: "layout", // kamu bisa pakai ikon layout/display
+      images: [
+        "/images/services/exhibitions.JPG",
+        "/images/gallery/EXHIBITION-BOOTH-PRODUCTION/exhibition-event-2.jpg",
+        "/images/gallery/EXHIBITION-BOOTH-PRODUCTION/exhibition-event-3.jpg",
+        "/images/gallery/EXHIBITION-BOOTH-PRODUCTION/exhibition-event-4.jpg",
+        "/images/gallery/EXHIBITION-BOOTH-PRODUCTION/exhibition-event-5.jpg",
+        "/images/gallery/EXHIBITION-BOOTH-PRODUCTION/exhibition-event-6.jpg",
+        "/images/gallery/EXHIBITION-BOOTH-PRODUCTION/exhibition-event-7.jpg",
+        "/images/gallery/EXHIBITION-BOOTH-PRODUCTION/exhibition-event-8.jpg",
+        "/images/gallery/EXHIBITION-BOOTH-PRODUCTION/exhibition-event-9.jpg",
+        "/images/gallery/EXHIBITION-BOOTH-PRODUCTION/exhibition-event-10.jpg",
+      ],
+      description:
+        "Kami menyediakan layanan pameran dan produksi booth yang menarik serta fungsional, baik untuk kebutuhan expo, brand activation, maupun pameran dagang. Semua dikerjakan oleh tim profesional dan kreatif.",
+      features: [
+        "Custom Booth Design",
+        "Brand Activation",
+        "Trade Expo",
+        "Mini Showcase",
+        "Logistik & Instalasi",
+      ],
+      color: "#2c3e50",
+    },
+    {
+      id: "support",
+      title: "Event Equipment & Manpower",
+      shortDesc: "Sewa alat event & tenaga kerja profesional",
+      icon: "settings", // atau "users" / "tools"
+      images: [
+        "/images/gallery/EVENT-EQUIPMENT-MANPOWER/event-equipment-1.jpg",
+        "/images/gallery/EVENT-EQUIPMENT-MANPOWER/event-equipment-2.jpg",
+        "/images/gallery/EVENT-EQUIPMENT-MANPOWER/event-equipment-3.jpg",
+        "/images/gallery/EVENT-EQUIPMENT-MANPOWER/event-equipment-4.jpg",
+        "/images/gallery/EVENT-EQUIPMENT-MANPOWER/event-equipment-5.jpg",
+        "/images/gallery/EVENT-EQUIPMENT-MANPOWER/event-equipment-6.jpg",
+        "/images/gallery/EVENT-EQUIPMENT-MANPOWER/event-equipment-7.jpg",
+        "/images/gallery/EVENT-EQUIPMENT-MANPOWER/event-equipment-8.jpg",
+        "/images/gallery/EVENT-EQUIPMENT-MANPOWER/event-equipment-9.jpg",
+        "/images/gallery/EVENT-EQUIPMENT-MANPOWER/event-equipment-10.jpg",
+        "/images/gallery/EVENT-EQUIPMENT-MANPOWER/event-equipment-11.jpg",
+        "/images/gallery/EVENT-EQUIPMENT-MANPOWER/event-equipment-12.jpg",
+        "/images/gallery/EVENT-EQUIPMENT-MANPOWER/event-equipment-13.jpg",
+      ],
+      description: (
+        <>
+          <img
+            src="/images/assets/logo/fwb-text.webp"
+            alt="FWB Plus"
+            width={40}
+            height={12}
+            className="inline-block mx-1 align-middle"
+          />{" "}
+          menyediakan berbagai kebutuhan teknis seperti penyewaan peralatan
+          event dan penyediaan tenaga profesional. Mulai dari alat panggung,
+          lighting, sound system, hingga kru lapangan dan usher.
+        </>
+      ),
+      features: [
+        "Sewa Sound System & Lighting",
+        "Stage & Rigging",
+        "Operator & Crew Lapangan",
+        "Usher & Talent Support",
+        "Logistik & Maintenance",
+      ],
+      color: "#27ae60",
+    },
+  ];
+
+  // Auto-rotate carousel images - only for active service card on mobile
+  useEffect(() => {
+    // Only auto-rotate for active card and when not hovering
+    if (isCarouselHovering || !services.length) return;
+
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % 3);
+    }, 5000); // Increased to 5 seconds for better UX
+
+    return () => clearInterval(interval);
+  }, [isCarouselHovering, services.length]);
+
+  // Reset carousel when changing tabs or mobile service
+  useEffect(() => {
+    setCurrentImageIndex(0);
+  }, [activeTab, currentServiceIndex]);
+
+  // Update activeTab when currentServiceIndex changes
+  useEffect(() => {
+    const serviceIds = [
+      "corporate",
+      "gathering",
+      "concert",
+      "exhibition",
+      "support",
+    ];
+    if (serviceIds[currentServiceIndex]) {
+      setActiveTab(serviceIds[currentServiceIndex]);
+    }
+  }, [currentServiceIndex]);
+
+  // Mobile swipe handlers
+  const handleSwipe = (info) => {
+    const threshold = 50;
+    // Use dynamic services length
+    const totalServices = services.length;
+    if (Math.abs(info.offset.x) > threshold) {
+      if (info.offset.x > 0) {
+        // Swipe right - previous service
+        setCurrentServiceIndex((prev) =>
+          prev === 0 ? totalServices - 1 : prev - 1
+        );
+      } else {
+        // Swipe left - next service
+        setCurrentServiceIndex((prev) => (prev + 1) % totalServices);
+      }
+    }
+  };
+
+  // Enhanced function to set active tab and scroll
+  const handleServiceSelect = (serviceId) => {
+    setActiveTab(serviceId);
+  };
+
+  // Add visual feedback for mobile navigation
+  const handleMobileServiceSelect = (serviceId) => {
+    setActiveTab(serviceId);
+  };
+
+  // Handle gallery modal
+  const openGalleryModal = (service) => {
+    setSelectedService(service);
+    setIsModalOpen(true);
+  };
+
+  const closeGalleryModal = () => {
+    setIsModalOpen(false);
+    setSelectedService(null);
+  };
 
   // Enhanced animation variants
   const fadeInUp = {
@@ -46,110 +306,6 @@ export default function Services() {
       },
     },
   };
-  const services = [
-    {
-      id: "corporate",
-      title: "Corporate Events",
-      shortDesc: "Solusi acara perusahaan yang profesional",
-      icon: "briefcase",
-      image: "/images/services/corporate-event.png",
-      description:
-        "FWB Plus siap membantu Anda menyelenggarakan berbagai acara perusahaan dengan pelayanan menyeluruh dan profesional. Kami menangani dari konsep hingga eksekusi, agar setiap momen berjalan lancar dan memberi kesan positif bagi perusahaan Anda.",
-      features: [
-        "Corporate Gathering",
-        "Meeting & Seminar",
-        "Product Launching",
-        "Team Building",
-        "Awarding Night",
-      ],
-      color: "#1a7be6",
-    },
-    {
-      id: "wedding",
-      title: "Wedding & Engagement",
-      shortDesc: "Wujudkan momen spesial yang tak terlupakan",
-      icon: "heart",
-      image: "/images/services/wedding-event.png",
-      description:
-        "Percayakan hari bahagia Anda kepada tim kami yang berpengalaman dalam mengatur pernikahan dengan konsep yang unik dan penuh makna. Mulai dari dekorasi, catering, hingga dokumentasi, semua kami siapkan dengan detail dan penuh cinta.",
-      features: [
-        "Indoor & Outdoor Wedding",
-        "Traditional & Modern Ceremony",
-        "Engagement Event",
-        "Decoration & Entertainment",
-        "Pre-Wedding & Documentation",
-      ],
-      color: "#f35e0e",
-    },
-    {
-      id: "gathering",
-      title: "Gathering & Celebration",
-      shortDesc: "Rayakan kebersamaan dalam momen yang berkesan",
-      icon: "party",
-      image: "/images/services/gathering-event.png",
-      description:
-        "Kami melayani berbagai jenis acara informal maupun komunitas dengan pendekatan kreatif dan menyenangkan. Cocok untuk acara internal perusahaan, keluarga, hingga komunitas dengan tema yang disesuaikan.",
-      features: [
-        "Family & Community Gathering",
-        "Birthday Celebration",
-        "Reunion & Anniversary",
-        "Themed Parties",
-        "Casual Outdoor Events",
-      ],
-      color: "#ce1010",
-    },
-    {
-      id: "concert",
-      title: "Concert & Entertainment",
-      shortDesc: "Kelola hiburan berskala besar dengan tepat",
-      icon: "music",
-      image: "/images/services/concert-event.png",
-      description:
-        "FWB Plus berpengalaman dalam penyelenggaraan konser dan hiburan skala kecil hingga besar, baik indoor maupun outdoor. Kami siap menangani produksi panggung, manajemen artis, hingga sistem ticketing.",
-      features: [
-        "Konser Musik Indoor & Outdoor",
-        "Festival & Stage Management",
-        "Talent & Artist Handling",
-        "Booth Production",
-        "Ticketing & Crowd Flow",
-      ],
-      color: "#8e44ad",
-    },
-    {
-      id: "exhibition",
-      title: "Exhibition & Booth Production",
-      shortDesc: "Pameran dan produksi booth profesional",
-      icon: "layout", // kamu bisa pakai ikon layout/display
-      image: "/images/services/exhibition-event.png",
-      description:
-        "Kami menyediakan layanan pameran dan produksi booth yang menarik serta fungsional, baik untuk kebutuhan expo, brand activation, maupun pameran dagang. Semua dikerjakan oleh tim profesional dan kreatif.",
-      features: [
-        "Custom Booth Design",
-        "Brand Activation",
-        "Trade Expo",
-        "Mini Showcase",
-        "Logistik & Instalasi",
-      ],
-      color: "#2c3e50",
-    },
-    {
-      id: "support",
-      title: "Event Equipment & Manpower",
-      shortDesc: "Sewa alat event & tenaga kerja profesional",
-      icon: "settings", // atau "users" / "tools"
-      image: "/images/services/event-support.png",
-      description:
-        "FWB Plus menyediakan berbagai kebutuhan teknis seperti penyewaan peralatan event dan penyediaan tenaga profesional. Mulai dari alat panggung, lighting, sound system, hingga kru lapangan dan usher.",
-      features: [
-        "Sewa Sound System & Lighting",
-        "Stage & Rigging",
-        "Operator & Crew Lapangan",
-        "Usher & Talent Support",
-        "Logistik & Maintenance",
-      ],
-      color: "#27ae60",
-    },
-  ];
 
   return (
     <>
@@ -173,6 +329,16 @@ export default function Services() {
           -webkit-box-orient: vertical;
           overflow: hidden;
         }
+        /* Mobile performance optimization */
+        .mobile-card {
+          will-change: transform, opacity;
+          transform: translateZ(0);
+          backface-visibility: hidden;
+          perspective: 1000px;
+        }
+        .mobile-card * {
+          transform: translateZ(0);
+        }
       `}</style>
 
       <section
@@ -183,7 +349,6 @@ export default function Services() {
         {/* Enhanced decorative elements with orange theme */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           {/* Large background shapes */}
-          <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-orange-100/50 to-orange-200/30 rounded-full blur-3xl"></div>
           <div className="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-blue-100/40 to-blue-200/20 rounded-full blur-3xl"></div>
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-r from-orange-50/60 to-blue-50/40 rounded-full blur-2xl"></div>
 
@@ -285,7 +450,7 @@ export default function Services() {
                 />
               </span>
               <br className="hidden sm:block" />
-              <span className="text-[#1a7be6]">Untuk Kebutuhan Anda</span>
+              <span className="text-[#1a7be6]">&#160;Untuk Kebutuhan Anda</span>
             </motion.h2>
 
             <motion.div
@@ -294,20 +459,32 @@ export default function Services() {
               className="max-w-3xl mx-auto"
             >
               <p className="font-inter text-lg md:text-xl text-gray-600 leading-relaxed">
-                FWB Plus menyediakan layanan{" "}
-                <span className="font-semibold text-gray-700">
-                  event organizer & exhibition{" "}
+                <Image
+                  src="/images/assets/logo/fwb-text.webp"
+                  alt="FWB Plus"
+                  width={40}
+                  height={12}
+                  className="inline-block mx-1 align-middle"
+                />{" "}
+                menyediakan layanan{" "}
+                <span className="text-xl md:text-2xl font-semibold text-gray-800">
+                  Event Organizer & Exhibition{" "}
                 </span>
                 yang lengkap dan fleksibel mulai dari{" "}
-                <span className="font-semibold text-[#1a7be6]">
-                  corporate gathering
+                <span className="text-xl md:text-2xl font-semibold text-[#1a7be6]">
+                  Corporate Gathering
                 </span>
-                ,<span className="font-semibold text-[#1a7be6]"> pameran</span>,
-                <span className="font-semibold text-[#1a7be6]"> konser</span>,
-                hingga
-                <span className="font-semibold text-[#1a7be6]">
-                  {" "}
-                  jasa sewa alat & tenaga kerja event
+                ,{" "}
+                <span className="text-xl md:text-2xl font-semibold text-[#1a7be6]">
+                  Pameran
+                </span>
+                ,{" "}
+                <span className="text-xl md:text-2xl font-semibold text-[#1a7be6]">
+                  Konser
+                </span>
+                , hingga{" "}
+                <span className="text-xl md:text-2xl font-semibold text-[#1a7be6]">
+                  Rental Equipment & Tenaga Kerja Event
                 </span>
                 . Kami berkomitmen menghadirkan solusi acara yang inovatif,
                 efisien, dan menguntungkan semua pihak.
@@ -315,137 +492,337 @@ export default function Services() {
             </motion.div>
           </motion.div>
 
-          {/* Enhanced Service Navigation - Mobile First Design */}
+          {/* Mobile Swipeable Service Cards */}
           <motion.div
             className="mb-8 md:mb-16 relative z-20"
             variants={staggerContainer}
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
           >
-            {/* Mobile Navigation - Compact Card-Style */}
-            <div className="md:hidden px-1">
-              <div className="relative overflow-hidden rounded-3xl p-1 bg-white/20 backdrop-blur-xl border border-white/30 shadow-lg">
-                <div className="grid grid-cols-2 gap-1.5 p-2">
-                  {services.map((service, index) => (
-                    <motion.button
+            {/* Mobile Stacked Cards */}
+            <div className="md:hidden px-4 relative h-[625px]">
+              <div className="relative w-full h-full">
+                {services.map((service, index) => {
+                  const isActive = index === currentServiceIndex;
+                  const isPrev =
+                    index ===
+                    (currentServiceIndex - 1 + services.length) %
+                      services.length;
+                  const isNext =
+                    index === (currentServiceIndex + 1) % services.length;
+                  const isVisible = isActive || isPrev || isNext;
+
+                  if (!isVisible) return null;
+
+                  // Simplified positioning with better performance
+                  let zIndex = 10;
+                  let scale = 0.9;
+                  let opacity = 0.6;
+                  let translateX = 0;
+                  let translateY = 15;
+
+                  if (isActive) {
+                    zIndex = 30;
+                    scale = 1;
+                    opacity = 1;
+                    translateX = 0;
+                    translateY = 0;
+                  } else if (isPrev) {
+                    zIndex = 20;
+                    scale = 0.95;
+                    opacity = 0.7;
+                    translateX = -30;
+                    translateY = 8;
+                  } else if (isNext) {
+                    zIndex = 20;
+                    scale = 0.95;
+                    opacity = 0.7;
+                    translateX = 30;
+                    translateY = 8;
+                  }
+
+                  return (
+                    <motion.div
                       key={service.id}
-                      onClick={() => setActiveTab(service.id)}
-                      variants={scaleIn}
-                      custom={index + 3}
-                      whileTap={{ scale: 0.95 }}
-                      className={`relative group transition-all duration-300 ${
-                        activeTab === service.id ? "scale-[1.02]" : ""
-                      }`}
+                      className="absolute inset-0 mobile-card"
+                      style={{ zIndex }}
+                      animate={{
+                        scale,
+                        opacity,
+                        x: translateX,
+                        y: translateY,
+                      }}
+                      transition={{
+                        type: "tween",
+                        ease: "easeOut",
+                        duration: 0.3,
+                      }}
+                      drag={isActive ? "x" : false}
+                      dragConstraints={{ left: 0, right: 0 }}
+                      dragElastic={0.1}
+                      onDragStart={() => setIsDragging(true)}
+                      onDragEnd={(_, info) => {
+                        setIsDragging(false);
+                        if (isActive) {
+                          handleSwipe(info);
+                        }
+                      }}
+                      whileDrag={{ scale: isActive ? 1.02 : scale }}
                     >
-                      {/* Mobile tab container */}
                       <div
-                        className={`relative flex flex-col items-center p-3 sm:p-4 rounded-2xl backdrop-blur-sm border transition-all duration-300 ${
-                          activeTab === service.id
-                            ? "bg-white/95 border-white/70 shadow-lg scale-105"
-                            : "bg-white/60 border-white/30 hover:bg-white/80"
-                        }`}
+                        className="relative w-full h-full overflow-hidden rounded-3xl border shadow-lg"
+                        style={{
+                          background: isActive
+                            ? `linear-gradient(135deg, ${service.color}15, ${service.color}08, transparent)`
+                            : "rgba(255, 255, 255, 0.9)",
+                          borderColor: `${service.color}40`,
+                        }}
                       >
-                        {/* Active indicator glow */}
-                        {activeTab === service.id && (
-                          <motion.div
-                            className="absolute inset-0 rounded-2xl opacity-15"
-                            style={{ backgroundColor: service.color }}
-                            layoutId="activeMobileGlow"
-                            transition={{
-                              type: "spring",
-                              bounce: 0.2,
-                              duration: 0.4,
-                            }}
-                          />
-                        )}
+                        <div className="relative rounded-3xl bg-white border border-white/70 h-full overflow-hidden flex flex-col">
+                          {/* Service Header */}
+                          <div className="relative p-4 border-b border-gray-100/50">
+                            <div className="flex items-center mb-3">
+                              <div
+                                className="relative p-3 rounded-2xl mr-4 flex-shrink-0"
+                                style={{
+                                  backgroundColor: `${service.color}15`,
+                                  borderWidth: "1px",
+                                  borderColor: `${service.color}30`,
+                                }}
+                              >
+                                <span
+                                  className="relative z-10"
+                                  style={{ color: service.color }}
+                                >
+                                  {renderServiceIcon(
+                                    service.icon,
+                                    service.color,
+                                    "1.75rem"
+                                  )}
+                                </span>
+                              </div>
 
-                        {/* Icon container with enhanced styling */}
-                        <motion.div
-                          className={`relative mb-2 p-2.5 rounded-xl transition-all duration-300 ${
-                            activeTab === service.id
-                              ? "shadow-md scale-110"
-                              : "group-hover:scale-105"
-                          }`}
-                          style={{
-                            backgroundColor:
-                              activeTab === service.id
-                                ? `${service.color}20`
-                                : `${service.color}10`,
-                            borderWidth: "1px",
-                            borderColor:
-                              activeTab === service.id
-                                ? `${service.color}40`
-                                : "transparent",
-                          }}
-                          whileHover={{ scale: 1.1, rotate: 5 }}
-                        >
-                          {/* Icon glow effect for active state */}
-                          {activeTab === service.id && (
-                            <div
-                              className="absolute inset-0 rounded-xl blur-md opacity-40"
-                              style={{ backgroundColor: service.color }}
-                            />
-                          )}
+                              <div className="flex-1 min-w-0">
+                                <h3
+                                  className="font-unbounded text-xl font-bold leading-tight mb-1"
+                                  style={{ color: service.color }}
+                                >
+                                  {service.title}
+                                </h3>
+                                <p className="font-inter text-sm text-gray-600 line-clamp-2">
+                                  {service.shortDesc}
+                                </p>
+                              </div>
+                            </div>
+                          </div>
 
-                          <span
-                            className="relative z-10"
-                            style={{ color: service.color }}
-                          >
-                            {renderServiceIcon(
-                              service.icon,
-                              service.color,
-                              "1.5rem"
-                            )}
-                          </span>
-                        </motion.div>
+                          {/* Service Static Image */}
+                          <div className="relative h-36 overflow-hidden flex-shrink-0">
+                            <div className="relative h-full w-full">
+                              <Image
+                                src={service.images[0]}
+                                alt={`${service.title} - Service Image`}
+                                fill
+                                sizes="(max-width: 768px) 100vw"
+                                className="object-cover"
+                                priority={index === 0}
+                              />
+                            </div>
 
-                        {/* Service title - compact */}
-                        <div className="text-center relative z-10">
-                          <h4
-                            className={`font-unbounded font-bold text-xs sm:text-sm leading-tight transition-colors duration-300 ${
-                              activeTab === service.id
-                                ? "text-gray-900"
-                                : "text-gray-700"
-                            }`}
-                          >
-                            {service.id === "corporate"
-                              ? "Corporate"
-                              : service.id === "wedding"
-                              ? "Wedding"
-                              : service.id === "gathering"
-                              ? "Gathering"
-                              : "Concert"}
-                          </h4>
-                          <p
-                            className={`font-inter text-xs mt-1 line-clamp-2 transition-colors duration-300 ${
-                              activeTab === service.id
-                                ? "text-gray-600"
-                                : "text-gray-500"
-                            }`}
-                          >
-                            {service.id === "corporate"
-                              ? "Business Events"
-                              : service.id === "wedding"
-                              ? "Dream Wedding"
-                              : service.id === "gathering"
-                              ? "Celebrations"
-                              : "Entertainment"}
-                          </p>
+                            {/* Service badge */}
+                            <div className="absolute bottom-3 left-3 right-3 z-10 hidden md:block">
+                              <span
+                                className="inline-block py-1.5 px-3 text-xs bg-white/90 font-inter font-semibold rounded-full backdrop-blur-sm shadow-md"
+                                style={{ color: service.color }}
+                              >
+                                <img
+                                  src="/images/assets/logo/fwb-text.webp"
+                                  alt="FWB Plus"
+                                  width={32}
+                                  height={10}
+                                  className="inline-block mx-1 align-middle"
+                                />
+                                {service.title}
+                              </span>
+                            </div>
+                          </div>
+
+                          {/* Service Content */}
+                          <div className="p-4 space-y-3 flex-1 flex flex-col">
+                            {/* Description */}
+                            <p className="font-inter text-gray-700 text-sm leading-relaxed line-clamp-2">
+                              {service.description}
+                            </p>
+
+                            {/* Features Section */}
+                            <div className="flex-1">
+                              <h4 className="font-unbounded text-sm font-bold text-gray-900 mb-2 flex items-center">
+                                <svg
+                                  className="w-4 h-4 mr-2"
+                                  style={{ color: service.color }}
+                                  fill="none"
+                                  stroke="currentColor"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                                  />
+                                </svg>
+                                Layanan Tersedia
+                              </h4>
+
+                              {/* Features grid */}
+                              <div className="grid grid-cols-2 gap-1">
+                                {service.features
+                                  .slice(0, 4)
+                                  .map((feature, i) => (
+                                    <div
+                                      key={feature}
+                                      className="flex items-center p-1.5 rounded-lg"
+                                    >
+                                      <div
+                                        className="p-1 mr-2 rounded-lg flex-shrink-0"
+                                        style={{
+                                          backgroundColor: `${service.color}15`,
+                                        }}
+                                      >
+                                        <svg
+                                          className="w-2.5 h-2.5"
+                                          style={{ color: service.color }}
+                                          fill="none"
+                                          stroke="currentColor"
+                                          viewBox="0 0 24 24"
+                                        >
+                                          <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth={2}
+                                            d="M5 13l4 4L19 7"
+                                          />
+                                        </svg>
+                                      </div>
+                                      <span className="font-inter text-xs text-gray-700">
+                                        {feature}
+                                      </span>
+                                    </div>
+                                  ))}
+                              </div>
+
+                              {service.features.length > 4 && (
+                                <div className="mt-2 text-center">
+                                  <span className="font-inter text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded-full">
+                                    +{service.features.length - 4} layanan
+                                    lainnya
+                                  </span>
+                                </div>
+                              )}
+                            </div>
+
+                            {/* Action Button */}
+                            <div className="pt-2 mt-auto">
+                              <button
+                                onClick={() => openGalleryModal(service)}
+                                className="relative flex items-center justify-center px-4 py-2.5 rounded-2xl font-inter font-semibold text-white text-sm shadow-lg w-full transition-all hover:shadow-xl"
+                                style={{ backgroundColor: service.color }}
+                              >
+                                <span className="mr-2">
+                                  Lihat Lebih Lanjut
+                                </span>
+                                <svg
+                                  className="w-4 h-4"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                                  />
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                                  />
+                                </svg>
+                              </button>
+                            </div>
+                          </div>
                         </div>
-
-                        {/* Active indicator dots */}
-                        {activeTab === service.id && <></>}
                       </div>
-                    </motion.button>
+                    </motion.div>
+                  );
+                })}
+              </div>
+
+              {/* Swipe Navigation Indicators */}
+              <div className="absolute -bottom-8 left-0 right-0 flex justify-center items-center gap-4">
+                {/* Dots indicator */}
+                <div className="flex gap-2">
+                  {services.map((service, idx) => (
+                    <button
+                      key={service.id}
+                      onClick={() => setCurrentServiceIndex(idx)}
+                      className="relative p-1 focus:outline-none"
+                    >
+                      <span
+                        className={`block w-3 h-3 rounded-full transition-all duration-200 ${
+                          idx === currentServiceIndex
+                            ? "scale-110 opacity-100"
+                            : "scale-75 opacity-50"
+                        }`}
+                        style={{
+                          backgroundColor:
+                            idx === currentServiceIndex
+                              ? service.color
+                              : "#d1d5db",
+                        }}
+                      />
+                    </button>
                   ))}
+                </div>
+
+                {/* Simplified swipe hint */}
+                <div className="flex items-center text-gray-500 text-xs font-inter">
+                  <svg
+                    className="w-4 h-4 mr-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M7 16l-4-4m0 0l4-4m-4 4h18"
+                    />
+                  </svg>
+                  <span>Geser</span>
+                  <svg
+                    className="w-4 h-4 ml-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M17 8l4 4m0 0l-4 4m4-4H3"
+                    />
+                  </svg>
                 </div>
               </div>
             </div>
           </motion.div>
 
-          {/* Enhanced Service Cards - Mini Overview with Glassmorphism - Desktop Only */}
           <motion.div
-            className="hidden md:grid sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mb-16 md:mb-20 relative z-20"
+            className="hidden md:flex flex-wrap justify-center gap-3 lg:gap-4 mb-16 md:mb-20 relative z-20"
             variants={staggerContainer}
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
@@ -455,20 +832,21 @@ export default function Services() {
                 key={service.id}
                 variants={scaleIn}
                 custom={i + 6}
-                whileHover={{ y: -12, scale: 1.02 }}
+                whileHover={{ y: -8, scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 className={`relative group cursor-pointer transition-all duration-500 ${
                   activeTab === service.id ? "scale-105" : ""
                 }`}
-                onClick={() => setActiveTab(service.id)}
+                onClick={() => handleServiceSelect(service.id)}
               >
-                {/* Glassmorphism card container */}
-                <div className="relative overflow-hidden rounded-3xl p-1 bg-gradient-to-br from-white/30 via-white/20 to-transparent backdrop-blur-xl border border-white/40 shadow-2xl group-hover:shadow-3xl transition-all duration-500">
+                {/* Button-style card container */}
+                <div className="relative overflow-hidden rounded-2xl p-1 bg-gradient-to-br from-white/30 via-white/20 to-transparent backdrop-blur-xl border border-white/40 shadow-xl group-hover:shadow-2xl transition-all duration-500">
                   {/* Dynamic color background for active state */}
                   {activeTab === service.id && (
                     <motion.div
-                      className="absolute inset-0 rounded-3xl opacity-20"
+                      className="absolute inset-0 rounded-2xl opacity-30"
                       style={{
-                        background: `linear-gradient(135deg, ${service.color}30, transparent)`,
+                        background: `linear-gradient(135deg, ${service.color}40, ${service.color}20)`,
                       }}
                       layoutId="activeServiceCard"
                       transition={{
@@ -479,117 +857,59 @@ export default function Services() {
                     />
                   )}
 
-                  {/* Inner glassmorphism layer */}
-                  <div className="relative rounded-[22px] bg-white/60 backdrop-blur-md border border-white/70 p-6 overflow-hidden">
-                    {/* Floating decorative elements */}
+                  {/* Inner button layer */}
+                  <div className="relative rounded-xl bg-white/70 backdrop-blur-md border border-white/80 px-4 py-3 overflow-hidden flex items-center gap-3 min-w-[200px]">
+                    {/* Compact icon container */}
                     <motion.div
-                      className="absolute -top-3 -right-3 w-12 h-12 rounded-full blur-lg opacity-50"
+                      className="relative flex items-center justify-center w-10 h-10 rounded-xl backdrop-blur-sm border transition-all duration-300 flex-shrink-0"
                       style={{
-                        background: `linear-gradient(135deg, ${service.color}40, ${service.color}20)`,
+                        backgroundColor: `${service.color}20`,
+                        borderColor: `${service.color}40`,
                       }}
-                      animate={{
-                        scale: [1, 1.2, 1],
-                        opacity: [0.3, 0.6, 0.3],
-                        rotate: [0, 180, 360],
-                      }}
-                      transition={{
-                        duration: 8 + i,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                      }}
-                    />
-                    <motion.div
-                      className="absolute -bottom-2 -left-2 w-8 h-8 rounded-lg rotate-45 blur-md opacity-40"
-                      style={{
-                        background: `linear-gradient(45deg, ${service.color}30, transparent)`,
-                      }}
-                      animate={{
-                        scale: [1, 1.1, 1],
-                        rotate: [45, 90, 45],
-                      }}
-                      transition={{
-                        duration: 6 + i * 0.5,
-                        repeat: Infinity,
-                      }}
-                    />
-
-                    {/* Enhanced icon container */}
-                    <div className="relative mb-4">
-                      <motion.div
-                        className="relative inline-flex items-center justify-center w-16 h-16 rounded-2xl backdrop-blur-sm border transition-all duration-300"
-                        style={{
-                          backgroundColor: `${service.color}15`,
-                          borderColor: `${service.color}30`,
-                        }}
-                        whileHover={{ scale: 1.1, rotate: 5 }}
+                      whileHover={{ scale: 1.1, rotate: 5 }}
+                    >
+                      {/* Icon glow effect */}
+                      <div
+                        className="absolute inset-0 rounded-xl blur-lg opacity-0 group-hover:opacity-40 transition-opacity duration-300"
+                        style={{ backgroundColor: service.color }}
+                      />
+                      <span
+                        className="relative z-10"
+                        style={{ color: service.color }}
                       >
-                        {/* Icon glow effect */}
-                        <div
-                          className="absolute inset-0 rounded-2xl blur-xl opacity-0 group-hover:opacity-40 transition-opacity duration-300"
-                          style={{ backgroundColor: service.color }}
-                        />
-                        <span
-                          className="relative z-10"
-                          style={{ color: service.color }}
-                        >
-                          {renderServiceIcon(
-                            service.icon,
-                            service.color,
-                            "1.75rem"
-                          )}
-                        </span>
-                      </motion.div>
-                    </div>
+                        {renderServiceIcon(
+                          service.icon,
+                          service.color,
+                          "1.25rem"
+                        )}
+                      </span>
+                    </motion.div>
 
-                    <div className="relative z-10">
-                      <h3 className="font-unbounded text-lg md:text-xl font-bold text-gray-900 mb-3 leading-tight group-hover:text-gray-800 transition-colors duration-200">
+                    {/* Service title only */}
+                    <div className="relative z-10 flex-1">
+                      <h3
+                        className="font-unbounded text-sm lg:text-base font-bold leading-tight transition-colors duration-200"
+                        style={{
+                          color:
+                            activeTab === service.id
+                              ? service.color
+                              : "#374151",
+                        }}
+                      >
                         {service.title}
                       </h3>
-                      <p className="font-inter text-gray-600 mb-4 text-sm md:text-base leading-relaxed group-hover:text-gray-700 transition-colors duration-200">
-                        {service.shortDesc}
-                      </p>
-
-                      {/* Enhanced CTA with micro-interaction */}
-                      <motion.button
-                        className="font-inter text-sm md:text-base font-semibold group/btn flex items-center transition-all duration-200"
-                        style={{ color: service.color }}
-                        whileHover={{ x: 3 }}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setActiveTab(service.id);
-                        }}
-                      >
-                        Selengkapnya
-                        <motion.span
-                          className="ml-2 transition-transform group-hover/btn:translate-x-1"
-                          whileHover={{ scale: 1.2 }}
-                        >
-                          <svg
-                            className="w-4 h-4"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M9 5l7 7-7 7"
-                            />
-                          </svg>
-                        </motion.span>
-                      </motion.button>
                     </div>
 
-                    {/* Corner accent decorations */}
-                    <div
-                      className="absolute top-3 left-3 w-6 h-6 border-l-2 border-t-2 rounded-tl-lg opacity-20 group-hover:opacity-40 transition-opacity duration-300"
-                      style={{ borderColor: service.color }}
-                    />
-                    <div
-                      className="absolute bottom-3 right-3 w-6 h-6 border-r-2 border-b-2 rounded-br-lg opacity-20 group-hover:opacity-40 transition-opacity duration-300"
-                      style={{ borderColor: service.color }}
-                    />
+                    {/* Active indicator */}
+                    {activeTab === service.id && (
+                      <motion.div
+                        className="w-2 h-2 rounded-full flex-shrink-0"
+                        style={{ backgroundColor: service.color }}
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ duration: 0.3 }}
+                      />
+                    )}
                   </div>
                 </div>
               </motion.div>
@@ -597,380 +917,330 @@ export default function Services() {
           </motion.div>
 
           {/* Enhanced Service Detail Panels - Mobile Optimized */}
-          <div className="mb-8 md:mb-20 relative z-20 px-1 sm:px-0">
+          <div
+            ref={detailsRef}
+            className="mb-8 md:mb-20 relative z-20 px-1 sm:px-0"
+          >
             <AnimatePresence mode="wait">
-              {services.map(
-                (service) =>
-                  service.id === activeTab && (
-                    <motion.div
-                      key={service.id}
-                      initial={{ opacity: 0, y: 30, scale: 0.95 }}
-                      animate={{ opacity: 1, y: 0, scale: 1 }}
-                      exit={{ opacity: 0, y: -20, scale: 0.95 }}
-                      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                      className="grid lg:grid-cols-2 gap-6 lg:gap-12 items-center"
-                    >
-                      {/* Mobile Compact Service Card */}
-                      <div className="lg:hidden relative order-1">
-                        <div className="relative overflow-hidden rounded-3xl p-1 bg-gradient-to-br from-white/40 via-white/30 to-transparent backdrop-blur-xl border border-white/50 shadow-xl">
-                          <div className="relative rounded-[22px] bg-white/80 backdrop-blur-md border border-white/90 overflow-hidden">
-                            {/* Mobile Service Header - Compact */}
-                            <div className="relative p-4 border-b border-gray-100/50">
-                              <div className="flex items-center">
-                                <motion.div
-                                  className="relative p-3 rounded-2xl mr-3 flex-shrink-0"
-                                  style={{
-                                    backgroundColor: `${service.color}15`,
-                                    borderWidth: "1px",
-                                    borderColor: `${service.color}30`,
-                                  }}
-                                  whileHover={{ scale: 1.05, rotate: 5 }}
-                                >
-                                  <div
-                                    className="absolute inset-0 rounded-2xl blur-lg opacity-30"
-                                    style={{ backgroundColor: service.color }}
-                                  />
-                                  <span
-                                    className="relative z-10"
-                                    style={{ color: service.color }}
-                                  >
-                                    {renderServiceIcon(
-                                      service.icon,
-                                      service.color,
-                                      "1.5rem"
-                                    )}
-                                  </span>
-                                </motion.div>
-
-                                <div className="flex-1 min-w-0">
-                                  <h3
-                                    className="font-unbounded text-xl font-bold leading-tight"
-                                    style={{ color: service.color }}
-                                  >
-                                    {service.title}
-                                  </h3>
-                                  <p className="font-inter text-sm text-gray-600 mt-1 line-clamp-2">
-                                    {service.shortDesc}
-                                  </p>
-                                </div>
-                              </div>
-                            </div>
-
-                            {/* Mobile Service Image - Compact */}
-                            <div className="relative h-40 overflow-hidden">
-                              <Image
-                                src={service.image}
-                                alt={service.title}
-                                fill
-                                sizes="(max-width: 768px) 100vw"
-                                className="object-cover"
-                              />
-                              {/* Advanced progressive blur overlay */}
-                              <div className="absolute left-0 bottom-0 right-0 w-full h-3/4 pointer-events-none">
-                                <div
-                                  className="absolute top-0 left-0 bottom-0 right-0"
-                                  style={{
-                                    backdropFilter: "blur(2px)",
-                                    mask: "linear-gradient(rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 1) 80%)",
-                                    WebkitMask:
-                                      "linear-gradient(rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 1) 80%)",
-                                  }}
-                                />
-                                <div
-                                  className="absolute top-0 left-0 right-0 bottom-0"
-                                  style={{
-                                    background: `linear-gradient(transparent 30%, ${service.color}15 70%, ${service.color}40)`,
-                                  }}
-                                />
-                              </div>
-
-                              {/* Service badge overlay */}
-                              <div className="absolute bottom-3 left-3 right-3 z-10">
-                                <span
-                                  className="inline-block py-1.5 px-3 text-xs bg-white/95 font-inter font-semibold rounded-full backdrop-blur-sm shadow-md"
-                                  style={{ color: service.color }}
-                                >
-                                  FWB Plus {service.title}
-                                </span>
-                              </div>
-                            </div>
-
-                            {/* Mobile Content - Ultra Compact */}
-                            <div className="p-4 space-y-4">
-                              {/* Compact description */}
-                              <p className="font-inter text-gray-700 text-sm leading-relaxed line-clamp-3">
-                                {service.description}
-                              </p>
-
-                              {/* Mobile features - Horizontal pill tags */}
-                              <div>
-                                <h4 className="font-unbounded text-sm font-bold text-gray-900 mb-3 flex items-center">
-                                  <svg
-                                    className="w-4 h-4 mr-2"
-                                    style={{ color: service.color }}
-                                    fill="none"
-                                    stroke="currentColor"
-                                    viewBox="0 0 24 24"
-                                  >
-                                    <path
-                                      strokeLinecap="round"
-                                      strokeLinejoin="round"
-                                      strokeWidth={2}
-                                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                                    />
-                                  </svg>
-                                  Layanan Utama
-                                </h4>
-
-                                {/* Features as pills with 2 rows */}
-                                <div className="flex flex-wrap gap-2">
-                                  {service.features
-                                    .slice(0, 4)
-                                    .map((feature, i) => (
-                                      <motion.div
-                                        key={feature}
-                                        className="flex items-center bg-gray-50 px-3 py-1.5 rounded-full border border-gray-100"
-                                        initial={{ opacity: 0, scale: 0.8 }}
-                                        animate={{ opacity: 1, scale: 1 }}
-                                        transition={{
-                                          delay: i * 0.1,
-                                          duration: 0.3,
+              {services &&
+                services.map(
+                  (service) =>
+                    service &&
+                    service.id === activeTab && (
+                      <motion.div
+                        key={service.id}
+                        initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: -20, scale: 0.95 }}
+                        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                        className="grid lg:grid-cols-2 gap-6 lg:gap-12 items-center"
+                      >
+                        {/* Desktop Service Image - Hidden on Mobile */}
+                        <div className="hidden md:block relative order-2 md:order-1">
+                          <div className="relative h-[350px] md:h-[450px] lg:h-[500px] w-full rounded-3xl overflow-hidden group">
+                            {/* Glassmorphism image container */}
+                            <div
+                              className="relative h-full w-full overflow-hidden rounded-3xl border border-white/30 shadow-2xl backdrop-blur-sm"
+                              style={{
+                                boxShadow: `0 25px 50px -12px ${service.color}20`,
+                              }}
+                            >
+                              {/* 3D Stacked Image Carousel - Hero Style */}
+                              <div
+                                className="relative h-full w-full"
+                                onMouseEnter={() => setIsCarouselHovering(true)}
+                                onMouseLeave={() =>
+                                  setIsCarouselHovering(false)
+                                }
+                              >
+                                <AnimatePresence>
+                                  {service.images.map((image, imgIndex) => (
+                                    <motion.div
+                                      key={`${service.id}-${imgIndex}`}
+                                      className={`absolute inset-0 ${
+                                        imgIndex === currentImageIndex
+                                          ? "z-20"
+                                          : "z-10"
+                                      }`}
+                                      initial={{
+                                        opacity: 0,
+                                        rotateY: -20,
+                                        scale: 0.9,
+                                        x: 40,
+                                      }}
+                                      animate={{
+                                        opacity:
+                                          imgIndex === currentImageIndex
+                                            ? 1
+                                            : 0.7,
+                                        rotateY:
+                                          imgIndex === currentImageIndex
+                                            ? 0
+                                            : 10,
+                                        scale:
+                                          imgIndex === currentImageIndex
+                                            ? 1
+                                            : 0.85,
+                                        x:
+                                          imgIndex === currentImageIndex
+                                            ? 0
+                                            : imgIndex ===
+                                              (currentImageIndex + 1) %
+                                                service.images.length
+                                            ? 40
+                                            : -40,
+                                        zIndex:
+                                          imgIndex === currentImageIndex
+                                            ? 20
+                                            : 10,
+                                      }}
+                                      exit={{ opacity: 0, scale: 0.8 }}
+                                      transition={{ duration: 1 }}
+                                    >
+                                      <div
+                                        className="h-full w-full overflow-hidden rounded-3xl shadow-2xl transition-shadow group"
+                                        style={{
+                                          boxShadow: `0 25px 50px -12px ${service.color}30, 0 10px 15px -3px ${service.color}20`,
                                         }}
                                       >
-                                        <div
-                                          className="w-1.5 h-1.5 rounded-full mr-2 flex-shrink-0"
+                                        <div className="relative h-full w-full overflow-hidden">
+                                          <Image
+                                            src={image}
+                                            alt={`${service.title} - Image ${
+                                              imgIndex + 1
+                                            }`}
+                                            fill
+                                            sizes="(max-width: 768px) 100vw, 50vw"
+                                            className="object-cover group-hover:scale-110 transition-transform duration-1000"
+                                            priority={imgIndex === 0}
+                                          />
+
+                                          {/* Progressive blur overlay - Advanced technique like Hero */}
+                                          <div className="absolute left-0 bottom-0 right-0 w-full h-1/2 pointer-events-none">
+                                            <div
+                                              className="absolute top-0 left-0 bottom-0 right-0 z-10"
+                                              style={{
+                                                backdropFilter: "blur(4px)",
+                                                mask: "linear-gradient(rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%)",
+                                                WebkitMask:
+                                                  "linear-gradient(rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%)",
+                                              }}
+                                            />
+                                            {/* Gradient overlay for darkening */}
+                                            <div
+                                              className="absolute top-0 left-0 right-0 bottom-0"
+                                              style={{
+                                                background: `linear-gradient(transparent, ${service.color}60)`,
+                                              }}
+                                            />
+                                          </div>
+
+                                          {/* Service info overlay - Hero style */}
+                                          <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 text-white">
+                                            <motion.div
+                                              initial={{ opacity: 0, y: 20 }}
+                                              animate={{
+                                                opacity:
+                                                  imgIndex === currentImageIndex
+                                                    ? 1
+                                                    : 0,
+                                                y:
+                                                  imgIndex === currentImageIndex
+                                                    ? 0
+                                                    : 20,
+                                              }}
+                                              transition={{
+                                                duration: 0.5,
+                                                delay: 0.2,
+                                              }}
+                                            >
+                                              <motion.span
+                                                className="hidden md:inline-block py-1.5 px-3 mb-2 text-xs bg-white/95 font-inter font-semibold rounded-full backdrop-blur-sm shadow-lg"
+                                                style={{ color: service.color }}
+                                              >
+                                                <img
+                                                  src="/images/assets/logo/fwb-text.webp"
+                                                  alt="FWB Plus"
+                                                  width={32}
+                                                  height={10}
+                                                  className="inline-block mx-1 align-middle"
+                                                />{" "}
+                                                Services
+                                              </motion.span>
+                                              <h3 className="font-unbounded text-xl md:text-2xl font-bold mb-2">
+                                                {service.title}
+                                              </h3>
+                                              <p className="text-white/80 font-inter text-sm">
+                                                {service.shortDesc}
+                                              </p>
+                                            </motion.div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </motion.div>
+                                  ))}
+                                </AnimatePresence>
+
+                                {/* Navigation dots - Hero style */}
+                                <div className="absolute -bottom-10 left-0 right-0 flex justify-center gap-3 mt-6">
+                                  {service &&
+                                    service.images &&
+                                    Array.isArray(service.images) &&
+                                    service.images.map((_, idx) => (
+                                      <button
+                                        key={`nav-dot-${idx}`}
+                                        onClick={() =>
+                                          setCurrentImageIndex(idx)
+                                        }
+                                        className="relative p-1 focus:outline-none"
+                                      >
+                                        <motion.span
+                                          animate={{
+                                            scale:
+                                              idx === currentImageIndex
+                                                ? 1
+                                                : 0.7,
+                                            opacity:
+                                              idx === currentImageIndex
+                                                ? 1
+                                                : 0.5,
+                                          }}
+                                          className={`block w-3 h-3 rounded-full transition-colors duration-300`}
                                           style={{
-                                            backgroundColor: service.color,
+                                            backgroundColor:
+                                              idx === currentImageIndex
+                                                ? service.color || "#1a7be6"
+                                                : "#d1d5db",
                                           }}
                                         />
-                                        <span className="font-inter text-xs text-gray-700 font-medium">
-                                          {feature}
-                                        </span>
-                                      </motion.div>
+                                        {idx === currentImageIndex &&
+                                          service.id && (
+                                            <motion.span
+                                              layoutId={`dotIndicator-${service.id}-${idx}`}
+                                              className="absolute inset-0 rounded-full border-2"
+                                              style={{
+                                                borderColor:
+                                                  service.color || "#1a7be6",
+                                              }}
+                                              transition={{
+                                                duration: 0.5,
+                                                type: "spring",
+                                              }}
+                                            />
+                                          )}
+                                      </button>
                                     ))}
-                                  {service.features.length > 4 && (
-                                    <div className="flex items-center bg-gray-100 px-3 py-1.5 rounded-full border border-gray-200">
-                                      <span className="font-inter text-xs text-gray-500 font-medium">
-                                        +{service.features.length - 4} lainnya
-                                      </span>
-                                    </div>
-                                  )}
                                 </div>
                               </div>
-
-                              {/* Mobile CTA - Enhanced */}
-                              <Link href={`/services/${service.id}`}>
-                                <motion.div
-                                  whileHover={{ scale: 1.02 }}
-                                  whileTap={{ scale: 0.98 }}
-                                  className="relative flex items-center justify-center px-6 py-3.5 rounded-2xl font-inter font-semibold text-white text-sm shadow-lg w-full group overflow-hidden"
-                                  style={{ backgroundColor: service.color }}
-                                >
-                                  {/* Button glow effect */}
-                                  <div
-                                    className="absolute inset-0 rounded-2xl blur-xl opacity-0 group-hover:opacity-40 transition-opacity duration-300"
-                                    style={{ backgroundColor: service.color }}
-                                  />
-
-                                  <span className="relative z-10 mr-2">
-                                    Pelajari Lebih Lanjut
-                                  </span>
-                                  <svg
-                                    className="relative z-10 w-4 h-4 transition-transform group-hover:translate-x-1"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    viewBox="0 0 24 24"
-                                  >
-                                    <path
-                                      strokeLinecap="round"
-                                      strokeLinejoin="round"
-                                      strokeWidth={2}
-                                      d="M13 7l5 5m0 0l-5 5m5-5H6"
-                                    />
-                                  </svg>
-                                </motion.div>
-                              </Link>
                             </div>
                           </div>
                         </div>
-                      </div>
-                      {/* Desktop Service Image - Hidden on Mobile */}
-                      <div className="hidden lg:block relative order-2 lg:order-1">
-                        <div className="relative h-[350px] md:h-[450px] lg:h-[500px] w-full rounded-3xl overflow-hidden group">
-                          {/* Glassmorphism image container */}
-                          <div
-                            className="relative h-full w-full overflow-hidden rounded-3xl border border-white/30 shadow-2xl backdrop-blur-sm"
-                            style={{
-                              boxShadow: `0 25px 50px -12px ${service.color}20`,
-                            }}
-                          >
-                            <Image
-                              src={service.image}
-                              alt={service.title}
-                              fill
-                              sizes="(max-width: 768px) 100vw, 50vw"
-                              className="object-cover transition-transform duration-700 group-hover:scale-110"
-                            />
 
-                            {/* Progressive blur overlay - Advanced technique */}
-                            <div className="absolute left-0 bottom-0 right-0 w-full h-1/2 pointer-events-none">
-                              {/* Multiple blur layers with precise masking */}
-                              <div
-                                className="absolute top-0 left-0 bottom-0 right-0"
-                                style={{
-                                  backdropFilter: "blur(4px)",
-                                  mask: "linear-gradient(rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 1) 80%)",
-                                  WebkitMask:
-                                    "linear-gradient(rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 1) 80%)",
-                                }}
-                              />
-                              <div
-                                className="absolute top-0 left-0 bottom-0 right-0 z-10"
-                                style={{
-                                  backdropFilter: "blur(8px)",
-                                  mask: "linear-gradient(rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%)",
-                                  WebkitMask:
-                                    "linear-gradient(rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%)",
-                                }}
-                              />
-                              {/* Gradient overlay with service color */}
-                              <div
-                                className="absolute top-0 left-0 right-0 bottom-0"
-                                style={{
-                                  background: `linear-gradient(transparent 40%, ${service.color}20 70%, ${service.color}60)`,
-                                }}
-                              />
-                            </div>
-
-                            {/* Service info overlay */}
-                            <div className="absolute bottom-0 left-0 w-full p-6 md:p-8 z-50">
-                              <motion.span
-                                className="inline-block py-2 px-4 mb-3 text-xs md:text-sm bg-white/95 font-inter font-semibold rounded-full backdrop-blur-sm shadow-lg"
-                                style={{ color: service.color }}
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.3, duration: 0.6 }}
-                              >
-                                FWB Plus Services
-                              </motion.span>
-                              <motion.h3
-                                className="font-unbounded text-xl md:text-2xl lg:text-3xl font-bold text-white leading-tight"
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.5, duration: 0.6 }}
-                              >
-                                {service.title}
-                              </motion.h3>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Desktop Service Information - Hidden on Mobile */}
-                      <motion.div
-                        className="hidden lg:block space-y-6 order-1 lg:order-2"
-                        initial={{ opacity: 0, x: 50 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.8, delay: 0.2 }}
-                      >
-                        <div>
-                          <motion.h3
-                            className="font-unbounded text-2xl md:text-3xl lg:text-4xl font-bold mb-4 md:mb-6 leading-tight"
-                            style={{ color: service.color }}
-                            initial={{ opacity: 0, y: 30 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.3, duration: 0.6 }}
-                          >
-                            {service.title}
-                          </motion.h3>
-
-                          <motion.p
-                            className="font-inter text-gray-700 text-lg md:text-xl leading-relaxed mb-6"
-                            initial={{ opacity: 0, y: 30 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.5, duration: 0.6 }}
-                          >
-                            {service.description}
-                          </motion.p>
-                        </div>
-
-                        {/* Enhanced Features Section */}
+                        {/* Desktop Service Information - Hidden on Mobile */}
                         <motion.div
-                          className="space-y-4"
-                          initial={{ opacity: 0, y: 30 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: 0.7, duration: 0.6 }}
+                          className="hidden md:block space-y-6 order-1 md:order-2"
+                          initial={{ opacity: 0, x: 50 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ duration: 0.8, delay: 0.2 }}
                         >
-                          <h4 className="font-unbounded text-lg md:text-xl font-bold text-gray-900 flex items-center">
-                            <svg
-                              className="w-5 h-5 mr-3"
+                          <div>
+                            <motion.h3
+                              className="font-unbounded text-2xl md:text-3xl lg:text-4xl font-bold mb-4 md:mb-6 leading-tight"
                               style={{ color: service.color }}
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
+                              initial={{ opacity: 0, y: 30 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              transition={{ delay: 0.3, duration: 0.6 }}
                             >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                              />
-                            </svg>
-                            Layanan Tersedia
-                          </h4>
+                              {service.title}
+                            </motion.h3>
 
-                          <div className="grid md:grid-cols-2 gap-3 md:gap-4">
-                            {service.features.map((feature, i) => (
-                              <motion.div
-                                key={feature}
-                                className="flex items-center group cursor-pointer p-2 rounded-xl hover:bg-gray-50 transition-colors duration-200"
-                                initial={{ opacity: 0, x: -20 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                transition={{
-                                  delay: 0.8 + i * 0.1,
-                                  duration: 0.5,
-                                }}
-                                whileHover={{ x: 5, scale: 1.02 }}
-                              >
-                                <motion.div
-                                  className="p-1.5 mr-3 rounded-xl flex-shrink-0"
-                                  style={{
-                                    backgroundColor: `${service.color}15`,
-                                  }}
-                                  whileHover={{ scale: 1.1, rotate: 5 }}
-                                >
-                                  <svg
-                                    className="w-4 h-4"
-                                    style={{ color: service.color }}
-                                    fill="none"
-                                    stroke="currentColor"
-                                    viewBox="0 0 24 24"
-                                  >
-                                    <path
-                                      strokeLinecap="round"
-                                      strokeLinejoin="round"
-                                      strokeWidth={2}
-                                      d="M5 13l4 4L19 7"
-                                    />
-                                  </svg>
-                                </motion.div>
-                                <span className="font-inter text-gray-700 group-hover:text-gray-900 transition-colors duration-200">
-                                  {feature}
-                                </span>
-                              </motion.div>
-                            ))}
+                            <motion.p
+                              className="font-inter text-gray-700 text-lg md:text-xl leading-relaxed mb-6"
+                              initial={{ opacity: 0, y: 30 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              transition={{ delay: 0.5, duration: 0.6 }}
+                            >
+                              {service.description}
+                            </motion.p>
                           </div>
-                        </motion.div>
 
-                        {/* Enhanced CTA Button */}
-                        <motion.div
-                          className="pt-6"
-                          initial={{ opacity: 0, y: 30 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: 1.2, duration: 0.6 }}
-                        >
-                          <Link href={`/services/${service.id}`}>
-                            <motion.div
+                          {/* Enhanced Features Section */}
+                          <motion.div
+                            className="space-y-4"
+                            initial={{ opacity: 0, y: 30 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.7, duration: 0.6 }}
+                          >
+                            <h4 className="font-unbounded text-lg md:text-xl font-bold text-gray-900 flex items-center">
+                              <svg
+                                className="w-5 h-5 mr-3"
+                                style={{ color: service.color }}
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={2}
+                                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                                />
+                              </svg>
+                              Layanan Tersedia
+                            </h4>
+
+                            <div className="grid md:grid-cols-2 gap-3 md:gap-4">
+                              {service.features.map((feature, i) => (
+                                <motion.div
+                                  key={feature}
+                                  className="flex items-center group cursor-pointer p-2 rounded-xl hover:bg-gray-50 transition-colors duration-200"
+                                  initial={{ opacity: 0, x: -20 }}
+                                  animate={{ opacity: 1, x: 0 }}
+                                  transition={{
+                                    delay: 0.8 + i * 0.1,
+                                    duration: 0.5,
+                                  }}
+                                  whileHover={{ x: 5, scale: 1.02 }}
+                                >
+                                  <motion.div
+                                    className="p-1.5 mr-3 rounded-xl flex-shrink-0"
+                                    style={{
+                                      backgroundColor: `${service.color}15`,
+                                    }}
+                                    whileHover={{ scale: 1.1, rotate: 5 }}
+                                  >
+                                    <svg
+                                      className="w-4 h-4"
+                                      style={{ color: service.color }}
+                                      fill="none"
+                                      stroke="currentColor"
+                                      viewBox="0 0 24 24"
+                                    >
+                                      <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth={2}
+                                        d="M5 13l4 4L19 7"
+                                      />
+                                    </svg>
+                                  </motion.div>
+                                  <span className="font-inter text-gray-700 group-hover:text-gray-900 transition-colors duration-200">
+                                    {feature}
+                                  </span>
+                                </motion.div>
+                              ))}
+                            </div>
+                          </motion.div>
+
+                          {/* Enhanced CTA Button */}
+                          <motion.div
+                            className="pt-6"
+                            initial={{ opacity: 0, y: 30 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 1.2, duration: 0.6 }}
+                          >
+                            <motion.button
+                              onClick={() => openGalleryModal(service)}
                               whileHover={{ scale: 1.05, y: -2 }}
                               whileTap={{ scale: 0.95 }}
                               className="relative inline-flex items-center px-6 md:px-8 py-3 md:py-4 rounded-2xl font-inter font-semibold text-white group overflow-hidden shadow-lg"
@@ -985,7 +1255,7 @@ export default function Services() {
                               />
 
                               <span className="relative z-10 mr-2">
-                                Pelajari Lebih Lanjut
+                                Lihat Lebih Lanjut
                               </span>
                               <motion.svg
                                 className="relative z-10 w-5 h-5 transition-transform group-hover:translate-x-1"
@@ -997,16 +1267,21 @@ export default function Services() {
                                   strokeLinecap="round"
                                   strokeLinejoin="round"
                                   strokeWidth={2}
-                                  d="M13 7l5 5m0 0l-5 5m5-5H6"
+                                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                                />
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={2}
+                                  d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
                                 />
                               </motion.svg>
-                            </motion.div>
-                          </Link>
+                            </motion.button>
+                          </motion.div>
                         </motion.div>
                       </motion.div>
-                    </motion.div>
-                  )
-              )}
+                    )
+                )}
             </AnimatePresence>
           </div>
 
@@ -1063,7 +1338,7 @@ export default function Services() {
                   }
                   transition={{ delay: 1.4, duration: 0.6 }}
                 >
-                  <Link href="wa.me/6281944074542">
+                  <Link href="https://wa.me/6281944074542">
                     <motion.div
                       whileHover={{ scale: 1.05, y: -2 }}
                       whileTap={{ scale: 0.95 }}
@@ -1094,6 +1369,13 @@ export default function Services() {
           </motion.div>
         </div>
       </section>
+
+      {/* Service Gallery Modal */}
+      <ServiceGalleryModal
+        isOpen={isModalOpen}
+        onClose={closeGalleryModal}
+        service={selectedService}
+      />
     </>
   );
 }

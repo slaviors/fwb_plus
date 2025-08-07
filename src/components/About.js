@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
@@ -144,8 +145,14 @@ export default function About() {
             className="max-w-3xl mx-auto"
           >
             <p className="font-inter text-lg md:text-xl text-gray-600 leading-relaxed">
-              <span className="font-semibold text-gray-700">FWB Plus</span>{" "}
-              adalah event organizer dan agency yang melayani berbagai acara seperti corporate gathering,
+              <img
+                src="/images/assets/logo/fwb-text.webp"
+                alt="FWB Plus"
+                width={40}
+                height={12}
+                className="inline-block mx-1 align-middle"
+              />{" "}
+              adalah event organizer dan agency yang melayani berbagai acara, seperti corporate gathering,
               pameran, konser, hingga penyediaan peralatan dan manpower event.
             </p>
           </motion.div>
@@ -161,7 +168,7 @@ export default function About() {
           >
             <div className="relative h-[350px] md:h-[400px] lg:h-[450px] w-full rounded-3xl overflow-hidden shadow-2xl shadow-blue-200/40 group z-40">
               <Image
-                src="/images/about/company-story.png"
+                src="/images/about/company-story.JPG"
                 alt="FWB Plus Company Story"
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
@@ -174,7 +181,7 @@ export default function About() {
                 <div
                   className="absolute top-0 left-0 bottom-0 right-0"
                   style={{
-                    backdropFilter: "blur(2px)",
+                    backdropFilter: "blur(1px)",
                     mask: "linear-gradient(rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 1) 45%, rgba(0, 0, 0, 1) 65%, rgba(0, 0, 0, 0) 75%)",
                     WebkitMask:
                       "linear-gradient(rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 1) 45%, rgba(0, 0, 0, 1) 65%, rgba(0, 0, 0, 0) 75%)",
@@ -183,7 +190,7 @@ export default function About() {
                 <div
                   className="absolute top-0 left-0 bottom-0 right-0"
                   style={{
-                    backdropFilter: "blur(4px)",
+                    backdropFilter: "blur(2px)",
                     mask: "linear-gradient(rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 1) 65%, rgba(0, 0, 0, 1) 85%, rgba(0, 0, 0, 0) 95%)",
                     WebkitMask:
                       "linear-gradient(rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 1) 65%, rgba(0, 0, 0, 1) 85%, rgba(0, 0, 0, 0) 95%)",
@@ -192,7 +199,7 @@ export default function About() {
                 <div
                   className="absolute top-0 left-0 bottom-0 right-0"
                   style={{
-                    backdropFilter: "blur(8px)",
+                    backdropFilter: "blur(4px)",
                     mask: "linear-gradient(rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 85%)",
                     WebkitMask:
                       "linear-gradient(rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 85%)",
@@ -234,7 +241,7 @@ export default function About() {
                 </motion.h3>
               </div>
 
-              {/* Enhanced floating badge */}
+              {/* 
               <motion.div
                 className="absolute top-8 right-8 bg-white/95 backdrop-blur-sm rounded-2xl py-3 px-5 shadow-xl hidden sm:flex items-center border border-white/20 z-50"
                 animate={{
@@ -256,6 +263,9 @@ export default function About() {
                   Pengalaman
                 </span>
               </motion.div>
+
+              */}
+
             </div>
           </motion.div>
 
@@ -287,100 +297,96 @@ export default function About() {
               >
                 <p>
                   Berawal dari ide tiga individu berpengalaman sejak tahun{" "}
-                  <span className="font-semibold text-[#1a7be6]">2002</span>,
+                  <span className="font-semibold text-[#1a7be6]">2005</span>, dengan total pengalaman lebih dari 100 event jika digabungkan,
                   kami resmi mendirikan{" "}
-                  <span className="font-semibold text-[#f35e0e]">FWB Plus</span>{" "}
+                  <img
+                    src="/images/assets/logo/fwb-text.webp"
+                    alt="FWB Plus"
+                    width={40}
+                    height={12}
+                    className="inline-block mx-1 align-middle"
+                  />{" "}
                   pada{" "}
                   <span className="font-semibold text-[#1a7be6]">
                     4 Juli 2024
                   </span>
                   . Dengan latar belakang dan semangat yang sama di dunia event,
-                  kami membangun agency ini untuk memberikan manfaat lebih tidak
+                  kami membangun agency ini untuk memberikan manfaat lebih, tidak
                   hanya bagi klien, tetapi juga seluruh rekan yang terlibat
                   bersama kami.
                 </p>
 
                 <p>
                   Filosofi nama{" "}
-                  <span className="font-semibold text-[#f35e0e]">FWB Plus</span>{" "}
+                  <img
+                    src="/images/assets/logo/fwb-text.webp"
+                    alt="FWB Plus"
+                    width={40}
+                    height={12}
+                    className="inline-block mx-1 align-middle"
+                  />{" "}
                   berasal dari semangat{" "}
                   <span className="font-semibold text-[#1a7be6]">
-                    Friends With Benefit
+                    Friends With Benefits
                   </span>{" "}
                   dalam arti positif, yaitu membangun kolaborasi yang saling
                   menguntungkan. Kami terus berkomitmen
                   menghadirkan layanan event yang kreatif, profesional, dan
-                  penuh integritas mulai dari exhibition, konser, corporate
+                  penuh integritas, mulai dari pameran, konser, corporate
                   event, hingga penyediaan equipment dan manpower.
                 </p>
               </motion.div>
             </div>
 
             <motion.div
-              className="pt-4 flex flex-wrap gap-4 lg:gap-6"
+              className="pt-6"
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               transition={{ delay: 1.1, duration: 0.6 }}
             >
-              {[
-                { icon: "M5 13l4 4L19 7", label: "Profesional", color: "blue" },
-                {
-                  icon: "M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z",
-                  label: "Kreatif",
-                  color: "orange",
-                },
-                {
-                  icon: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z",
-                  label: "Terpercaya",
-                  color: "red",
-                },
-              ].map((item, index) => (
+              <div className="bg-gradient-to-r from-blue-50/50 to-orange-50/50 rounded-2xl p-6 border border-blue-100/30 relative">
+                {/* Quote icon - opening */}
                 <motion.div
-                  key={index}
-                  className="flex items-center group cursor-pointer"
-                  whileHover={{ scale: 1.05, x: 5 }}
-                  transition={{ type: "spring", stiffness: 300 }}
+                  className="absolute top-2 left-4 text-[#1a7be6] opacity-30"
+                  initial={{ opacity: 0, scale: 0 }}
+                  animate={isInView ? { opacity: 0.3, scale: 1 } : { opacity: 0, scale: 0 }}
+                  transition={{ delay: 1.2, duration: 0.6 }}
                 >
-                  <div
-                    className={`mr-3 p-2 bg-${
-                      item.color === "blue"
-                        ? "blue"
-                        : item.color === "orange"
-                        ? "orange"
-                        : "red"
-                    }-50 rounded-xl group-hover:bg-${
-                      item.color === "blue"
-                        ? "blue"
-                        : item.color === "orange"
-                        ? "orange"
-                        : "red"
-                    }-100 transition-colors duration-300`}
-                  >
-                    <svg
-                      className={`w-5 h-5 text-${
-                        item.color === "blue"
-                          ? "[#1a7be6]"
-                          : item.color === "orange"
-                          ? "[#f35e0e]"
-                          : "[#ce1010]"
-                      }`}
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d={item.icon}
-                      />
-                    </svg>
-                  </div>
-                  <span className="font-inter font-semibold text-gray-800">
-                    {item.label}
-                  </span>
+                  <svg width="24" height="20" viewBox="0 0 24 20" fill="currentColor">
+                    <path d="M0 13.3333C0 8.84722 1.875 5.34722 5.625 2.83333C6.25 2.36111 7.08333 2.5 7.5 3.19444C7.91667 3.88889 7.70833 4.72222 7.08333 5.19444C4.79167 6.875 3.64583 8.95833 3.64583 11.4444V12.5C3.64583 13.0556 4.09375 13.5 4.6875 13.5H7.5C8.32292 13.5 9 14.1771 9 15V18C9 18.8229 8.32292 19.5 7.5 19.5H1.875C0.839844 19.5 0 18.6602 0 17.625V13.3333ZM15 13.3333C15 8.84722 16.875 5.34722 20.625 2.83333C21.25 2.36111 22.0833 2.5 22.5 3.19444C22.9167 3.88889 22.7083 4.72222 22.0833 5.19444C19.7917 6.875 18.6458 8.95833 18.6458 11.4444V12.5C18.6458 13.0556 19.0938 13.5 19.6875 13.5H22.5C23.3229 13.5 24 14.1771 24 15V18C24 18.8229 23.3229 19.5 22.5 19.5H16.875C15.8398 19.5 15 18.6602 15 17.625V13.3333Z"/>
+                  </svg>
                 </motion.div>
-              ))}
+
+                {/* Quote icon - closing */}
+                <motion.div
+                  className="absolute bottom-2 right-4 text-[#f35e0e] opacity-30 rotate-180"
+                  initial={{ opacity: 0, scale: 0 }}
+                  animate={isInView ? { opacity: 0.3, scale: 1 } : { opacity: 0, scale: 0 }}
+                  transition={{ delay: 1.6, duration: 0.6 }}
+                >
+                  <svg width="24" height="20" viewBox="0 0 24 20" fill="currentColor">
+                    <path d="M0 13.3333C0 8.84722 1.875 5.34722 5.625 2.83333C6.25 2.36111 7.08333 2.5 7.5 3.19444C7.91667 3.88889 7.70833 4.72222 7.08333 5.19444C4.79167 6.875 3.64583 8.95833 3.64583 11.4444V12.5C3.64583 13.0556 4.09375 13.5 4.6875 13.5H7.5C8.32292 13.5 9 14.1771 9 15V18C9 18.8229 8.32292 19.5 7.5 19.5H1.875C0.839844 19.5 0 18.6602 0 17.625V13.3333ZM15 13.3333C15 8.84722 16.875 5.34722 20.625 2.83333C21.25 2.36111 22.0833 2.5 22.5 3.19444C22.9167 3.88889 22.7083 4.72222 22.0833 5.19444C19.7917 6.875 18.6458 8.95833 18.6458 11.4444V12.5C18.6458 13.0556 19.0938 13.5 19.6875 13.5H22.5C23.3229 13.5 24 14.1771 24 15V18C24 18.8229 23.3229 19.5 22.5 19.5H16.875C15.8398 19.5 15 18.6602 15 17.625V13.3333Z"/>
+                  </svg>
+                </motion.div>
+
+                <motion.h4
+                  className="font-unbounded text-xl md:text-2xl font-bold mb-3 leading-tight text-center px-8"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                  transition={{ delay: 1.3, duration: 0.6 }}
+                >
+                  <span className="text-[#1a7be6]">Kekancan kuwi </span>
+                  <span className="text-[#f35e0e]">kudu bateni</span>
+                </motion.h4>
+                <motion.p
+                  className="font-inter text-gray-600 text-center leading-relaxed"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                  transition={{ delay: 1.5, duration: 0.6 }}
+                >
+                  Berteman itu harus saling menguntungkan
+                </motion.p>
+              </div>
             </motion.div>
 
             <motion.div
@@ -482,16 +488,16 @@ export default function About() {
                     Menjadi perusahaan Event & Exhibition Organizer yang
                     memiliki{" "}
                     <span className="font-semibold text-[#1a7be6]">
-                      integritas tinggi
+                      Integritas Tinggi
                     </span>
                     ,{" "}
                     <span className="font-semibold text-[#1a7be6]">
-                      inovatif
+                      Inovatif
                     </span>
                     , dan mampu memenuhi segala kebutuhan klien dalam bidang
                     penyelenggaraan acara secara{" "}
                     <span className="font-semibold text-[#1a7be6]">
-                      profesional
+                      Profesional
                     </span>
                     .
                   </p>
@@ -620,7 +626,8 @@ export default function About() {
           </motion.div>
         </div>
 
-        {/* Achievements Section */}
+        {/* Achievements Section - TEMPORARILY DISABLED */}
+        {/*
         <motion.div
           className="mb-12 md:mb-16 relative z-20"
           variants={staggerContainer}
@@ -654,7 +661,7 @@ export default function About() {
             </h3>
             <p className="font-inter text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
               Dengan pengalaman lebih dari 10 tahun, kami bangga telah menjadi
-              bagian dari momen-momen berharga klien kami
+              bagian dari momen-momen berharga klien kami.
             </p>
           </motion.div>
 
@@ -667,9 +674,7 @@ export default function About() {
                 custom={6 + index}
                 whileHover={{ scale: 1.08, y: -8 }}
               >
-                {/* Glassmorphism achievement card with enhanced effects */}
                 <div className="relative overflow-hidden rounded-3xl p-1 bg-gradient-to-br from-white/30 via-white/20 to-transparent backdrop-blur-xl border border-white/40 shadow-xl group-hover:shadow-3xl transition-all duration-500">
-                  {/* Dynamic color border based on achievement */}
                   <div
                     className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-30 transition-opacity duration-500"
                     style={{
@@ -677,9 +682,7 @@ export default function About() {
                     }}
                   />
 
-                  {/* Inner glassmorphism layer */}
                   <div className="relative rounded-[22px] bg-white/50 backdrop-blur-md border border-white/60 p-4 lg:p-6 text-center overflow-hidden">
-                    {/* Animated background with achievement color */}
                     <div
                       className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500"
                       style={{
@@ -687,7 +690,6 @@ export default function About() {
                       }}
                     />
 
-                    {/* Floating decorative elements */}
                     <motion.div
                       className="absolute -top-3 -right-3 w-12 h-12 rounded-full blur-lg opacity-60"
                       style={{
@@ -719,7 +721,6 @@ export default function About() {
                       }}
                     />
 
-                    {/* Achievement number with enhanced styling */}
                     <div className="relative z-10 mb-3">
                       <motion.div
                         className="relative inline-block"
@@ -732,7 +733,6 @@ export default function About() {
                           stiffness: 150,
                         }}
                       >
-                        {/* Number glow effect */}
                         <div
                           className="absolute inset-0 text-3xl lg:text-4xl xl:text-5xl font-unbounded font-bold blur-lg opacity-30"
                           style={{ color: achievement.color }}
@@ -740,7 +740,6 @@ export default function About() {
                           {achievement.number}
                         </div>
 
-                        {/* Main number */}
                         <div
                           className="relative text-3xl lg:text-4xl xl:text-5xl font-unbounded font-bold"
                           style={{ color: achievement.color }}
@@ -750,7 +749,6 @@ export default function About() {
                       </motion.div>
                     </div>
 
-                    {/* Achievement label with micro animations */}
                     <motion.div
                       className="relative z-10"
                       initial={{ opacity: 0, y: 20 }}
@@ -763,7 +761,6 @@ export default function About() {
                         {achievement.label}
                       </p>
 
-                      {/* Underline effect */}
                       <motion.div
                         className="mt-2 h-0.5 rounded-full mx-auto"
                         style={{ backgroundColor: achievement.color }}
@@ -777,7 +774,6 @@ export default function About() {
                       />
                     </motion.div>
 
-                    {/* Corner accent decorations */}
                     <div
                       className="absolute top-3 left-3 w-6 h-6 border-l-2 border-t-2 rounded-tl-lg opacity-20 group-hover:opacity-40 transition-opacity duration-300"
                       style={{ borderColor: achievement.color }}
@@ -792,6 +788,7 @@ export default function About() {
             ))}
           </div>
         </motion.div>
+        */}
       </div>
     </section>
   );

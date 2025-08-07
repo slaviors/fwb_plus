@@ -1,42 +1,26 @@
+"use client";
+
 import Hero from "@/components/Hero";
-import EventComponent from "@/components/EventComponent";
-import TestimonialSlider from "@/components/TestimonialSlider";
+// import EventComponent from "@/components/EventComponent";
+// import TestimonialSlider from "@/components/TestimonialSlider";
 import ClientsSlider from "@/components/ClientsSlider";
 import GalleryPreview from "@/components/GalleryPreview";
 import ContactLocation from "@/components/ContactLocation";
-import Image from "next/image";
 import About from "@/components/About";
 import Footer from "@/components/Footer";
 import Services from "@/components/Service";
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
-      {/* Hero Section */}
+    <main className="min-h-screen relative">
       <Hero />
-
-      {/* About Section */}
       <About />
-
-      {/* Clients Section */}
-      <ClientsSlider />
-
-      {/* Services Section */}
+      {/* <ClientsSlider /> */}
       <Services />
-
-      {/* Event Section */}
-      <EventComponent />
-
-      {/* Gallery Section */}
-      <GalleryPreview />
-
-      {/* Testimonials Section */}
-      <TestimonialSlider />
-
-      {/* Contact Section */}
+      {/* <EventComponent /> */}
+      {/* <GalleryPreview /> */}
+      {/* <TestimonialSlider /> */}
       <ContactLocation />
-
-      {/* Footer */}
       <Footer />
     </main>
   );

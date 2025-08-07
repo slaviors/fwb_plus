@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://fwb-plus.vercel.app/sitemap.xml
+Sitemap: https://fwbplus.id/sitemap.xml
 
 # Crawl-delay untuk menghindari overload server
 Crawl-delay: 1
@@ -12,7 +12,6 @@ Crawl-delay: 1
 Allow: /
 Allow: /about
 Allow: /services
-Allow: /gallery
 Allow: /events
 Allow: /contact
 

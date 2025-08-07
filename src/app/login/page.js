@@ -37,7 +37,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-100 flex items-center justify-center py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden overflow-y-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-100 flex items-center justify-center py-28 px-4 sm:px-6 lg:px-8 relative overflow-hidden overflow-y-hidden">
       {/* Background decorative elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-0 right-0 w-96 h-96 bg-blue-100/30 rounded-full blur-3xl -translate-y-1/2 translate-x-1/4"></div>
@@ -102,23 +102,13 @@ export default function LoginPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                 </svg>
               </div>
-              <div className="relative h-8 w-32 mx-auto mb-4">
-                <Image
-                  src="/images/assets/logo/Logo FWB PNG.png"
-                  alt="FWB Plus Logo"
-                  fill
-                  sizes="128px"
-                  style={{ objectFit: 'contain' }}
-                  priority
-                />
-              </div>
             </motion.div>
             
             <motion.h2 
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="text-2xl font-bold text-gray-900 mb-2"
+              className="text-2xl font-bold text-gray-900 mb-2 font-unbounded"
             >
               Admin Login
             </motion.h2>
@@ -242,33 +232,6 @@ export default function LoginPage() {
               )}
             </motion.button>
           </motion.form>
-
-          {/* Footer */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.8 }}
-            className="mt-8 text-center"
-          >
-            <p className="text-xs text-gray-500">
-              © 2025 FWB Plus Organizer. All rights reserved.
-            </p>
-          </motion.div>
-        </motion.div>
-
-        {/* Additional Info */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.9 }}
-          className="text-center"
-        >
-          <p className="text-sm text-gray-600">
-            Butuh bantuan? 
-            <a href="mailto:fwbplus.eo@gmail.com" className="text-[#1a7be6] hover:text-[#134e92] ml-1 font-medium">
-              Hubungi Support
-            </a>
-          </p>
         </motion.div>
       </div>
     </div>
