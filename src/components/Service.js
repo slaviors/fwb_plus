@@ -346,66 +346,6 @@ export default function Services() {
         ref={sectionRef}
         className="relative min-h-screen py-12 md:py-24 bg-gradient-to-b from-orange-50/40 via-white to-orange-50/20 overflow-hidden"
       >
-        {/* Enhanced decorative elements with orange theme */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          {/* Large background shapes */}
-          <div className="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-blue-100/40 to-blue-200/20 rounded-full blur-3xl"></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-r from-orange-50/60 to-blue-50/40 rounded-full blur-2xl"></div>
-
-          {/* Floating animated shapes */}
-          <motion.div
-            animate={{
-              y: [0, -20, 0],
-              rotate: [0, 10, 0],
-              scale: [1, 1.1, 1],
-            }}
-            transition={{
-              duration: 8,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-            className="hidden lg:block absolute top-20 right-20 w-16 h-16 border-2 border-orange-200/60 rounded-full"
-          />
-          <motion.div
-            animate={{
-              y: [0, 25, 0],
-              x: [0, -20, 0],
-              rotate: [0, -15, 0],
-            }}
-            transition={{
-              duration: 10,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-            className="hidden lg:block absolute bottom-32 left-16 w-20 h-20 border-2 border-blue-200/60 rounded-xl rotate-12"
-          />
-          <motion.div
-            animate={{
-              y: [0, -15, 0],
-              x: [0, 15, 0],
-              rotate: [0, 20, 0],
-            }}
-            transition={{
-              duration: 12,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-            className="hidden md:block absolute top-1/3 left-10 w-12 h-12 bg-orange-100/40 rounded-full"
-          />
-          <motion.div
-            animate={{
-              y: [0, 20, 0],
-              x: [0, -10, 0],
-              rotate: [0, -25, 0],
-            }}
-            transition={{
-              duration: 9,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-            className="hidden md:block absolute bottom-1/4 right-16 w-14 h-14 bg-blue-100/40 rounded-lg rotate-45"
-          />
-        </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           {/* Enhanced section header */}
