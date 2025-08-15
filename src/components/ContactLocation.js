@@ -194,43 +194,6 @@ export default function ContactLocation() {
             ease: "easeInOut",
           }}
         />
-
-        {/* Floating Geometric Shapes */}
-        <motion.div
-          animate={{
-            y: [0, -25, 0],
-            rotate: [0, 45, 90, 135, 180, 225, 270, 315, 360],
-          }}
-          transition={{
-            duration: 30,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-          className="hidden xl:block absolute top-40 left-20 w-8 h-8 bg-[#1a7be6]/20 rounded-lg backdrop-blur-sm shadow-lg"
-        />
-
-        {/* Animated Lines */}
-        <motion.div
-          animate={{
-            rotate: [0, 360],
-          }}
-          transition={{
-            duration: 60,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-          className="absolute top-1/4 left-1/4 w-32 h-32 opacity-10"
-        >
-          <svg width="128" height="128" viewBox="0 0 128 128">
-            <path
-              d="M64 16 L112 64 L64 112 L16 64 Z"
-              fill="none"
-              stroke="#1a7be6"
-              strokeWidth="2"
-              opacity="0.6"
-            />
-          </svg>
-        </motion.div>
       </div>
 
       <div className="relative container max-w-7xl mx-auto px-4">

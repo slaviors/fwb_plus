@@ -5,12 +5,15 @@ import Image from 'next/image';
 export default function ClientsSlider() {
   // Sampel clients - ganti dengan klien FWB Plus yang sebenarnya
   const clients = [
-    { name: "Company A", logo: "/images/clients/client1.png" },
-    { name: "Company B", logo: "/images/clients/client2.png" },
-    { name: "Company C", logo: "/images/clients/client3.png" },
-    { name: "Company D", logo: "/images/clients/client4.png" },
-    { name: "Company E", logo: "/images/clients/client5.png" },
-    { name: "Company F", logo: "/images/clients/client6.png" },
+    { name: "Bank BRI", logo: "/images/clients/Bank_BRI.png" },
+    { name: "BNPB", logo: "/images/clients/BNPB.png" },
+    { name: "CTP", logo: "/images/clients/CreativeTechnicalProduction.png" },
+    { name: "Foye", logo: "/images/clients/foye.png", darkBg: true },
+    { name: "Injourney", logo: "/images/clients/injourney.png" },
+    { name: "Jotun", logo: "/images/clients/jotun.png" },
+    { name: "MAJU.ID", logo: "/images/clients/MAJU.png" },
+    { name: "Mari Positive", logo: "/images/clients/Mari_Positive.png" },
+    { name: "Mutiara Kosmetik", logo: "/images/clients/mutiara.jpg" }
   ];
 
   return (
@@ -26,9 +29,11 @@ export default function ClientsSlider() {
         {[...clients, ...clients].map((client, index) => (
           <div 
             key={`${client.name}-${index}`} 
-            className="flex-shrink-0 w-[180px] mx-6 opacity-70 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+            className="flex-shrink-0 w-[180px] mx-6 transition-all duration-300"
           >
-            <div className="flex items-center justify-center h-20 bg-white rounded-md shadow-sm p-3">
+            <div className={`flex items-center justify-center h-20 rounded-md shadow-sm p-3 ${
+              client.darkBg ? 'bg-gray-900' : 'bg-white'
+            }`}>
               <div className="relative w-full h-full">
                 <Image 
                   src={client.logo} 
