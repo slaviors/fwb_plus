@@ -198,7 +198,7 @@ export const metadata = {
   },
   
   verification: {
-    google: "your-google-verification-code",
+    google: "tIa2nolQD7wEqpUaWXrJF2f4iemReF_5CixemmZntjk",
   },
   
   alternates: {
