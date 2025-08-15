@@ -3,7 +3,7 @@ export default function robots() {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: ['/admin/', '/doanh/'],
+      disallow: ['/admin/'],
     },
     sitemap: 'https://fwbplus.id/sitemap.xml',
   };
