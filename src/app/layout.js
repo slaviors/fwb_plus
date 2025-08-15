@@ -4,11 +4,11 @@ import { ConditionalNavbar } from "@/components/ConditionalNavbar";
 
 export const metadata = {
   title: {
-    default: "FWB+ Event Organizer Professional Corporate Jogja & Semarang",
-    template: "%s | FWB+ Professional Event Corporate",
+    default: "FWB+ Event Organizer Profesional Jogja & Semarang",
+    template: "%s | FWB+ Professional Event Organizer",
   },
   description:
-    "FWB+ professional event organizer yang didirikan 4 Juli 2024 dengan kantor di Jogja dan Semarang. Jasa EO terpercaya untuk corporate events, pameran, konser, dan acara perusahaan.",
+    "FWB+ Event Organizer profesional di Jogja & Semarang. Jasa EO terpercaya untuk corporate events, pameran, konser, dan acara perusahaan.",
   keywords: [
     // Brand
     "FWB+",
