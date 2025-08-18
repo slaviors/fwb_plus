@@ -201,17 +201,15 @@ export default function Services() {
 
   // Auto-rotate carousel images - only for active service card on mobile
   useEffect(() => {
-    // Only auto-rotate for active card and when not hovering
     if (isCarouselHovering || !services.length) return;
 
     const interval = setInterval(() => {
-      setCurrentImageIndex((prev) => (prev + 1) % 3);
-    }, 5000); // Increased to 5 seconds for better UX
+      setCurrentImageIndex((prev) => (prev + 1) % 2);
+    }, 5000);
 
     return () => clearInterval(interval);
   }, [isCarouselHovering, services.length]);
 
-  // Reset carousel when changing tabs or mobile service
   useEffect(() => {
     setCurrentImageIndex(0);
   }, [activeTab, currentServiceIndex]);
@@ -346,7 +344,6 @@ export default function Services() {
         ref={sectionRef}
         className="relative min-h-screen py-12 md:py-24 bg-gradient-to-b from-orange-50/40 via-white to-orange-50/20 overflow-hidden"
       >
-
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           {/* Enhanced section header */}
           <motion.div
@@ -668,9 +665,7 @@ export default function Services() {
                                 className="relative flex items-center justify-center px-4 py-2.5 rounded-2xl font-inter font-semibold text-white text-sm shadow-lg w-full transition-all hover:shadow-xl"
                                 style={{ backgroundColor: service.color }}
                               >
-                                <span className="mr-2">
-                                  Lihat Lebih Lanjut
-                                </span>
+                                <span className="mr-2">Lihat Lebih Lanjut</span>
                                 <svg
                                   className="w-4 h-4"
                                   fill="none"
@@ -894,131 +889,136 @@ export default function Services() {
                                 }
                               >
                                 <AnimatePresence>
-                                  {service.images.map((image, imgIndex) => (
-                                    <motion.div
-                                      key={`${service.id}-${imgIndex}`}
-                                      className={`absolute inset-0 ${
-                                        imgIndex === currentImageIndex
-                                          ? "z-20"
-                                          : "z-10"
-                                      }`}
-                                      initial={{
-                                        opacity: 0,
-                                        rotateY: -20,
-                                        scale: 0.9,
-                                        x: 40,
-                                      }}
-                                      animate={{
-                                        opacity:
+                                  {service.images
+                                    .slice(0, 3)
+                                    .map((image, imgIndex) => (
+                                      <motion.div
+                                        key={`${service.id}-${imgIndex}`}
+                                        className={`absolute inset-0 ${
                                           imgIndex === currentImageIndex
-                                            ? 1
-                                            : 0.7,
-                                        rotateY:
-                                          imgIndex === currentImageIndex
-                                            ? 0
-                                            : 10,
-                                        scale:
-                                          imgIndex === currentImageIndex
-                                            ? 1
-                                            : 0.85,
-                                        x:
-                                          imgIndex === currentImageIndex
-                                            ? 0
-                                            : imgIndex ===
-                                              (currentImageIndex + 1) %
-                                                service.images.length
-                                            ? 40
-                                            : -40,
-                                        zIndex:
-                                          imgIndex === currentImageIndex
-                                            ? 20
-                                            : 10,
-                                      }}
-                                      exit={{ opacity: 0, scale: 0.8 }}
-                                      transition={{ duration: 1 }}
-                                    >
-                                      <div
-                                        className="h-full w-full overflow-hidden rounded-3xl shadow-2xl transition-shadow group"
-                                        style={{
-                                          boxShadow: `0 25px 50px -12px ${service.color}30, 0 10px 15px -3px ${service.color}20`,
+                                            ? "z-20"
+                                            : "z-10"
+                                        }`}
+                                        initial={{
+                                          opacity: 0,
+                                          rotateY: -20,
+                                          scale: 0.9,
+                                          x: 40,
                                         }}
+                                        animate={{
+                                          opacity:
+                                            imgIndex === currentImageIndex
+                                              ? 1
+                                              : 0.7,
+                                          rotateY:
+                                            imgIndex === currentImageIndex
+                                              ? 0
+                                              : 10,
+                                          scale:
+                                            imgIndex === currentImageIndex
+                                              ? 1
+                                              : 0.85,
+                                          x:
+                                            imgIndex === currentImageIndex
+                                              ? 0
+                                              : imgIndex ===
+                                                (currentImageIndex + 1) % 3 // Ubah dari service.images.length ke 3
+                                              ? 40
+                                              : -40,
+                                          zIndex:
+                                            imgIndex === currentImageIndex
+                                              ? 20
+                                              : 10,
+                                        }}
+                                        exit={{ opacity: 0, scale: 0.8 }}
+                                        transition={{ duration: 1 }}
                                       >
-                                        <div className="relative h-full w-full overflow-hidden">
-                                          <Image
-                                            src={image}
-                                            alt={`${service.title} - Image ${
-                                              imgIndex + 1
-                                            }`}
-                                            fill
-                                            sizes="(max-width: 768px) 100vw, 50vw"
-                                            className="object-cover group-hover:scale-110 transition-transform duration-1000"
-                                            priority={imgIndex === 0}
-                                          />
-
-                                          {/* Progressive blur overlay - Advanced technique like Hero */}
-                                          <div className="absolute left-0 bottom-0 right-0 w-full h-1/2 pointer-events-none">
-                                            <div
-                                              className="absolute top-0 left-0 bottom-0 right-0 z-10"
-                                              style={{
-                                                backdropFilter: "blur(4px)",
-                                                mask: "linear-gradient(rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%)",
-                                                WebkitMask:
-                                                  "linear-gradient(rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%)",
-                                              }}
+                                        <div
+                                          className="h-full w-full overflow-hidden rounded-3xl shadow-2xl transition-shadow group"
+                                          style={{
+                                            boxShadow: `0 25px 50px -12px ${service.color}30, 0 10px 15px -3px ${service.color}20`,
+                                          }}
+                                        >
+                                          <div className="relative h-full w-full overflow-hidden">
+                                            <Image
+                                              src={image}
+                                              alt={`${service.title} - Image ${
+                                                imgIndex + 1
+                                              }`}
+                                              fill
+                                              sizes="(max-width: 768px) 100vw, 50vw"
+                                              className="object-cover group-hover:scale-110 transition-transform duration-1000"
+                                              priority={imgIndex === 0}
                                             />
-                                            {/* Gradient overlay for darkening */}
-                                            <div
-                                              className="absolute top-0 left-0 right-0 bottom-0"
-                                              style={{
-                                                background: `linear-gradient(transparent, ${service.color}60)`,
-                                              }}
-                                            />
-                                          </div>
 
-                                          {/* Service info overlay - Hero style */}
-                                          <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 text-white">
-                                            <motion.div
-                                              initial={{ opacity: 0, y: 20 }}
-                                              animate={{
-                                                opacity:
-                                                  imgIndex === currentImageIndex
-                                                    ? 1
-                                                    : 0,
-                                                y:
-                                                  imgIndex === currentImageIndex
-                                                    ? 0
-                                                    : 20,
-                                              }}
-                                              transition={{
-                                                duration: 0.5,
-                                                delay: 0.2,
-                                              }}
-                                            >
-                                              <motion.span
-                                                className="hidden md:inline-block py-1.5 px-3 mb-2 text-xs bg-white/95 font-inter font-semibold rounded-full backdrop-blur-sm shadow-lg"
-                                                style={{ color: service.color }}
+                                            {/* Progressive blur overlay - Advanced technique like Hero */}
+                                            <div className="absolute left-0 bottom-0 right-0 w-full h-1/2 pointer-events-none">
+                                              <div
+                                                className="absolute top-0 left-0 bottom-0 right-0 z-10"
+                                                style={{
+                                                  backdropFilter: "blur(4px)",
+                                                  mask: "linear-gradient(rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%)",
+                                                  WebkitMask:
+                                                    "linear-gradient(rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%)",
+                                                }}
+                                              />
+                                              {/* Gradient overlay for darkening */}
+                                              <div
+                                                className="absolute top-0 left-0 right-0 bottom-0"
+                                                style={{
+                                                  background: `linear-gradient(transparent, ${service.color}60)`,
+                                                }}
+                                              />
+                                            </div>
+
+                                            {/* Service info overlay - Hero style */}
+                                            <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 text-white">
+                                              <motion.div
+                                                initial={{ opacity: 0, y: 20 }}
+                                                animate={{
+                                                  opacity:
+                                                    imgIndex ===
+                                                    currentImageIndex
+                                                      ? 1
+                                                      : 0,
+                                                  y:
+                                                    imgIndex ===
+                                                    currentImageIndex
+                                                      ? 0
+                                                      : 20,
+                                                }}
+                                                transition={{
+                                                  duration: 0.5,
+                                                  delay: 0.2,
+                                                }}
                                               >
-                                                <img
-                                                  src="/images/assets/logo/fwb-text.webp"
-                                                  alt="FWB Plus"
-                                                  width={32}
-                                                  height={10}
-                                                  className="inline-block mx-1 align-middle"
-                                                />{" "}
-                                                Services
-                                              </motion.span>
-                                              <h3 className="font-unbounded text-xl md:text-2xl font-bold mb-2">
-                                                {service.title}
-                                              </h3>
-                                              <p className="text-white/80 font-inter text-sm">
-                                                {service.shortDesc}
-                                              </p>
-                                            </motion.div>
+                                                <motion.span
+                                                  className="hidden md:inline-block py-1.5 px-3 mb-2 text-xs bg-white/95 font-inter font-semibold rounded-full backdrop-blur-sm shadow-lg"
+                                                  style={{
+                                                    color: service.color,
+                                                  }}
+                                                >
+                                                  <img
+                                                    src="/images/assets/logo/fwb-text.webp"
+                                                    alt="FWB Plus"
+                                                    width={32}
+                                                    height={10}
+                                                    className="inline-block mx-1 align-middle"
+                                                  />{" "}
+                                                  Services
+                                                </motion.span>
+                                                <h3 className="font-unbounded text-xl md:text-2xl font-bold mb-2">
+                                                  {service.title}
+                                                </h3>
+                                                <p className="text-white/80 font-inter text-sm">
+                                                  {service.shortDesc}
+                                                </p>
+                                              </motion.div>
+                                            </div>
                                           </div>
                                         </div>
-                                      </div>
-                                    </motion.div>
-                                  ))}
+                                      </motion.div>
+                                    ))}
                                 </AnimatePresence>
 
                                 {/* Navigation dots - Hero style */}
@@ -1026,50 +1026,55 @@ export default function Services() {
                                   {service &&
                                     service.images &&
                                     Array.isArray(service.images) &&
-                                    service.images.map((_, idx) => (
-                                      <button
-                                        key={`nav-dot-${idx}`}
-                                        onClick={() =>
-                                          setCurrentImageIndex(idx)
-                                        }
-                                        className="relative p-1 focus:outline-none"
-                                      >
-                                        <motion.span
-                                          animate={{
-                                            scale:
-                                              idx === currentImageIndex
-                                                ? 1
-                                                : 0.7,
-                                            opacity:
-                                              idx === currentImageIndex
-                                                ? 1
-                                                : 0.5,
-                                          }}
-                                          className={`block w-3 h-3 rounded-full transition-colors duration-300`}
-                                          style={{
-                                            backgroundColor:
-                                              idx === currentImageIndex
-                                                ? service.color || "#1a7be6"
-                                                : "#d1d5db",
-                                          }}
-                                        />
-                                        {idx === currentImageIndex &&
-                                          service.id && (
-                                            <motion.span
-                                              layoutId={`dotIndicator-${service.id}-${idx}`}
-                                              className="absolute inset-0 rounded-full border-2"
-                                              style={{
-                                                borderColor:
-                                                  service.color || "#1a7be6",
-                                              }}
-                                              transition={{
-                                                duration: 0.5,
-                                                type: "spring",
-                                              }}
-                                            />
-                                          )}
-                                      </button>
-                                    ))}
+                                    service.images.slice(0, 3).map(
+                                      (
+                                        _,
+                                        idx // Tambahkan slice(0, 3) di sini juga
+                                      ) => (
+                                        <button
+                                          key={`nav-dot-${idx}`}
+                                          onClick={() =>
+                                            setCurrentImageIndex(idx)
+                                          }
+                                          className="relative p-1 focus:outline-none"
+                                        >
+                                          <motion.span
+                                            animate={{
+                                              scale:
+                                                idx === currentImageIndex
+                                                  ? 1
+                                                  : 0.7,
+                                              opacity:
+                                                idx === currentImageIndex
+                                                  ? 1
+                                                  : 0.5,
+                                            }}
+                                            className={`block w-3 h-3 rounded-full transition-colors duration-300`}
+                                            style={{
+                                              backgroundColor:
+                                                idx === currentImageIndex
+                                                  ? service.color || "#1a7be6"
+                                                  : "#d1d5db",
+                                            }}
+                                          />
+                                          {idx === currentImageIndex &&
+                                            service.id && (
+                                              <motion.span
+                                                layoutId={`dotIndicator-${service.id}-${idx}`}
+                                                className="absolute inset-0 rounded-full border-2"
+                                                style={{
+                                                  borderColor:
+                                                    service.color || "#1a7be6",
+                                                }}
+                                                transition={{
+                                                  duration: 0.5,
+                                                  type: "spring",
+                                                }}
+                                              />
+                                            )}
+                                        </button>
+                                      )
+                                    )}
                                 </div>
                               </div>
                             </div>

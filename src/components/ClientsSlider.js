@@ -13,7 +13,7 @@ export default function ClientsSlider() {
     { name: "Jotun", logo: "/images/clients/jotun.png" },
     { name: "MAJU.ID", logo: "/images/clients/MAJU.png" },
     { name: "Mari Positive", logo: "/images/clients/Mari_Positive.png" },
-    { name: "Mutiara Kosmetik", logo: "/images/clients/mutiara.jpg" }
+    { name: "Mutiara Kosmetik", logo: "/images/clients/mutiarakosmetik.jpg" }
   ];
 
   return (
