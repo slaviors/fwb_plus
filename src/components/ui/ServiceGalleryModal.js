@@ -9,6 +9,7 @@ export default function ServiceGalleryModal({ isOpen, onClose, service }) {
   const [isDragging, setIsDragging] = useState(false);
   const [direction, setDirection] = useState(0); // 1 for next, -1 for previous
   const constraintsRef = useRef(null);
+  const thumbnailScrollRef = useRef(null);
 
   // Reset image index when modal opens or service changes
   useEffect(() => {
@@ -34,6 +35,20 @@ export default function ServiceGalleryModal({ isOpen, onClose, service }) {
     document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, [isOpen, service?.images, onClose, currentImageIndex]);
+
+  // Auto scroll active thumbnail into view
+  useEffect(() => {
+    if (thumbnailScrollRef.current && service?.images) {
+      const activeThumb = thumbnailScrollRef.current.children[currentImageIndex];
+      if (activeThumb) {
+        activeThumb.scrollIntoView({
+          behavior: 'smooth',
+          block: 'nearest',
+          inline: 'center'
+        });
+      }
+    }
+  }, [currentImageIndex, service?.images]);
 
   // Handle touch/swipe navigation
   const handleDragEnd = (event, info) => {
@@ -198,17 +213,17 @@ export default function ServiceGalleryModal({ isOpen, onClose, service }) {
             initial="hidden"
             animate="visible"
             exit="exit"
-            className="w-full h-full sm:h-auto sm:max-w-6xl sm:max-h-[90vh] bg-white rounded-2xl shadow-2xl overflow-hidden relative"
+            className="w-full h-full sm:h-auto sm:max-w-6xl sm:max-h-[90vh] bg-white rounded-2xl shadow-2xl overflow-hidden relative flex flex-col"
           >
             <motion.div
               variants={modalContentVariants}
               initial="hidden"
               animate="visible"
               exit="exit"
-              className="relative w-full h-full"
+              className="relative w-full h-full flex flex-col"
             >
               {/* Header */}
-              <div className="relative px-3 sm:px-6 py-3 sm:py-4 border-b border-gray-100 bg-white/95 backdrop-blur-sm">
+              <div className="flex-shrink-0 px-3 sm:px-6 py-3 sm:py-4 border-b border-gray-100 bg-white/95 backdrop-blur-sm">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-1">
                     <div 
@@ -268,9 +283,9 @@ export default function ServiceGalleryModal({ isOpen, onClose, service }) {
               </div>
 
               {/* Main Gallery Content */}
-              <div className="relative h-[50vh] sm:h-[60vh] bg-gray-50">
+              <div className="flex-1 bg-gray-50 relative" style={{ minHeight: '50vh' }}>
                 {/* Main Image Display */}
-                <div className="relative h-full w-full overflow-hidden" ref={constraintsRef}>
+                <div className="absolute inset-0 flex items-center justify-center overflow-hidden" ref={constraintsRef}>
                   <AnimatePresence mode="wait" custom={direction}>
                     <motion.div
                       key={`main-${currentImageIndex}`}
@@ -279,7 +294,7 @@ export default function ServiceGalleryModal({ isOpen, onClose, service }) {
                       initial="hidden"
                       animate="visible"
                       exit="exit"
-                      className="absolute inset-0"
+                      className="relative w-full h-full"
                       drag="x"
                       dragConstraints={constraintsRef}
                       dragElastic={0.1}
@@ -289,7 +304,7 @@ export default function ServiceGalleryModal({ isOpen, onClose, service }) {
                         cursor: isDragging ? 'grabbing' : 'grab'
                       }}
                     >
-                      <div className="relative h-full w-full pointer-events-none">
+                      <div className="relative w-full h-full pointer-events-none">
                         <Image
                           src={service.images[currentImageIndex]}
                           alt={`${service.title} - Image ${currentImageIndex + 1}`}
@@ -356,111 +371,215 @@ export default function ServiceGalleryModal({ isOpen, onClose, service }) {
                 </div>
               </div>
 
-              {/* Thumbnail Grid - Hidden on mobile, shown on tablet and above */}
-              <div className="hidden sm:block px-3 sm:px-6 py-3 sm:py-4 bg-white">
-                <div className="flex gap-2 sm:gap-3 overflow-x-auto overflow-y-hidden scrollbar-hide" style={{
-                  scrollbarWidth: 'none',
-                  msOverflowStyle: 'none',
-                  WebkitScrollbar: { display: 'none' }
-                }}>
-                  {service.images.map((image, index) => (
-                    <motion.button
-                      key={index}
-                      onClick={() => goToSpecificImage(index)}
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      title={getImageTitle(service, index)}
-                      className={`relative flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 rounded-xl overflow-hidden border-2 transition-all ${
-                        index === currentImageIndex
-                          ? 'border-current shadow-lg'
-                          : 'border-gray-200 hover:border-gray-300'
-                      }`}
-                      style={{
-                        borderColor: index === currentImageIndex ? service.color : undefined
-                      }}
-                    >
-                      <Image
-                        src={image}
-                        alt={`Thumbnail ${index + 1}`}
-                        fill
-                        sizes="80px"
-                        className="object-cover"
-                      />
-                      {index === currentImageIndex && (
-                        <motion.div
-                          layoutId="activeThumb"
-                          className="absolute inset-0 rounded-xl"
-                          style={{ 
-                            backgroundColor: `${service.color}20`,
-                            border: `2px solid ${service.color}`
-                          }}
+              {/* Thumbnail Section */}
+              <div className="flex-shrink-0 bg-white border-t border-gray-100">
+                {/* Desktop Thumbnail Grid */}
+                <div className="hidden md:block px-6 py-4">
+                  <div 
+                    ref={thumbnailScrollRef}
+                    className="flex gap-3 overflow-x-auto pb-1"
+                    style={{
+                      scrollbarWidth: 'thin',
+                      scrollbarColor: `${service.color}40 transparent`
+                    }}
+                  >
+                    {service.images.map((image, index) => (
+                      <motion.button
+                        key={index}
+                        onClick={() => goToSpecificImage(index)}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        title={getImageTitle(service, index)}
+                        className={`relative flex-shrink-0 w-20 h-20 rounded-xl overflow-hidden border-2 transition-all ${
+                          index === currentImageIndex
+                            ? 'border-current shadow-lg'
+                            : 'border-gray-200 hover:border-gray-300'
+                        }`}
+                        style={{
+                          borderColor: index === currentImageIndex ? service.color : undefined
+                        }}
+                      >
+                        <Image
+                          src={image}
+                          alt={`Thumbnail ${index + 1}`}
+                          fill
+                          sizes="80px"
+                          className="object-cover"
                         />
-                      )}
-                    </motion.button>
-                  ))}
+                        {index === currentImageIndex && (
+                          <motion.div
+                            layoutId="activeThumb"
+                            className="absolute inset-0 rounded-xl"
+                            style={{ 
+                              backgroundColor: `${service.color}20`,
+                              border: `2px solid ${service.color}`
+                            }}
+                          />
+                        )}
+                      </motion.button>
+                    ))}
+                  </div>
                 </div>
-              </div>
 
-              {/* Mobile Navigation Indicators */}
-              <div className="block sm:hidden px-3 pb-4 bg-white">
-                <div className="flex justify-center gap-2 mb-3">
-                  {service.images.map((_, index) => (
-                    <motion.button
-                      key={index}
-                      onClick={() => goToSpecificImage(index)}
-                      whileTap={{ scale: 0.8 }}
-                      className={`transition-all duration-300 ${
-                        index === currentImageIndex
-                          ? 'w-6 h-2 rounded-full scale-125 opacity-100'
-                          : 'w-2 h-2 rounded-full scale-75 opacity-50'
-                      }`}
-                      style={{
-                        backgroundColor: index === currentImageIndex ? service.color : '#d1d5db'
-                      }}
-                    />
-                  ))}
-                </div>
-                
-                {/* Mobile Thumbnail Strip */}
-                <div className="flex gap-2 overflow-x-auto overflow-y-hidden scrollbar-hide pb-1" style={{
-                  scrollbarWidth: 'none',
-                  msOverflowStyle: 'none',
-                  WebkitScrollbar: { display: 'none' }
-                }}>
-                  {service.images.map((image, index) => (
-                    <motion.button
-                      key={index}
-                      onClick={() => goToSpecificImage(index)}
-                      whileTap={{ scale: 0.95 }}
-                      title={getImageTitle(service, index)}
-                      className={`relative flex-shrink-0 w-12 h-12 rounded-lg overflow-hidden border-2 transition-all ${
-                        index === currentImageIndex
-                          ? 'border-current shadow-md scale-110'
-                          : 'border-gray-200 scale-100'
-                      }`}
-                      style={{
-                        borderColor: index === currentImageIndex ? service.color : undefined
-                      }}
-                    >
-                      <Image
-                        src={image}
-                        alt={`Thumbnail ${index + 1}`}
-                        fill
-                        sizes="48px"
-                        className="object-cover"
-                      />
-                      {index === currentImageIndex && (
-                        <motion.div
-                          layoutId="activeMobileThumb"
-                          className="absolute inset-0 rounded-lg"
-                          style={{ 
-                            backgroundColor: `${service.color}20`,
-                            border: `2px solid ${service.color}`
+                {/* Mobile & Tablet Design */}
+                <div className="block md:hidden">
+                  {/* Navigation Dots */}
+                  <div className="px-4 pt-3 pb-2">
+                    <div className="flex justify-center items-center gap-1.5 flex-wrap">
+                      {service.images.map((_, index) => (
+                        <motion.button
+                          key={index}
+                          onClick={() => goToSpecificImage(index)}
+                          whileTap={{ scale: 0.8 }}
+                          className={`transition-all duration-300 ${
+                            index === currentImageIndex
+                              ? 'w-6 h-2 rounded-full'
+                              : 'w-2 h-2 rounded-full'
+                          }`}
+                          style={{
+                            backgroundColor: index === currentImageIndex ? service.color : '#d1d5db'
                           }}
                         />
-                      )}
-                    </motion.button>
-                  ))}
+                      ))}
+                    </div>
+                  </div>
+                  
+                  {/* Mobile/Tablet Thumbnail Grid */}
+                  <div className="px-3 pb-4">
+                    {service.images.length <= 5 && (
+                      // Single row for 1-5 images
+                      <div className="flex justify-center gap-2">
+                        {service.images.map((image, index) => (
+                          <motion.button
+                            key={index}
+                            onClick={() => goToSpecificImage(index)}
+                            whileTap={{ scale: 0.95 }}
+                            title={getImageTitle(service, index)}
+                            className={`relative w-12 h-12 sm:w-16 sm:h-16 rounded-lg overflow-hidden border-2 transition-all ${
+                              index === currentImageIndex
+                                ? 'border-current shadow-md scale-105 z-10'
+                                : 'border-gray-200 scale-100'
+                            }`}
+                            style={{
+                              borderColor: index === currentImageIndex ? service.color : undefined
+                            }}
+                          >
+                            <Image
+                              src={image}
+                              alt={`Thumbnail ${index + 1}`}
+                              fill
+                              sizes="64px"
+                              className="object-cover"
+                            />
+                            {index === currentImageIndex && (
+                              <motion.div
+                                layoutId="activeMobileThumb"
+                                className="absolute inset-0 rounded-lg"
+                                style={{ 
+                                  backgroundColor: `${service.color}30`,
+                                  border: `2px solid ${service.color}`
+                                }}
+                              />
+                            )}
+                          </motion.button>
+                        ))}
+                      </div>
+                    )}
+
+                    {service.images.length > 5 && service.images.length <= 10 && (
+                      // Two rows for 6-10 images
+                      <div className="grid grid-cols-5 gap-1.5 justify-items-center">
+                        {service.images.map((image, index) => (
+                          <motion.button
+                            key={index}
+                            onClick={() => goToSpecificImage(index)}
+                            whileTap={{ scale: 0.95 }}
+                            title={getImageTitle(service, index)}
+                            className={`relative w-10 h-10 sm:w-12 sm:h-12 rounded-lg overflow-hidden border-2 transition-all ${
+                              index === currentImageIndex
+                                ? 'border-current shadow-md scale-105 z-10'
+                                : 'border-gray-200 scale-100'
+                            }`}
+                            style={{
+                              borderColor: index === currentImageIndex ? service.color : undefined
+                            }}
+                          >
+                            <Image
+                              src={image}
+                              alt={`Thumbnail ${index + 1}`}
+                              fill
+                              sizes="48px"
+                              className="object-cover"
+                            />
+                            {index === currentImageIndex && (
+                              <motion.div
+                                layoutId="activeMobileThumb"
+                                className="absolute inset-0 rounded-lg"
+                                style={{ 
+                                  backgroundColor: `${service.color}30`,
+                                  border: `2px solid ${service.color}`
+                                }}
+                              />
+                            )}
+                          </motion.button>
+                        ))}
+                      </div>
+                    )}
+
+                    {service.images.length > 10 && (
+                      // Compact grid for many images
+                      <div className="grid grid-cols-6 sm:grid-cols-8 gap-1 justify-items-center max-h-20 overflow-y-auto">
+                        {service.images.map((image, index) => (
+                          <motion.button
+                            key={index}
+                            onClick={() => goToSpecificImage(index)}
+                            whileTap={{ scale: 0.95 }}
+                            title={getImageTitle(service, index)}
+                            className={`relative w-8 h-8 sm:w-10 sm:h-10 rounded-md overflow-hidden border-2 transition-all ${
+                              index === currentImageIndex
+                                ? 'border-current shadow-md scale-110 z-10'
+                                : 'border-gray-200 scale-100'
+                            }`}
+                            style={{
+                              borderColor: index === currentImageIndex ? service.color : undefined
+                            }}
+                          >
+                            <Image
+                              src={image}
+                              alt={`Thumbnail ${index + 1}`}
+                              fill
+                              sizes="40px"
+                              className="object-cover"
+                            />
+                            {index === currentImageIndex && (
+                              <motion.div
+                                layoutId="activeMobileThumb"
+                                className="absolute inset-0 rounded-md"
+                                style={{ 
+                                  backgroundColor: `${service.color}30`,
+                                  border: `2px solid ${service.color}`
+                                }}
+                              />
+                            )}
+                            
+                            {/* Number overlay for compact view */}
+                            <div className="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
+                              <span className="text-white text-xs font-medium">
+                                {index + 1}
+                              </span>
+                            </div>
+                          </motion.button>
+                        ))}
+                      </div>
+                    )}
+                    
+                    {/* Hint text */}
+                    {service.images.length > 5 && (
+                      <p className="text-xs text-gray-500 text-center mt-2">
+                        Tap foto untuk melihat gambar
+                      </p>
+                    )}
+                  </div>
                 </div>
               </div>
             </motion.div>
