@@ -332,7 +332,7 @@ export default function FWBConfigPage() {
                   >
                     <Image
                       src="/images/assets/logo/Logo FWB PNG Transparan.png"
-                      alt="FWB Plus Logo"
+                      alt="FWB Plus"
                       width={80}
                       height={80}
                       className="object-contain"

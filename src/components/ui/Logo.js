@@ -19,7 +19,7 @@ export default function Logo() {
           <div className="relative h-6 sm:h-10 w-[180px]">
             <Image
               src={logoPath}
-              alt="FWB Plus Logo"
+              alt="FWB Plus"
               fill
               style={{ 
                 objectFit: 'contain',
@@ -35,7 +35,7 @@ export default function Logo() {
           <div className="relative h-8 w-[140px]">
             <Image
               src={logoPath}
-              alt="FWB Plus Logo"
+              alt="FWB Plus"
               fill
               style={{ 
                 objectFit: 'contain',

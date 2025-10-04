@@ -212,7 +212,7 @@ export default function Footer() {
                 <div className="relative h-10 sm:h-12 w-28 sm:w-36 mx-auto md:mx-0">
                   <Image
                     src="/images/assets/logo/Logo FWB PNG Transparan.png"
-                    alt="FWB Plus Logo"
+                    alt="FWB Plus"
                     fill
                     sizes="(max-width: 640px) 112px, (max-width: 768px) 144px, 144px"
                     style={{ objectFit: "contain" }}
