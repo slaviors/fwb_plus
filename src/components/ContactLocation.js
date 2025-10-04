@@ -247,7 +247,7 @@ export default function ContactLocation() {
             >
               <Image
                 src="/images/assets/logo/Logo FWB PNG Transparan.png"
-                alt="FWB Plus Logo"
+                alt="FWB Plus"
                 width={160}
                 height={64}
                 className="w-auto h-6 ml-2 md:h-12 md:ml-0 lg:h-16 mt-2"
