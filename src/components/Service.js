@@ -173,6 +173,10 @@ export default function Services() {
         "/images/gallery/EVENT-EQUIPMENT-MANPOWER/event-equipment-11.jpg",
         "/images/gallery/EVENT-EQUIPMENT-MANPOWER/event-equipment-12.jpg",
         "/images/gallery/EVENT-EQUIPMENT-MANPOWER/event-equipment-13.jpg",
+        "/images/gallery/EVENT-EQUIPMENT-MANPOWER/event-equipment-14.jpg",
+        "/images/gallery/EVENT-EQUIPMENT-MANPOWER/event-equipment-15.jpg",
+        "/images/gallery/EVENT-EQUIPMENT-MANPOWER/event-equipment-16.jpg",
+        "/images/gallery/EVENT-EQUIPMENT-MANPOWER/event-equipment-17.jpg",
       ],
       description: (
         <>
