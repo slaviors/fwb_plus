@@ -2,9 +2,9 @@
 import { useEffect, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import * as XLSX from "xlsx";
+import ExcelJS from "exceljs";
 import jsPDF from "jspdf";
-import Image from 'next/image'
+import Image from "next/image";
 
 function filterByRange(reviews, range, customStart, customEnd) {
   const now = new Date();
@@ -71,17 +71,48 @@ function exportToTXT(reviews) {
   URL.revokeObjectURL(url);
 }
 
-function exportToXLSX(reviews) {
-  const data = reviews.map((r) => ({
-    Nama: r.name,
-    Bintang: r.star,
-    Pesan: r.message,
-    Waktu: new Date(r.createdAt).toLocaleString("id-ID"),
-  }));
-  const ws = XLSX.utils.json_to_sheet(data);
-  const wb = XLSX.utils.book_new();
-  XLSX.utils.book_append_sheet(wb, ws, "Reviews");
-  XLSX.writeFile(wb, "review-export.xlsx");
+async function exportToXLSX(reviews) {
+  const workbook = new ExcelJS.Workbook();
+  const worksheet = workbook.addWorksheet("Reviews");
+
+  // Define columns with headers
+  worksheet.columns = [
+    { header: "Nama", key: "nama", width: 20 },
+    { header: "Bintang", key: "bintang", width: 10 },
+    { header: "Pesan", key: "pesan", width: 50 },
+    { header: "Waktu", key: "waktu", width: 25 },
+  ];
+
+  // Style header row
+  worksheet.getRow(1).font = { bold: true };
+  worksheet.getRow(1).fill = {
+    type: "pattern",
+    pattern: "solid",
+    fgColor: { argb: "FF1a7be6" },
+  };
+  worksheet.getRow(1).font = { color: { argb: "FFFFFFFF" }, bold: true };
+
+  // Add data rows
+  reviews.forEach((r) => {
+    worksheet.addRow({
+      nama: r.name,
+      bintang: r.star,
+      pesan: r.message,
+      waktu: new Date(r.createdAt).toLocaleString("id-ID"),
+    });
+  });
+
+  // Generate buffer and download
+  const buffer = await workbook.xlsx.writeBuffer();
+  const blob = new Blob([buffer], {
+    type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+  });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "review-export.xlsx";
+  a.click();
+  URL.revokeObjectURL(url);
 }
 
 function exportToJSON(reviews) {
@@ -248,7 +279,7 @@ export default function ReviewAdminPage() {
     },
     {
       label: "Excel",
-      action: () => exportToXLSX(filtered),
+      action: async () => await exportToXLSX(filtered),
       color: "bg-blue-600 hover:bg-blue-700",
       icon: (
         <svg
@@ -405,7 +436,9 @@ export default function ReviewAdminPage() {
                   <h1 className="text-sm sm:text-lg lg:text-xl font-unbounded font-bold text-gray-900">
                     Admin Panel
                   </h1>
-                  <p className="text-xs font-rubik text-gray-500 hidden sm:block">Review Management</p>
+                  <p className="text-xs font-rubik text-gray-500 hidden sm:block">
+                    Review Management
+                  </p>
                 </div>
               </div>
             </motion.div>
@@ -838,20 +871,26 @@ export default function ReviewAdminPage() {
                   {/* Mobile Pagination Info */}
                   <div className="text-center">
                     <div className="text-sm text-gray-600 font-rubik">
-                      Menampilkan {startIndex + 1} - {Math.min(endIndex, filtered.length)} dari {filtered.length} review
+                      Menampilkan {startIndex + 1} -{" "}
+                      {Math.min(endIndex, filtered.length)} dari{" "}
+                      {filtered.length} review
                     </div>
                   </div>
 
                   {/* Desktop Pagination */}
                   <div className="hidden sm:flex items-center justify-between p-6 bg-gradient-to-r from-blue-50/50 to-white rounded-2xl border border-blue-100/50">
                     <div className="text-sm text-gray-600 font-rubik">
-                      Menampilkan {startIndex + 1} - {Math.min(endIndex, filtered.length)} dari {filtered.length} review
+                      Menampilkan {startIndex + 1} -{" "}
+                      {Math.min(endIndex, filtered.length)} dari{" "}
+                      {filtered.length} review
                     </div>
 
                     <div className="flex items-center space-x-2">
                       {/* Previous Button */}
                       <motion.button
-                        onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+                        onClick={() =>
+                          setCurrentPage(Math.max(1, currentPage - 1))
+                        }
                         disabled={currentPage === 1}
                         whileHover={{ scale: currentPage === 1 ? 1 : 1.05 }}
                         whileTap={{ scale: currentPage === 1 ? 1 : 0.95 }}
@@ -861,8 +900,18 @@ export default function ReviewAdminPage() {
                             : "bg-white text-[#1a7be6] border border-blue-200 hover:bg-blue-50 shadow-sm"
                         }`}
                       >
-                        <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                        <svg
+                          className="w-4 h-4 mr-1"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M15 19l-7-7 7-7"
+                          />
                         </svg>
                         Prev
                       </motion.button>
@@ -872,11 +921,20 @@ export default function ReviewAdminPage() {
                         {(() => {
                           const pages = [];
                           const maxVisiblePages = 5;
-                          let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
-                          let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+                          let startPage = Math.max(
+                            1,
+                            currentPage - Math.floor(maxVisiblePages / 2)
+                          );
+                          let endPage = Math.min(
+                            totalPages,
+                            startPage + maxVisiblePages - 1
+                          );
 
                           if (endPage - startPage < maxVisiblePages - 1) {
-                            startPage = Math.max(1, endPage - maxVisiblePages + 1);
+                            startPage = Math.max(
+                              1,
+                              endPage - maxVisiblePages + 1
+                            );
                           }
 
                           if (startPage > 1) {
@@ -893,7 +951,12 @@ export default function ReviewAdminPage() {
                             );
                             if (startPage > 2) {
                               pages.push(
-                                <span key="ellipsis1" className="text-gray-400 text-sm">...</span>
+                                <span
+                                  key="ellipsis1"
+                                  className="text-gray-400 text-sm"
+                                >
+                                  ...
+                                </span>
                               );
                             }
                           }
@@ -903,8 +966,12 @@ export default function ReviewAdminPage() {
                               <motion.button
                                 key={page}
                                 onClick={() => setCurrentPage(page)}
-                                whileHover={{ scale: page === currentPage ? 1 : 1.1 }}
-                                whileTap={{ scale: page === currentPage ? 1 : 0.9 }}
+                                whileHover={{
+                                  scale: page === currentPage ? 1 : 1.1,
+                                }}
+                                whileTap={{
+                                  scale: page === currentPage ? 1 : 0.9,
+                                }}
                                 className={`w-8 h-8 rounded-lg font-medium text-sm transition-all duration-300 ${
                                   page === currentPage
                                     ? "bg-[#1a7be6] text-white shadow-md"
@@ -919,7 +986,12 @@ export default function ReviewAdminPage() {
                           if (endPage < totalPages) {
                             if (endPage < totalPages - 1) {
                               pages.push(
-                                <span key="ellipsis2" className="text-gray-400 text-sm">...</span>
+                                <span
+                                  key="ellipsis2"
+                                  className="text-gray-400 text-sm"
+                                >
+                                  ...
+                                </span>
                               );
                             }
                             pages.push(
@@ -941,10 +1013,16 @@ export default function ReviewAdminPage() {
 
                       {/* Next Button */}
                       <motion.button
-                        onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
+                        onClick={() =>
+                          setCurrentPage(Math.min(totalPages, currentPage + 1))
+                        }
                         disabled={currentPage === totalPages}
-                        whileHover={{ scale: currentPage === totalPages ? 1 : 1.05 }}
-                        whileTap={{ scale: currentPage === totalPages ? 1 : 0.95 }}
+                        whileHover={{
+                          scale: currentPage === totalPages ? 1 : 1.05,
+                        }}
+                        whileTap={{
+                          scale: currentPage === totalPages ? 1 : 0.95,
+                        }}
                         className={`px-3 py-2 rounded-xl font-medium text-sm transition-all duration-300 flex items-center ${
                           currentPage === totalPages
                             ? "bg-gray-100 text-gray-400 cursor-not-allowed"
@@ -952,8 +1030,18 @@ export default function ReviewAdminPage() {
                         }`}
                       >
                         Next
-                        <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        <svg
+                          className="w-4 h-4 ml-1"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M9 5l7 7-7 7"
+                          />
                         </svg>
                       </motion.button>
                     </div>
@@ -964,7 +1052,9 @@ export default function ReviewAdminPage() {
                     {/* Mobile Navigation Buttons */}
                     <div className="flex justify-between items-center">
                       <motion.button
-                        onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+                        onClick={() =>
+                          setCurrentPage(Math.max(1, currentPage - 1))
+                        }
                         disabled={currentPage === 1}
                         whileHover={{ scale: currentPage === 1 ? 1 : 1.05 }}
                         whileTap={{ scale: currentPage === 1 ? 1 : 0.95 }}
@@ -974,8 +1064,18 @@ export default function ReviewAdminPage() {
                             : "bg-white text-[#1a7be6] border border-blue-200 hover:bg-blue-50 shadow-sm"
                         }`}
                       >
-                        <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                        <svg
+                          className="w-4 h-4 mr-1"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M15 19l-7-7 7-7"
+                          />
                         </svg>
                         Prev
                       </motion.button>
@@ -985,10 +1085,16 @@ export default function ReviewAdminPage() {
                       </div>
 
                       <motion.button
-                        onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
+                        onClick={() =>
+                          setCurrentPage(Math.min(totalPages, currentPage + 1))
+                        }
                         disabled={currentPage === totalPages}
-                        whileHover={{ scale: currentPage === totalPages ? 1 : 1.05 }}
-                        whileTap={{ scale: currentPage === totalPages ? 1 : 0.95 }}
+                        whileHover={{
+                          scale: currentPage === totalPages ? 1 : 1.05,
+                        }}
+                        whileTap={{
+                          scale: currentPage === totalPages ? 1 : 0.95,
+                        }}
                         className={`px-4 py-2 rounded-xl font-medium text-sm transition-all duration-300 flex items-center ${
                           currentPage === totalPages
                             ? "bg-gray-100 text-gray-400 cursor-not-allowed"
@@ -996,8 +1102,18 @@ export default function ReviewAdminPage() {
                         }`}
                       >
                         Next
-                        <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        <svg
+                          className="w-4 h-4 ml-1"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M9 5l7 7-7 7"
+                          />
                         </svg>
                       </motion.button>
                     </div>
@@ -1008,11 +1124,13 @@ export default function ReviewAdminPage() {
                       onChange={(e) => setCurrentPage(Number(e.target.value))}
                       className="w-full px-3 py-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#1a7be6] focus:border-[#1a7be6] transition-colors font-rubik text-sm bg-white"
                     >
-                      {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-                        <option key={page} value={page}>
-                          Halaman {page} dari {totalPages}
-                        </option>
-                      ))}
+                      {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+                        (page) => (
+                          <option key={page} value={page}>
+                            Halaman {page} dari {totalPages}
+                          </option>
+                        )
+                      )}
                     </select>
                   </div>
                 </motion.div>
