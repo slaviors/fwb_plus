@@ -140,7 +140,7 @@ export default function Hero() {
               transition={{ duration: 0.8, delay: 0.9 }}
               className="mt-6 md:mt-10 flex flex-col sm:flex-row gap-3 md:gap-4 justify-center lg:justify-start"
             >
-              <Link href="https://wa.me/6281944074542">
+              <Link href="https://wa.me/6282277776603">
                 <motion.div
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
