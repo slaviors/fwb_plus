@@ -40,7 +40,7 @@ export default function ContactLocation() {
         </svg>
       ),
       title: "Telepon",
-      value: "+62 819 4407 4542",
+      value: "+62 822 7777 6603",
       description: "Hubungi kami untuk konsultasi gratis",
     },
     {
@@ -130,7 +130,7 @@ export default function ContactLocation() {
     setIsSubmitting(true);
 
     // Nomor WhatsApp dari data kontak yang sudah ada (hilangkan spasi)
-    const whatsappNumber = "6281944074542".replace(/\s+/g, "");
+    const whatsappNumber = "6282277776603".replace(/\s+/g, "");
 
     // Format pesan untuk WhatsApp
     const message =

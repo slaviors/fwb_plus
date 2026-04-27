@@ -1287,7 +1287,7 @@ export default function Services() {
                   }
                   transition={{ delay: 1.4, duration: 0.6 }}
                 >
-                  <Link href="https://wa.me/6281944074542">
+                  <Link href="https://wa.me/6282277776603">
                     <motion.div
                       whileHover={{ scale: 1.05, y: -2 }}
                       whileTap={{ scale: 0.95 }}
