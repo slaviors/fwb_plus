@@ -65,7 +65,7 @@ export default function Footer() {
       icon: "instagram",
       href: "https://instagram.com/fwbplus.organizer",
     },
-    { name: "WhatsApp", icon: "whatsapp", href: "https://wa.me/6281944074542" },
+    { name: "WhatsApp", icon: "whatsapp", href: "https://wa.me/6282277776603" },
   ];
 
   return (
@@ -412,7 +412,7 @@ export default function Footer() {
                     href="https://wa.me/6282277776603"
                     className="text-gray-600 hover:text-[#f35e0e] transition-colors text-xs sm:text-sm"
                   >
-                    +62 819-4407-4542
+                    +62 822-7777-6603
                   </a>
                 </motion.div>
               </div>
